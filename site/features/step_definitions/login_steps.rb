@@ -1,6 +1,6 @@
 Given /^example user$/ do
   user = User.new :name => "Example", :email_address => "example@example.com",
-                  :password => "Example"
+                  :password => "Example", :irc_nick => "example"
   user.save!
 end
 

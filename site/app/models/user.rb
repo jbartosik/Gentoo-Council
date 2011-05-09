@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   fields do
     name          :string, :required, :unique
+    irc_nick      :string, :required, :unique
     email_address :email_address, :login => true
     administrator :boolean, :default => false
     timestamps
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
     state :active, :default => true
 
     create :signup, :available_to => "Guest",
-           :params => [:name, :email_address, :password, :password_confirmation],
+           :params => [:name, :email_address, :irc_nick, :password, :password_confirmation],
            :become => :active
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
