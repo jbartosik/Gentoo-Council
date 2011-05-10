@@ -11,6 +11,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'show_me_the_cookies'
 end
 
 gem "hobo", ">= 1.3.0.pre28"

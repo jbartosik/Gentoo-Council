@@ -136,6 +136,7 @@ GEM
       json_pure
       rubyzip
     shoulda (2.11.3)
+    show_me_the_cookies (0.2.1)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -161,4 +162,5 @@ DEPENDENCIES
   rspec-rails
   ruby-debug
   shoulda
+  show_me_the_cookies
   sqlite3-ruby
