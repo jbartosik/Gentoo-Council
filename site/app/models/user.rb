@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
 
-  hobo_user_model # Don't put anything above this
+  hobo_devise_user_model :auth_methods => [:database_authenticable]
 
   fields do
     name          :string, :required, :unique
     irc_nick      :string, :required, :unique
-    email_address :email_address, :login => true
+    email         :email_address, :login => true
     administrator :boolean, :default => false
     timestamps
   end
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     state :active, :default => true
 
     create :signup, :available_to => "Guest",
-           :params => [:name, :email_address, :irc_nick, :password, :password_confirmation],
+           :params => [:name, :email, :irc_nick, :password, :password_confirmation],
            :become => :active
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
-      (acting_user == self && only_changed?(:email_address, :crypted_password,
+      (acting_user == self && only_changed?(:email, :crypted_password,
                                             :current_password, :password, :password_confirmation))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.

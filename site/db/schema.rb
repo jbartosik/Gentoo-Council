@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510092019) do
+ActiveRecord::Schema.define(:version => 20110510180303) do
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20110510092019) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"
-    t.string   "email_address"
+    t.string   "email"
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
