@@ -10,21 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510180303) do
+ActiveRecord::Schema.define(:version => 20110520150447) do
 
   create_table "users", :force => true do |t|
-    t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"
+    t.string   "crypted_password",          :limit => 60
+    t.string   "irc_nick"
     t.string   "email"
     t.boolean  "administrator",                           :default => false
+    t.boolean  "council_member",                          :default => false,    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
-    t.string   "irc_nick"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
