@@ -1,7 +1,7 @@
 When /^I fill in example user registration data$/ do
   When "I fill in the following:", table(%{
     |user_name|examle|
-    |user_email_address|example@example.com|
+    |user_email|example@example.com|
     |user_irc_nick|example|
     |user_password|Example|
     |user_password_confirmation|Example|

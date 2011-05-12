@@ -4,4 +4,8 @@ class Guest < Hobo::Model::Guest
     false
   end
 
+  def council_member?
+    false
+  end
+
 end

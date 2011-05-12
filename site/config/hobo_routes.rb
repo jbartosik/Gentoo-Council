@@ -26,4 +26,14 @@ Council::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
+
+  # Resource routes for controller "agendas"
+  get 'agendas(.:format)' => 'agendas#index', :as => 'agendas'
+  get 'agendas/new(.:format)', :as => 'new_agenda'
+  get 'agendas/:id/edit(.:format)' => 'agendas#edit', :as => 'edit_agenda'
+  get 'agendas/:id(.:format)' => 'agendas#show', :as => 'agenda', :constraints => { :id => %r([^/.?]+) }
+  post 'agendas(.:format)' => 'agendas#create', :as => 'create_agenda'
+  put 'agendas/:id(.:format)' => 'agendas#update', :as => 'update_agenda', :constraints => { :id => %r([^/.?]+) }
+  delete 'agendas/:id(.:format)' => 'agendas#destroy', :as => 'destroy_agenda', :constraints => { :id => %r([^/.?]+) }
+
 end

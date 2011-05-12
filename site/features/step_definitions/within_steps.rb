@@ -1,6 +1,10 @@
 {
   'in the notices' => '.flash.notice',
   'in the errors' => '.error-messages',
+  'in the content body' => '.content-body',
+  'in the agendas collection' => '.collection.agendas',
+  'as empty collection message' => '.empty-collection-message',
+  'as meeting time' => '.meeting-time-view',
   'as the user nick' => '.user-irc-nick'
 }.
 each do |within, selector|
