@@ -1,0 +1,7 @@
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Agenda"><ht key="agenda.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item href="&new_agenda_item_path">Suggest agenda item</nav-item>
+  </navigation>
+</def>

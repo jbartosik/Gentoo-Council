@@ -6,4 +6,6 @@
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
 
+<include src="taglibs/main_nav"/>
+
 <set-theme name="clean"/>

@@ -7,6 +7,8 @@ class Agenda < ActiveRecord::Base
     timestamps
   end
 
+  has_many :agenda_items
+
   lifecycle do
     state :open, :default => true
     state :submissions_closed, :meeting_ongoing, :old
@@ -65,6 +67,10 @@ class Agenda < ActiveRecord::Base
     transitions.collect do |transition|
       ["#{transition.camelize} this agenda.", "agenda_#{transition}_path"]
     end
+  end
+
+  def current?
+    ['open', 'submissions_closed'].include?(state.to_s)
   end
 
   protected

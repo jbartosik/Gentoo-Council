@@ -5,6 +5,7 @@
   'in the notices' => '.flash.notice',
   'in the errors' => '.error-messages',
   'in the content body' => '.content-body',
+  'in the agenda items' => '.agenda-items',
   'in the agendas collection' => '.collection.agendas',
   'as empty collection message' => '.empty-collection-message',
   'as meeting time' => '.meeting-time-view',

@@ -9,3 +9,5 @@ Factory.define :user, :class => User do |u|
 end
 
 Factory.define :agenda do |a|; end
+
+Factory.define :agenda_item do |a|; end

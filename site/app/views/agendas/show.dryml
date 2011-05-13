@@ -1,4 +1,12 @@
 <show-page>
+  <append-collection-section: if="&this.current?">
+    <h3 class="collection-heading">
+      Suggested items:
+    </h3>
+    <with with="&AgendaItem.all(:conditions => { :agenda_id => nil })">
+      <collection unless="&this.nil?" />
+    </with>
+  </append-collection-section:>
   <append-content-body:>
     <div class="transition" if="&Agenda.transitions_available(current_user)">
       <collection:possible_transitions>

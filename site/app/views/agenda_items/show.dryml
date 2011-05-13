@@ -1,0 +1,14 @@
+<show-page>
+  <append-content:>
+    <form if="&this.editable_by?(current_user, :agenda)">
+      <input value="&Agenda.current.id" type="hidden" name="agenda_item[agenda_id]"/>
+      <submit label="Add to current agenda"/>
+    </form>
+
+    <form if="&this.editable_by?(current_user, :rejected)">
+      <input value="&!this.rejected?" type="hidden" name="agenda_item[rejected]"/>
+      <submit label="Reject" unless="&this.rejected"/>
+      <submit label="Un-reject" if="&this.rejected"/>
+    </form>
+  </append-content:>
+</show-page>
