@@ -17,6 +17,8 @@ module NavigationHelpers
     when /the signup page/
       user_signup_path
 
+    when /the current agenda page/
+      agenda_path(Agenda.current)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

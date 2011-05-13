@@ -1,0 +1,9 @@
+<show-page>
+  <append-content-body:>
+    <div class="transition" if="&Agenda.transitions_available(current_user)">
+      <collection:possible_transitions>
+        <a href="&send(this.second)"><view:first/></a>
+      </collection>
+    </div>
+  </append-content-body:>
+</show-page>

@@ -1,0 +1,5 @@
+<index-page>
+  <before-collection:>
+    Current agenda: <view with="&Agenda.current" class="current-agenda"/>
+  </before-collection:>
+</index-page>

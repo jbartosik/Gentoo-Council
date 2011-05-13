@@ -4,4 +4,7 @@ class AgendasController < ApplicationController
 
   auto_actions :all
 
+  def index
+    hobo_index Agenda.state_is(:old)
+  end
 end

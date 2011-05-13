@@ -27,6 +27,14 @@ Council::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
+  # Lifecycle routes for controller "agendas"
+  put 'agendas/:id/close(.:format)' => 'agendas#do_close', :as => 'do_agenda_close'
+  get 'agendas/:id/close(.:format)' => 'agendas#close', :as => 'agenda_close'
+  put 'agendas/:id/reopen(.:format)' => 'agendas#do_reopen', :as => 'do_agenda_reopen'
+  get 'agendas/:id/reopen(.:format)' => 'agendas#reopen', :as => 'agenda_reopen'
+  put 'agendas/:id/archive(.:format)' => 'agendas#do_archive', :as => 'do_agenda_archive'
+  get 'agendas/:id/archive(.:format)' => 'agendas#archive', :as => 'agenda_archive'
+
   # Resource routes for controller "agendas"
   get 'agendas(.:format)' => 'agendas#index', :as => 'agendas'
   get 'agendas/new(.:format)', :as => 'new_agenda'

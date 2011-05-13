@@ -10,13 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520150527) do
+ActiveRecord::Schema.define(:version => 20110523175740) do
 
   create_table "agendas", :force => true do |t|
     t.datetime "meeting_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",         :default => "open"
+    t.datetime "key_timestamp"
   end
+
+  add_index "agendas", ["state"], :name => "index_agendas_on_state"
 
   create_table "users", :force => true do |t|
     t.string   "salt",                      :limit => 40

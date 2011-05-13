@@ -1,4 +1,7 @@
 {
+  'as current agenda' => '.current-agenda',
+  'as agenda state' => '.state-tag.view.agenda-state',
+  'as transition' => '.transition',
   'in the notices' => '.flash.notice',
   'in the errors' => '.error-messages',
   'in the content body' => '.content-body',
