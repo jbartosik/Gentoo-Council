@@ -49,7 +49,7 @@ describe AgendaItem do
 
   it 'should allow no one edit and update items assigned to archived agenda' do
     owner = Factory(:user)
-    agenda = Factory(:agenda, :state => 'archived')
+    agenda = Factory(:agenda, :state => 'old')
     a = Factory(:agenda_item, :user => owner, :agenda => agenda)
     for u in users_factory(AllRoles) + [owner]
       a.should_not be_editable_by(u)

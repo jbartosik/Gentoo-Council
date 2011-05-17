@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523180314) do
+ActiveRecord::Schema.define(:version => 20110523180453) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
@@ -35,6 +35,18 @@ ActiveRecord::Schema.define(:version => 20110523180314) do
   end
 
   add_index "agendas", ["state"], :name => "index_agendas_on_state"
+
+  create_table "participations", :force => true do |t|
+    t.string   "name"
+    t.string   "irc_nick"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "participant_id"
+    t.integer  "agenda_id"
+  end
+
+  add_index "participations", ["agenda_id"], :name => "index_participations_on_agenda_id"
+  add_index "participations", ["participant_id"], :name => "index_participations_on_participant_id"
 
   create_table "users", :force => true do |t|
     t.string   "salt",                      :limit => 40

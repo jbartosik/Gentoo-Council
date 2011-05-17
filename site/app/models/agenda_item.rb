@@ -21,7 +21,7 @@ class AgendaItem < ActiveRecord::Base
   end
 
   def update_permitted?
-    return false if agenda._?.state == 'archived'
+    return false if agenda._?.state == 'old'
     return false if user_changed?
     return true if acting_user.council_member?
     return true if acting_user.administrator?
@@ -42,7 +42,7 @@ class AgendaItem < ActiveRecord::Base
   def edit_permitted?(field)
     return false if field == :rejected && !agenda.nil?
     return false if field == :agenda && rejected?
-    return false if agenda._?.state == 'archived'
+    return false if agenda._?.state == 'old'
     return false if field == :user
     return true if acting_user.administrator?
     return true if acting_user.council_member?

@@ -93,4 +93,15 @@ describe Agenda do
     a1.meeting_time.strftime('%Y-%m-%d').should == today
     a2.meeting_time.strftime('%Y-%m-%d').should_not == today
   end
+
+  it 'should add all council members and only them as participants when archived' do
+    users_factory(:user, :admin)
+    users_factory(:council, :council)
+    council_names = User.council_member_is(true).collect{ |c| c.name }
+    agenda = Factory(:agenda, :state => 'submissions_closed')
+    agenda.lifecycle.archive!(User.council_member_is(true).first)
+
+    (council_names - agenda.participations.*.participant.*.name).should be_empty
+    (agenda.participations.*.participant.*.name - council_names).should be_empty
+  end
 end
