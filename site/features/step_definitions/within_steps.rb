@@ -9,7 +9,9 @@
   'in the agendas collection' => '.collection.agendas',
   'as empty collection message' => '.empty-collection-message',
   'as meeting time' => '.meeting-time-view',
-  'as the user nick' => '.user-irc-nick'
+  'as the user nick' => '.user-irc-nick',
+  'as voting option' => '.collection.voting-options',
+  'as voting option description' => '.voting-option-description'
 }.
 each do |within, selector|
   Then /^I should( not)? see "([^"]*)" #{within}$/ do |negation, text|

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     timestamps
   end
 
+  has_many  :votes
   # --- Signup lifecycle --- #
 
   lifecycle do

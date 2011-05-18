@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523180453) do
+ActiveRecord::Schema.define(:version => 20110601094807) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20110523180453) do
   add_index "agendas", ["state"], :name => "index_agendas_on_state"
 
   create_table "participations", :force => true do |t|
-    t.string   "name"
     t.string   "irc_nick"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,5 +64,25 @@ ActiveRecord::Schema.define(:version => 20110523180453) do
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
+
+  create_table "votes", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "voting_option_id", :null => false
+    t.integer  "user_id",          :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["voting_option_id", "user_id"], :name => "index_votes_on_voting_option_id_and_user_id", :unique => true
+  add_index "votes", ["voting_option_id"], :name => "index_votes_on_voting_option_id"
+
+  create_table "voting_options", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "agenda_item_id", :null => false
+  end
+
+  add_index "voting_options", ["agenda_item_id"], :name => "index_voting_options_on_agenda_item_id"
 
 end

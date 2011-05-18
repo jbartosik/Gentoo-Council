@@ -7,4 +7,8 @@ class AgendasController < ApplicationController
   def index
     hobo_index Agenda.state_is(:old)
   end
+
+  def current_items
+    render :json => Agenda.current.voting_array
+  end
 end

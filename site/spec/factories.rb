@@ -10,6 +10,17 @@ end
 
 Factory.define :agenda do |a|; end
 
-Factory.define :agenda_item do |a|; end
+Factory.define :agenda_item do |a|
+end
 
 Factory.define :participation do |p|; end
+
+Factory.define :vote do |v|;
+  v.association :voting_option
+  v.user        { users_factory(:council) }
+end
+
+Factory.define :voting_option  do |v|;
+  v.agenda_item { AgendaItem.create! }
+  v.description { "example" }
+end

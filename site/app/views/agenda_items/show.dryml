@@ -11,4 +11,13 @@
       <submit label="Un-reject" if="&this.rejected"/>
     </form>
   </append-content:>
+
+  <after-collection:>
+    <form if="&VotingOption.new.creatable_by?(current_user)" action="&create_voting_option_path">
+      <input id="voting_option_description" name="voting_option[description]" type="text"/>
+      <input id="voting_option_agenda_item_id" name="voting_option[agenda_item_id]" type="hidden" value="&this.id"/>
+      <after-submit stay-here/>
+      <submit label="Add a voting option"/>
+    </form>
+  </after-collection:>
 </show-page>

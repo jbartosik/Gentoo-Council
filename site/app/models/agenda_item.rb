@@ -12,6 +12,7 @@ class AgendaItem < ActiveRecord::Base
 
   belongs_to :user, :creator => true
   belongs_to :agenda
+  has_many   :voting_options
 
   # --- Permissions --- #
   def create_permitted?
@@ -49,5 +50,4 @@ class AgendaItem < ActiveRecord::Base
     return false unless agenda.nil?
     return acting_user == user if [nil, :title, :discussion, :body].include?(field)
   end
-
 end

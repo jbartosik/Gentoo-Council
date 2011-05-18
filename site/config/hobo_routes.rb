@@ -53,4 +53,14 @@ Council::Application.routes.draw do
   put 'agenda_items/:id(.:format)' => 'agenda_items#update', :as => 'update_agenda_item', :constraints => { :id => %r([^/.?]+) }
   delete 'agenda_items/:id(.:format)' => 'agenda_items#destroy', :as => 'destroy_agenda_item', :constraints => { :id => %r([^/.?]+) }
 
+
+  # Resource routes for controller "voting_options"
+  get 'voting_options(.:format)' => 'voting_options#index', :as => 'voting_options'
+  get 'voting_options/new(.:format)', :as => 'new_voting_option'
+  get 'voting_options/:id/edit(.:format)' => 'voting_options#edit', :as => 'edit_voting_option'
+  get 'voting_options/:id(.:format)' => 'voting_options#show', :as => 'voting_option', :constraints => { :id => %r([^/.?]+) }
+  post 'voting_options(.:format)' => 'voting_options#create', :as => 'create_voting_option'
+  put 'voting_options/:id(.:format)' => 'voting_options#update', :as => 'update_voting_option', :constraints => { :id => %r([^/.?]+) }
+  delete 'voting_options/:id(.:format)' => 'voting_options#destroy', :as => 'destroy_voting_option', :constraints => { :id => %r([^/.?]+) }
+
 end

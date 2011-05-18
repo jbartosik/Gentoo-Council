@@ -81,6 +81,12 @@ class Agenda < ActiveRecord::Base
     ['open', 'submissions_closed'].include?(state.to_s)
   end
 
+  def voting_array
+    agenda_items.collect do |item|
+      [item.title, item.voting_options.*.description]
+    end
+  end
+
   protected
     def there_is_only_one_non_archival_agenda
       return if(state.to_s == 'old')

@@ -23,6 +23,13 @@ module NavigationHelpers
     when /the first suggested agenda page/
       agenda_item_path(AgendaItem.first(:conditions => {:agenda_id => nil}))
 
+    when /the voters page/
+      voters_path
+
+    when /the current items page/
+      current_items_path
+
+    # Add more mappings here.
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
