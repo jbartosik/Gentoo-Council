@@ -5,3 +5,4 @@ site/log/*.log
 site/tmp/**/*
 site/app/views/taglibs/auto
 *.swp
+*.pyc
