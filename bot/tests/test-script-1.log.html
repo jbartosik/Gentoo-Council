@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#test-script-1 log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">20:13:46</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">20:13:50</span><span class="nk"> &lt;T-Rex&gt;</span> <span class="cmd">#info </span><span class="cmdline">this command is just before the first topic</span>
+<a name="l-3"></a><span class="tm">20:13:50</span><span class="nk"> &lt;T-Rex&gt;</span> <span class="topic">#topic </span><span class="topicline">Test of topics</span>
+<a name="l-4"></a><span class="tm">20:13:50</span><span class="nk"> &lt;T-Rex&gt;</span> <span class="topic">#topic </span><span class="topicline">Second topic</span>
+<a name="l-5"></a><span class="tm">20:13:50</span><span class="nk"> &lt;T-Rex&gt;</span> <span class="cmd">#meetingtopic </span><span class="cmdline">the meeting topic</span>
+<a name="l-6"></a><span class="tm">20:13:50</span><span class="nk"> &lt;T-Rex&gt;</span> <span class="topic">#topic </span><span class="topicline">With áccents</span>
+<a name="l-7"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">General command tests</span>
+<a name="l-8"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#accepted </span><span class="cmdline">we will include this new format if we so choose.</span>
+<a name="l-9"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#rejected </span><span class="cmdline">we will not include this new format.</span>
+<a name="l-10"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#chair </span><span class="cmdline">Utahraptor T-Rex not-here</span>
+<a name="l-11"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#chair </span><span class="cmdline">Utahraptor T-Rex</span>
+<a name="l-12"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#nick </span><span class="cmdline">someone-not-present</span>
+<a name="l-13"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#chair </span><span class="cmdline">áccents</span>
+<a name="l-14"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#nick </span><span class="cmdline">áccenẗs</span>
+<a name="l-15"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#unchar </span><span class="cmdline">not-here</span>
+<a name="l-16"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">Test of all commands with different arguments</span>
+<a name="l-17"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic</span><span class="topicline"></span>
+<a name="l-18"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#idea</span><span class="cmdline"></span>
+<a name="l-19"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#info</span><span class="cmdline"></span>
+<a name="l-20"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#action</span><span class="cmdline"></span>
+<a name="l-21"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-22"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#halp</span><span class="cmdline"></span>
+<a name="l-23"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#accepted</span><span class="cmdline"></span>
+<a name="l-24"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#rejected</span><span class="cmdline"></span>
+<a name="l-25"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">Commands with non-ascii</span>
+<a name="l-26"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic    </span><span class="topicline">üáç€</span>
+<a name="l-27"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#idea     </span><span class="cmdline">üáç€</span>
+<a name="l-28"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#info     </span><span class="cmdline">üáç€</span>
+<a name="l-29"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#action   </span><span class="cmdline">üáç€</span>
+<a name="l-30"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#agreed   </span><span class="cmdline">üáç€</span>
+<a name="l-31"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#halp     </span><span class="cmdline">üáç€</span>
+<a name="l-32"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#accepted </span><span class="cmdline">üáç€</span>
+<a name="l-33"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#rejected </span><span class="cmdline">üáç€</span>
+<a name="l-34"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#item </span><span class="cmdline">blah</span>
+<a name="l-35"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#idea </span><span class="cmdline">blah</span>
+<a name="l-36"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#action </span><span class="cmdline">blah</span>
+<a name="l-37"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">blah</span>
+<a name="l-38"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">Escapes</span>
+<a name="l-39"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#nick </span><span class="cmdline">&lt;b&gt;</span>
+<a name="l-40"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#nick </span><span class="cmdline">**</span>
+<a name="l-41"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#idea </span><span class="cmdline">blah_ blah_ ReST link reference...</span>
+<a name="l-42"></a><span class="tm">20:13:50</span><span class="nk"> &lt;ReST1_&gt;</span> <span class="cmd">#idea </span><span class="cmdline">blah blah blah</span>
+<a name="l-43"></a><span class="tm">20:13:50</span><span class="nk"> &lt;ReST2_&gt;</span> this is some text
+<a name="l-44"></a><span class="tm">20:13:50</span><span class="nk"> &lt;ReST2_&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under_score</span>
+<a name="l-45"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under_score</span>
+<a name="l-46"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under1_1score</span>
+<a name="l-47"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under1_score</span>
+<a name="l-48"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under_1score</span>
+<a name="l-49"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under-_score</span>
+<a name="l-50"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Re_ST&gt;</span> <span class="cmd">#idea </span><span class="cmdline">under_-score</span>
+<a name="l-51"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">Links</span>
+<a name="l-52"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://test&lt;b&gt;.zgib.net</span>
+<a name="l-53"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">ftp://test&lt;b&gt;.zgib.net "</span>
+<a name="l-54"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">mailto://a@bla"h.com</span>
+<a name="l-55"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://test.zgib.net/&amp;testpage</span>
+<a name="l-56"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">prefix http://test.zgib.net/&amp;testpage suffix</span>
+<a name="l-57"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">prefix ftp://test.zg"ib.net/&amp;testpage suffix</span>
+<a name="l-58"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">prefix mailto://a@blah.com&amp;testpage suffix</span>
+<a name="l-59"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">prefix http://google.com/. suffix</span>
+<a name="l-60"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Utahraptor&gt;</span> <span class="cmd">#link </span><span class="cmdline">prefix (http://google.com/) suffix</span>
+<a name="l-61"></a><span class="tm">20:13:50</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="topic">#topic </span><span class="topicline">Character sets</span>
+<a name="l-62"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Üţáhraptõr&gt;</span> Nick with accents.
+<a name="l-63"></a><span class="tm">20:13:50</span><span class="nk"> &lt;Üţáhraptõr&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Nick with accents.</span>
+<a name="l-64"></a><span class="tm">20:13:52</span><span class="nk"> &lt;MrBeige&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

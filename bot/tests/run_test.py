@@ -6,11 +6,15 @@ import re
 import shutil
 import sys
 import tempfile
+import time
+import threading
 import unittest
 
 os.environ['MEETBOT_RUNNING_TESTS'] = '1'
 import ircmeeting.meeting as meeting
 import ircmeeting.writers as writers
+
+import test_meeting
 
 running_tests = True
 
@@ -337,9 +341,187 @@ class MeetBotTest(unittest.TestCase):
         assert M.config.filename().endswith('somechannel-blah1234'),\
                "Filename not as expected: "+M.config.filename()
 
+    def get_simple_agenda_test(self):
+        test = test_meeting.TestMeeting()
+        test.set_voters(['x', 'z'])
+        test.set_agenda([['first item', ['opt1', 'opt2'], ''], ['second item', [], ''], ['third item', [], '']])
+        test.M.config.manage_agenda = False
+
+        test.answer_should_match("20:13:50 <x> #startmeeting",
+        "Meeting started .*\nUseful Commands: #action #agreed #help #info #idea #link #topic.\n")
+        test.M.config.manage_agenda = True
+
+        return(test)
+
+    def test_agenda_item_changing(self):
+        test = self.get_simple_agenda_test()
+
+        # Test changing item before vote
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 1', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 0', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 10', 'Your choice was out of range!')
+        test.answer_should_match('20:13:50 <x> #changeitem puppy', 'Your choice was not recognized as a number. Please retry.')
+
+        # Test changing item during vote
+        test.process('20:13:50 <x> #startvote')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Voting is currently ' +\
+                                  'open so I didn\'t change item. Please #endvote first')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Voting is currently ' +\
+                                  'open so I didn\'t change item. Please #endvote first')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Voting is currently ' +\
+                                  'open so I didn\'t change item. Please #endvote first')
+
+        # Test changing item after vote
+        test.process('20:13:50 <x> #endvote')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
+
+    def test_agenda_option_listing(self):
+        test = self.get_simple_agenda_test()
+
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
+        test.process('20:13:50 <x> #nextitem')
+        test.answer_should_match('20:13:50 <x> #option list', 'No voting options available.')
+        test.process('20:13:50 <x> #previtem')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
+
+    def test_agenda_option_adding(self):
+        test = self.get_simple_agenda_test()
+        test.process('20:13:50 <x> #nextitem')
+        test.answer_should_match('20:13:50 <not_allowed> #option add first option',
+                                  'You can not vote or change agenda. Only x, z can.')
+        test.answer_should_match('20:13:50 <x> #option add first option',
+                                  'You added new voting option: first option')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. first option')
+
+    def test_agenda_option_removing(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <not_allowed> #option remove 1',
+                                  'You can not vote or change agenda. Only x, z can.')
+        test.answer_should_match('20:13:50 <x> #option remove 1',
+                                  'You removed voting option 1: opt2')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1')
+
+    def test_agenda_voting(self):
+        test = self.get_simple_agenda_test()
+        test.M.config.agenda._voters.append('t')
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
+                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
+                                  '#vote <option number>.\nEnd voting with #endvote.')
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
+                                  'You can end it with #endvote.')
+        test.answer_should_match('20:13:50 <x> #vote 10', 'Your choice was out of range\!')
+        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <x> #vote 1', 'You voted for #1 - opt2')
+        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
+        test.answer_should_match('20:13:50 <x> #endvote', 'Voting closed.')
+        test.answer_should_match('20:13:50 <x> #endvote', 'Voting is already closed. ' +\
+                                  'You can start it with #startvote.')
+
+        test.M.config.manage_agenda = False
+        test.answer_should_match('20:13:50 <x> #endmeeting', 'Meeting ended ' +\
+                                  '.*\nMinutes:.*\nMinutes \(text\):.*\nLog:.*')
+
+        assert(test.votes() == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}, 'third item': {}})
+
+    def test_agenda_close_voting_after_last_vote(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
+                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
+                                  '#vote <option number>.\nEnd voting with #endvote.')
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
+                                  'You can end it with #endvote.')
+        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1. Voting closed.')
+
+    def test_agenda_time_limit_adding(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <x> #timelimit', 'Usage "#timelimit ' +\
+                                  'add <minutes>:<seconds> <message>" or "' +\
+                                  '#timelimit list" or "#timelimit remove ' +\
+                                  '<message>"')
+        test.answer_should_match('20:13:50 <x> #timelimit add 0:1 some other message',
+                                  'Added "some other message" reminder in 0:1')
+        test.answer_should_match('20:13:50 <x> #timelimit add 1:0 some message',
+                                  'Added "some message" reminder in 1:0')
+        time.sleep(2)
+        last_message = test.log[-1]
+        assert(last_message == 'some other message')
+        reminders = test.M.config.agenda.reminders
+        assert(len(reminders) == 2)
+        for reminder in reminders.values():
+          assert(reminder.__class__ == threading._Timer)
+
+        test.process('20:13:50 <x> #nextitem')
+
+    def test_agenda_time_limit_removing_when_changing_item(self):
+        test = self.get_simple_agenda_test()
+
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        assert(len(test.M.config.agenda.reminders) == 1)
+        test.process('20:13:50 <x> #nextitem')
+        assert(len(test.M.config.agenda.reminders) == 0)
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        assert(len(test.M.config.agenda.reminders) == 1)
+        test.process('20:13:50 <x> #previtem')
+        assert(len(test.M.config.agenda.reminders) == 0)
+
+    def test_agenda_time_limit_manual_removing(self):
+        test = self.get_simple_agenda_test()
+
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        test.process('20:13:50 <x> #timelimit add 0:1 other message')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['message', 'other message'])
+
+        test.answer_should_match('20:13:50 <x> #timelimit remove other message', 'Reminder "other message" removed')
+        keys = test.M.config.agenda.reminders.keys()
+        assert(keys == ['message'])
+
+    def test_agenda_time_limit_listing(self):
+        test = self.get_simple_agenda_test()
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        test.process('20:13:50 <x> #timelimit add 0:1 other message')
+        test.process('20:13:50 <x> #timelimit add 0:1 yet another message')
+        keys = test.M.config.agenda.reminders.keys()
+        test.answer_should_match('20:13:50 <x> #timelimit list',
+                                  'Set reminders: "' + '", "'.join(keys) + '"')
+
+    def test_preset_agenda_time_limits(self):
+        test = self.get_simple_agenda_test()
+        test.M.config.agenda._agenda[0][2] = '1:0 message'
+        test.M.config.agenda._agenda[1][2] = '1:0 another message\n0:10 some other message'
+
+        test.process('20:13:50 <x> #nextitem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['another message', 'some other message'])
+
+        test.process('20:13:50 <x> #previtem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['message'])
+
+        test.process('20:13:50 <x> #nextitem')
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))
+
     if len(sys.argv) <= 1:
         unittest.main()
     else:

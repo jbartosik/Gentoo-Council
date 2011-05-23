@@ -33,9 +33,11 @@ import time
 import os
 import re
 import stat
+import threading
 
 import writers
 import items
+import agenda
 reload(writers)
 reload(items)
 
@@ -96,6 +98,16 @@ class Config(object):
     input_codec = 'utf-8'
     output_codec = 'utf-8'
     # Functions to do the i/o conversion.
+
+    # Meeting management urls
+    voters_url = 'http://localhost:3000/users/voters'
+    agenda_url = 'http://localhost:3000/agendas/current_items'
+    result_url = 'http://localhost:3000/agendas/current_items'
+    # Credentials for posting voting results
+    voting_results_user = 'user'
+    voting_results_password = 'password'
+    manage_agenda = False
+
     def enc(self, text):
         return text.encode(self.output_codec, 'replace')
     def dec(self, text):
@@ -118,7 +130,6 @@ class Config(object):
         #'.rst.html':writers.HTMLfromReST,
         }
 
-
     def __init__(self, M, writeRawLog=False, safeMode=False,
                  extraConfig={}):
         self.M = M
@@ -134,6 +145,7 @@ class Config(object):
         for extension, writer in self.writer_map.iteritems():
             self.writers[extension] = writer(self.M)
         self.safeMode = safeMode
+        self.agenda = agenda.Agenda(self)
     def filename(self, url=False):
         # provide a way to override the filename.  If it is
         # overridden, it must be a full path (and the URL-part may not
@@ -290,7 +302,6 @@ else:
         # Subclass Config and LocalConfig, new type overrides Config.
         Config = type('Config', (LocalConfig, Config), {})
 
-
 class MeetingCommands(object):
     # Command Definitions
     # generic parameters to these functions:
@@ -308,6 +319,55 @@ class MeetingCommands(object):
             self.reply(messageline)
         if line.strip():
             self.do_meetingtopic(nick=nick, line=line, time_=time_, **kwargs)
+        self.config.agenda.get_data()
+        self.reply(self.config.agenda.get_agenda_item())
+
+    def do_nextitem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.next_agenda_item(self))
+
+    def do_previtem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.prev_agenda_item(self))
+
+    def do_changeitem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.change_agenda_item(line))
+
+    def do_timelimit(self, nick, time_, line, **kwargs):
+        reply = 'Usage "#timelimit add <minutes>:<seconds> <message>" or ' +\
+                '"#timelimit list" or "#timelimit remove <message>"'
+        match = re.match( ' *?add ([0-9]+):([0-9]+) (.*)', line)
+        if match:
+          reply = self.config.agenda.add_timelimit(int(match.group(1)),
+                       int(match.group(2)), match.group(3), self)
+        elif re.match( ' *?list', line):
+          reply = self.config.agenda.list_timielimits()
+        else:
+          match = re.match( ' *?remove (.*)', line)
+          if(match):
+            reply = self.config.agenda.remove_timelimit(match.group(1))
+        self.reply(reply)
+
+    def do_startvote(self, nick, time_, line, **kwargs):
+       for messageline in self.config.agenda.start_vote().split('\n'):
+            self.reply(messageline)
+
+    def do_endvote(self, nick, time_, line, **kwargs):
+       for messageline in self.config.agenda.end_vote().split('\n'):
+            self.reply(messageline)
+
+    def do_vote(self, nick, time_, line, **kwargs):
+        for messageline in self.config.agenda.vote(nick, line).split('\n'):
+            self.reply(messageline)
+
+    def do_option(self, nick, time_, line, **kwargs):
+        if re.match( ' *?list', line):
+          result = self.config.agenda.options()
+        elif re.match( ' *?add .*', line):
+          result = self.config.agenda.add_option(nick, line)
+        elif re.match( ' *?remove .*', line):
+          result = self.config.agenda.remove_option(nick, line)
+        for messageline in result.split('\n'):
+            self.reply(messageline)
+
     def do_endmeeting(self, nick, time_, **kwargs):
         """End the meeting."""
         if not self.isChair(nick): return
@@ -320,6 +380,7 @@ class MeetingCommands(object):
         for messageline in message.split('\n'):
             self.reply(messageline)
         self._meetingIsOver = True
+        self.config.agenda.post_result()
     def do_topic(self, nick, line, **kwargs):
         """Set a new topic in the channel."""
         if not self.isChair(nick): return
@@ -454,7 +515,7 @@ class MeetingCommands(object):
         commands = [ "#"+x[3:] for x in dir(self) if x[:3]=="do_" ]
         commands.sort()
         self.reply("Available commands: "+(" ".join(commands)))
-            
+
 
 
 class Meeting(MeetingCommands, object):
@@ -669,4 +730,3 @@ if __name__ == '__main__':
         #M.save() # should be done by #endmeeting in the logs!
     else:
         print 'Command "%s" not found.'%sys.argv[1]
-
