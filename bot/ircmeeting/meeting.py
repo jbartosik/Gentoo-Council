@@ -36,6 +36,7 @@ import stat
 
 import writers
 import items
+import agenda
 reload(writers)
 reload(items)
 
@@ -96,6 +97,11 @@ class Config(object):
     input_codec = 'utf-8'
     output_codec = 'utf-8'
     # Functions to do the i/o conversion.
+
+    # Meeting management urls
+    voters_url = 'http://localhost:3000/users/voters'
+    agenda_url = 'http://localhost:3000/agendas/current_items'
+
     def enc(self, text):
         return text.encode(self.output_codec, 'replace')
     def dec(self, text):
@@ -118,7 +124,6 @@ class Config(object):
         #'.rst.html':writers.HTMLfromReST,
         }
 
-
     def __init__(self, M, writeRawLog=False, safeMode=False,
                  extraConfig={}):
         self.M = M
@@ -134,6 +139,7 @@ class Config(object):
         for extension, writer in self.writer_map.iteritems():
             self.writers[extension] = writer(self.M)
         self.safeMode = safeMode
+        self.agenda = agenda.Agenda(self)
     def filename(self, url=False):
         # provide a way to override the filename.  If it is
         # overridden, it must be a full path (and the URL-part may not
@@ -308,6 +314,22 @@ class MeetingCommands(object):
             self.reply(messageline)
         if line.strip():
             self.do_meetingtopic(nick=nick, line=line, time_=time_, **kwargs)
+        self.config.agenda.get_data()
+        self.reply(self.config.agenda.get_agenda_item())
+
+    def do_nextitem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.next_agenda_item())
+
+    def do_previtem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.prev_agenda_item())
+
+    def do_startvote(self, nick, time_, line, **kwargs):
+       for messageline in self.config.agenda.start_vote().split('\n'):
+            self.reply(messageline)
+
+    def do_vote(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.vote(nick, line))
+
     def do_endmeeting(self, nick, time_, **kwargs):
         """End the meeting."""
         if not self.isChair(nick): return
@@ -454,7 +476,7 @@ class MeetingCommands(object):
         commands = [ "#"+x[3:] for x in dir(self) if x[:3]=="do_" ]
         commands.sort()
         self.reply("Available commands: "+(" ".join(commands)))
-            
+
 
 
 class Meeting(MeetingCommands, object):
