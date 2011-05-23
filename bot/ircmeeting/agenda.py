@@ -54,7 +54,7 @@ class Agenda(object):
         self._vote_open = True
         options = "\n"
         for i in range(len(self._agenda[self._current_item][1])):
-            options += str.format("{}. {}\n", i, self._agenda[self._current_item][i])
+            options += str.format("{}. {}\n", i, self._agenda[self._current_item][1][i])
         return str.format(self.voting_open_msg, options)
 
     def end_vote(self):
@@ -82,7 +82,7 @@ class Agenda(object):
             return self.out_of_range_msg
 
         self._votes[self._agenda[self._current_item][0]][nick] = self._agenda[self._current_item][1][opt]
-        return str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][opt])
+        return str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][1][opt])
 
     def _get_json(self, url):
         str = urllib.urlopen(url).read()
