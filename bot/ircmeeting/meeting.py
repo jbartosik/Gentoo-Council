@@ -331,8 +331,13 @@ class MeetingCommands(object):
        for messageline in self.config.agenda.start_vote().split('\n'):
             self.reply(messageline)
 
+    def do_endvote(self, nick, time_, line, **kwargs):
+       for messageline in self.config.agenda.end_vote().split('\n'):
+            self.reply(messageline)
+
     def do_vote(self, nick, time_, line, **kwargs):
-        self.reply(self.config.agenda.vote(nick, line))
+        for messageline in self.config.agenda.vote(nick, line).split('\n'):
+            self.reply(messageline)
 
     def do_endmeeting(self, nick, time_, **kwargs):
         """End the meeting."""
@@ -696,4 +701,3 @@ if __name__ == '__main__':
         #M.save() # should be done by #endmeeting in the logs!
     else:
         print 'Command "%s" not found.'%sys.argv[1]
-
