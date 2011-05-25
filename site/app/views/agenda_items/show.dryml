@@ -1,6 +1,6 @@
 <show-page>
   <append-content:>
-    <form if="&this.editable_by?(current_user, :agenda)">
+    <form if="&this.editable_by?(current_user, :agenda) and this.agenda.nil?">
       <input value="&Agenda.current.id" type="hidden" name="agenda_item[agenda_id]"/>
       <submit label="Add to current agenda"/>
     </form>

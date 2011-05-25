@@ -11,7 +11,7 @@ Given /^example agenda item$/ do
 end
 
 Given /^rejected agenda item$/ do
-  AgendaItem.new(:title => 'Rejected', :discussion => '', :body => 'example', :rejected => true).save!
+  AgendaItem.new(:title => 'Rejected item', :discussion => '', :body => 'example', :rejected => true).save!
 end
 
 When /^I follow first suggested agenda link$/ do
@@ -21,4 +21,9 @@ end
 
 When /^I should see current agenda as the agenda$/ do
   When "I should see \"Agenda #{Agenda.current.id}\" within \".agenda-item-agenda\""
+end
+
+Given /^agenda item in current agenda$/ do
+  Agenda.create!
+  AgendaItem.create! :agenda => Agenda.last, :title => 'Item in current agenda'
 end

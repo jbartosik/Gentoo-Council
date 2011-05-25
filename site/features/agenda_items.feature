@@ -36,4 +36,11 @@ Feature: Suggest Agenda Items
     Given rejected agenda item
     And an agenda
     When I am on the current agenda page
-    Then I should not see "rejected"
+    Then I should not see "Rejected item"
+
+  Scenario: When item is added to agenda don't add it to agenda and don't remove it any more
+    Given agenda item in current agenda
+    And I am logged in as a council member
+    When I am on newest agenda item page
+    Then I should not see "Add to current agenda" button
+    And I should not see "Reject" button

@@ -3,7 +3,7 @@
     <h3 class="collection-heading">
       Suggested items:
     </h3>
-    <with with="&AgendaItem.all(:conditions => { :agenda_id => nil })">
+    <with with="&AgendaItem.all(:conditions => { :agenda_id => nil, :rejected => false })">
       <collection unless="&this.nil?" />
     </with>
   </append-collection-section:>
