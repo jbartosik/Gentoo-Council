@@ -1,7 +1,7 @@
 # If there are no active agendas create one
 begin
   return unless ['development', 'production'].include? Rails.env
-  return unless Agenda.state_is_not(:old).count > 0
+  return if Agenda.state_is_not(:old).count > 0
   Agenda.create!
 rescue
   # Just ignore it. It will happen when:
