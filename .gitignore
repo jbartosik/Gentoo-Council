@@ -1,8 +1,8 @@
 site/.bundle
 site/db/*.sqlite3
-site/config/database.yml
 site/log/*.log
 site/tmp/**/*
 site/app/views/taglibs/auto
+site/config/*.yml
 *.swp
 *.pyc

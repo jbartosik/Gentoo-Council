@@ -11,6 +11,7 @@ end
 Factory.define :agenda do |a|; end
 
 Factory.define :agenda_item do |a|
+  a.sequence(:title) { |n| "Agenda Item #{n}" }
 end
 
 Factory.define :participation do |p|; end

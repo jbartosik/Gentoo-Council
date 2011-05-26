@@ -104,4 +104,35 @@ describe Agenda do
     (council_names - agenda.participations.*.participant.*.name).should be_empty
     (agenda.participations.*.participant.*.name - council_names).should be_empty
   end
+  it 'should properly create votes' do
+    Factory(:agenda)
+    a1 = Factory(:agenda_item, :agenda => Agenda.current)
+    a2 = Factory(:agenda_item, :agenda => Agenda.current)
+    a3 = Factory(:agenda_item, :agenda => Agenda.current)
+    Agenda.current.agenda_items.each do |item|
+      Factory(:voting_option, :agenda_item => item, :description => 'Yes')
+      Factory(:voting_option, :agenda_item => item, :description => 'No')
+      Factory(:voting_option, :agenda_item => item, :description => 'Dunno')
+    end
+
+    u = users_factory(:council, :council, :council)
+    Vote.count.should be_zero
+
+    results_hash = {
+        a1.title => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'Yes', u[2].irc_nick => 'Yes'},
+        a2.title => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'No', u[2].irc_nick => 'Dunno'},
+        a3.title => { u[0].irc_nick => 'Dunno', u[1].irc_nick => 'Dunno', u[2].irc_nick => 'No'}
+    }
+
+    Agenda.process_results results_hash
+
+    Vote.count.should be_equal(9)
+
+    u[0].votes.*.voting_option.*.description.should == ['Yes', 'Yes', 'Dunno']
+    u[1].votes.*.voting_option.*.description.should == ['Yes', 'No', 'Dunno']
+    u[2].votes.*.voting_option.*.description.should == ['Yes', 'Dunno', 'No']
+    a1.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['Yes', 'Yes', 'Yes']
+    a2.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['Yes', 'No', 'Dunno']
+    a3.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['No', 'Dunno', 'Dunno']
+  end
 end

@@ -62,6 +62,19 @@ class Agenda < ActiveRecord::Base
     false
   end
 
+  def self.process_results(results)
+    a = Agenda.current
+    for item_title in results.keys
+      i = AgendaItem.first :conditions => { :agenda_id => a, :title => item_title }
+      votes = results[item_title]
+      for voter in votes.keys
+        o = VotingOption.first :conditions => { :agenda_item_id => i.id, :description => votes[voter] }
+        u = ::User.find_by_irc_nick voter
+        Vote.create! :voting_option => o, :user => u
+      end
+    end
+  end
+
   def possible_transitions
     transitions = case state
       when 'open'
