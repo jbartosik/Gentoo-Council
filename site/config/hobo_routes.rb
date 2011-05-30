@@ -5,6 +5,16 @@
 Council::Application.routes.draw do
 
 
+  # Resource routes for controller "proxies"
+  get 'proxies(.:format)' => 'proxies#index', :as => 'proxies'
+  get 'proxies/new(.:format)', :as => 'new_proxy'
+  get 'proxies/:id/edit(.:format)' => 'proxies#edit', :as => 'edit_proxy'
+  get 'proxies/:id(.:format)' => 'proxies#show', :as => 'proxy', :constraints => { :id => %r([^/.?]+) }
+  post 'proxies(.:format)' => 'proxies#create', :as => 'create_proxy'
+  put 'proxies/:id(.:format)' => 'proxies#update', :as => 'update_proxy', :constraints => { :id => %r([^/.?]+) }
+  delete 'proxies/:id(.:format)' => 'proxies#destroy', :as => 'destroy_proxy', :constraints => { :id => %r([^/.?]+) }
+
+
   # Lifecycle routes for controller "users"
   post 'users/signup(.:format)' => 'users#do_signup', :as => 'do_user_signup'
   get 'users/signup(.:format)' => 'users#signup', :as => 'user_signup'

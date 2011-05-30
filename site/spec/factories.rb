@@ -25,3 +25,9 @@ Factory.define :voting_option  do |v|;
   v.agenda_item { AgendaItem.create! }
   v.description { "example" }
 end
+
+Factory.define :proxy do |p|;
+  p.council_member  {users_factory(:council)}
+  p.proxy           {users_factory(:user)}
+  p.agenda          {Factory(:agenda)}
+end

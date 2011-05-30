@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601094807) do
+ActiveRecord::Schema.define(:version => 20110603133359) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
@@ -46,6 +46,20 @@ ActiveRecord::Schema.define(:version => 20110601094807) do
 
   add_index "participations", ["agenda_id"], :name => "index_participations_on_agenda_id"
   add_index "participations", ["participant_id"], :name => "index_participations_on_participant_id"
+
+  create_table "proxies", :force => true do |t|
+    t.string   "council_member_nick", :null => false
+    t.string   "proxy_nick",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "council_member_id",   :null => false
+    t.integer  "proxy_id",            :null => false
+    t.integer  "agenda_id",           :null => false
+  end
+
+  add_index "proxies", ["agenda_id"], :name => "index_proxies_on_agenda_id"
+  add_index "proxies", ["council_member_id"], :name => "index_proxies_on_council_member_id"
+  add_index "proxies", ["proxy_id"], :name => "index_proxies_on_proxy_id"
 
   create_table "users", :force => true do |t|
     t.string   "salt",                      :limit => 40
