@@ -9,6 +9,7 @@ class Agenda < ActiveRecord::Base
 
   has_many :agenda_items
   has_many :participations
+  has_many :proxies
 
   lifecycle do
     state :open, :default => true

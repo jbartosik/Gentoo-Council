@@ -7,5 +7,6 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="taglibs/main_nav"/>
+<include src="taglibs/cards"/>
 
 <set-theme name="clean"/>

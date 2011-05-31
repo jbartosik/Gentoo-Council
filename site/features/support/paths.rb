@@ -29,7 +29,11 @@ module NavigationHelpers
     when /the current items page/
       current_items_path
 
-    # Add more mappings here.
+    when /the "([^\"]*)" show page/
+      user_path(User.find_by_name($1))
+
+    when /([1-9]*)th agenda page/
+      agenda_path(Agenda.find $1)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

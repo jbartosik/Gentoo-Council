@@ -8,4 +8,7 @@ class Guest < Hobo::Model::Guest
     false
   end
 
+  def can_appoint_a_proxy?
+    false
+  end
 end

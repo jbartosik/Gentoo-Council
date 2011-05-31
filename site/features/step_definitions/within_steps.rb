@@ -9,6 +9,7 @@
   'in the agendas collection' => '.collection.agendas',
   'as empty collection message' => '.empty-collection-message',
   'as meeting time' => '.meeting-time-view',
+  'as proxy' => '.collection.proxies.proxies-collection',
   'as the user nick' => '.user-irc-nick',
   'as voting option' => '.collection.voting-options',
   'as voting option description' => '.voting-option-description'

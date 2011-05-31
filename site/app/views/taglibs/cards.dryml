@@ -1,0 +1,8 @@
+<def tag="card" for="Proxy">
+  <card class="proxy" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name:proxy/> for <name:council_member/></a></h4>
+      <delete-button label="Un-appoint proxy" if="&this.council_member_is?(current_user)"/>
+    </header:>
+  </card>
+</def>

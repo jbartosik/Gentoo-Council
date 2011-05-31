@@ -1,0 +1,10 @@
+<show-page>
+  <append-content-body:>
+    <form action="&create_proxy_path" if="&current_user.can_appoint_a_proxy?(this)">
+      <input type="hidden" name="proxy[council_member_id]" value="&current_user.id"/>
+      <input type="hidden" name="proxy[proxy_id]" value="&this.id"/>
+      <input type="hidden" name="proxy[agenda_id]" value="&Agenda.current.id"/>
+      <submit label="Appoint as a proxy for next meeting"/>
+    </form>
+  </append-content-body:>
+</show-page>

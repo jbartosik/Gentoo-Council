@@ -52,4 +52,11 @@ class User < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+  def can_appoint_a_proxy?(user)
+    return false unless council_member?
+    return false if user.council_member?
+    return false unless Proxy.council_member_is(self).agenda_is(Agenda.current).count ==  0
+    true
+  end
 end
