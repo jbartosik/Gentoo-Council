@@ -15,6 +15,6 @@ class UsersController < ApplicationController
   end
 
   def voters
-    render :json => ::User.council_member_is(true).*.irc_nick
+    render :json => ::Agenda.voters
   end
 end

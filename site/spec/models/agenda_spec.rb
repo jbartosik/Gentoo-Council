@@ -135,4 +135,16 @@ describe Agenda do
     a2.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['Yes', 'No', 'Dunno']
     a3.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['No', 'Dunno', 'Dunno']
   end
+
+  it 'should return proper voters' do
+    users = users_factory([:council]*3 + [:user])
+    proxy = Factory(:proxy, :council_member => users.first, :proxy => users.last)
+    voters = Agenda.voters
+
+    voters.length.should be_equal(3)
+    nicks = users.*.irc_nick - [users.first.irc_nick]
+    voters.length.should be_equal(nicks.length)
+    (voters - nicks).should be_empty
+    (nicks - voters).should be_empty
+  end
 end

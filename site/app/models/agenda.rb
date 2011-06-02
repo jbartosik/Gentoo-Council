@@ -101,6 +101,17 @@ class Agenda < ActiveRecord::Base
     end
   end
 
+  def self.voters
+    # It's possible to rewrite this as SQL, but
+    #  * this method is rarely called
+    #  * it fetches little data
+    # So I think efficiency improvement would be insignificant.
+    # Joachim
+    council = ::User.council_member_is(true)
+    proxies = Agenda.current.proxies
+    [council - proxies.*.council_member + proxies.*.proxy].flatten.*.irc_nick
+  end
+
   protected
     def there_is_only_one_non_archival_agenda
       return if(state.to_s == 'old')
