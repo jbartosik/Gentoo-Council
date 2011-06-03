@@ -101,6 +101,10 @@ class Config(object):
     # Meeting management urls
     voters_url = 'http://localhost:3000/users/voters'
     agenda_url = 'http://localhost:3000/agendas/current_items'
+    result_url = 'http://localhost:3000/agendas/current_items'
+    # Credentials for posting voting results
+    voting_results_user = 'user'
+    voting_results_password = 'password'
 
     def enc(self, text):
         return text.encode(self.output_codec, 'replace')
@@ -342,6 +346,7 @@ class MeetingCommands(object):
         for messageline in message.split('\n'):
             self.reply(messageline)
         self._meetingIsOver = True
+        self.config.agenda.post_result()
     def do_topic(self, nick, line, **kwargs):
         """Set a new topic in the channel."""
         if not self.isChair(nick): return
