@@ -89,3 +89,10 @@ class Agenda(object):
         str = urllib.unquote(str)
         result = json.loads(str)
         return result
+
+    def post_result(self):
+        data = urllib.quote(json.dumps([self._votes]))
+        result_url = str.format(self.conf.result_url,
+                      self.conf.voting_results_user,
+                      self.conf.voting_results_password)
+        urllib.urlopen(result_url, data = data)
