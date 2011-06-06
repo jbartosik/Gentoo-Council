@@ -1,2 +1,4 @@
 CustomConfig = {}
-CustomConfig['Bot'] = YAML.load open('config/bot.yml').read
+for conf in ['bot', 'reminders']
+  CustomConfig[conf.camelize] = YAML.load open("config/#{conf}.yml").read
+end

@@ -3,7 +3,8 @@ class Agenda < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    meeting_time  :datetime
+    meeting_time        :datetime
+    email_reminder_sent :boolean, :null => false, :default => false
     timestamps
   end
 
@@ -101,7 +102,12 @@ class Agenda < ActiveRecord::Base
     end
   end
 
-  def self.voters
+  def time_for_reminders
+    offset = CustomConfig['Reminders']['hours_before_meeting_to_send_email_reminders'].hours
+    meeting_time - offset
+  end
+
+  def self.voters_users
     # It's possible to rewrite this as SQL, but
     #  * this method is rarely called
     #  * it fetches little data
@@ -109,7 +115,38 @@ class Agenda < ActiveRecord::Base
     # Joachim
     council = ::User.council_member_is(true)
     proxies = Agenda.current.proxies
-    [council - proxies.*.council_member + proxies.*.proxy].flatten.*.irc_nick
+    [council - proxies.*.council_member + proxies.*.proxy].flatten
+  end
+
+  def self.voters
+    Agenda.voters_users.*.irc_nick
+  end
+
+  def self.send_current_agenda_reminders
+    agenda = Agenda.current
+
+    return if agenda.email_reminder_sent?
+    return if Time.now < agenda.time_for_reminders
+
+    for user in Agenda.voters_users
+      UserMailer.delay.deliver_meeting_reminder(user, agenda)
+    end
+
+    agenda.email_reminder_sent = true
+    agenda.save!
+  end
+
+  before_save do |a|
+    return true if a.new_record?
+    return true unless a.meeting_time_changed?
+    a.email_reminder_sent = false
+    true
+  end
+
+  after_save do |a|
+    if a.new_record? or a.meeting_time_changed?
+      Agenda.delay(:run_at => a.time_for_reminders).send_current_agenda_reminders
+    end
   end
 
   protected

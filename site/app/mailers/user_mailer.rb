@@ -7,4 +7,10 @@ class UserMailer < ActionMailer::Base
           :to      => user.email )
   end
 
+  def meeting_reminder(user, agenda)
+    @user = user
+    @agenda = agenda
+    mail(:subject => "Upcoming meeting reminder - #{agenda.meeting_time.to_s}",
+          :to => user.email)
+  end
 end

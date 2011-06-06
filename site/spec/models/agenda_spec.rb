@@ -147,4 +147,45 @@ describe Agenda do
     (voters - nicks).should be_empty
     (nicks - voters).should be_empty
   end
+
+  it 'should add Agenda.send_current_agenda_reminders to delayed jobs when created' do
+    Agenda.should_receive_delayed(:send_current_agenda_reminders)
+    Factory(:agenda)
+  end
+
+  it 'should add Agenda.send_current_agenda_reminders to delayed jobs when meeting time changes' do
+    a = Factory(:agenda)
+    Agenda.should_receive_delayed(:send_current_agenda_reminders)
+    a.meeting_time = Time.now + 24.hours
+    a.save!
+  end
+
+  it 'should set email_reminder_sent to false when time changes' do
+    a = Factory(:agenda, :email_reminder_sent => true)
+    lambda {
+    a.meeting_time = Time.now + 24.hours
+    a.save!
+    }.should change(a, :email_reminder_sent?).from(true).to(false)
+  end
+
+  it 'should send reminders properly with send_current_agenda_reminders using delayed jobs' do
+    agenda = Factory(:agenda)
+    users = users_factory([:user] * 2)
+    council = users_factory([:council] * 2)
+    Factory(:proxy, :proxy => users.first, :council_member => council.first, :agenda => agenda)
+    UserMailer.should_receive_delayed(:deliver_meeting_reminder, council.last, agenda)
+    UserMailer.should_receive_delayed(:deliver_meeting_reminder, users.first, agenda)
+
+    Agenda.send_current_agenda_reminders
+
+    agenda.reload
+    agenda.email_reminder_sent.should be_true
+  end
+
+  it 'should not send reminders with send_current_agenda_reminders if Agenda.current.email_reminder_sent is true' do
+    a = Factory(:agenda, :email_reminder_sent => true)
+    users = users_factory([:user] * 2)
+    UserMailer.should_not_receive(:delay)
+    Agenda.send_current_agenda_reminders
+  end
 end

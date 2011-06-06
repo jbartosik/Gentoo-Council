@@ -3,11 +3,13 @@ gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 gem 'hobo_devise', '>=0.0.2'
+gem 'delayed_job'
 
 group :development, :test do
   gem 'ruby-debug'
   gem 'rspec-rails'
   gem 'shoulda'
+  gem 'email_spec'
 
   gem 'cucumber-rails'
   gem 'capybara'
