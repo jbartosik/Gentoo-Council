@@ -17,6 +17,10 @@ class AgendasController < ApplicationController
     Agenda.process_results JSON.parse(request.env["rack.input"].read)
   end
 
+  def reminders
+    render :json => Agenda.irc_reminders
+  end
+
   private
     def authenticate_bot
       authenticate_or_request_with_http_basic do |user_name, password|

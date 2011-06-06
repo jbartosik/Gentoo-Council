@@ -102,8 +102,8 @@ class Agenda < ActiveRecord::Base
     end
   end
 
-  def time_for_reminders
-    offset = CustomConfig['Reminders']['hours_before_meeting_to_send_email_reminders'].hours
+  def time_for_reminders(type)
+    offset = CustomConfig['Reminders']["hours_before_meeting_to_send_#{type}_reminders"].hours
     meeting_time - offset
   end
 
@@ -126,7 +126,7 @@ class Agenda < ActiveRecord::Base
     agenda = Agenda.current
 
     return if agenda.email_reminder_sent?
-    return if Time.now < agenda.time_for_reminders
+    return if Time.now < agenda.time_for_reminders(:email)
 
     for user in Agenda.voters_users
       UserMailer.delay.deliver_meeting_reminder(user, agenda)
@@ -134,6 +134,14 @@ class Agenda < ActiveRecord::Base
 
     agenda.email_reminder_sent = true
     agenda.save!
+  end
+
+  def self.irc_reminders
+    agenda = Agenda.current
+    return {} if Time.now < agenda.time_for_reminders(:irc)
+    return { 'remind_time' => agenda.meeting_time.strftime('%a %b %d %H:%M:%S %Y'),
+              'message' => "Remember about council meeting on #{agenda.meeting_time.to_s}",
+              'users' => Agenda.voters}
   end
 
   before_save do |a|
@@ -145,7 +153,7 @@ class Agenda < ActiveRecord::Base
 
   after_save do |a|
     if a.new_record? or a.meeting_time_changed?
-      Agenda.delay(:run_at => a.time_for_reminders).send_current_agenda_reminders
+      Agenda.delay(:run_at => a.time_for_reminders(:email)).send_current_agenda_reminders
     end
   end
 

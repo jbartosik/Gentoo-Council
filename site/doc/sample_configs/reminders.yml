@@ -1,1 +1,2 @@
 hours_before_meeting_to_send_email_reminders: 24
+hours_before_meeting_to_send_irc_reminders: 2

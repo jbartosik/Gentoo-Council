@@ -188,4 +188,22 @@ describe Agenda do
     UserMailer.should_not_receive(:delay)
     Agenda.send_current_agenda_reminders
   end
+
+  it 'should return proper irc_reminders hash' do
+    CustomConfig['Reminders']["hours_befeore_meeting_to_send_irc_reminders"] = 2
+
+    a1 = Factory(:agenda)
+    users = users_factory([:council]*2 + [:user]*2)
+    Agenda.irc_reminders.keys.should include('remind_time')
+    Agenda.irc_reminders.keys.should include('message')
+    Agenda.irc_reminders.keys.should include('users')
+
+    Agenda.irc_reminders['remind_time'].should == Agenda.current.meeting_time.strftime('%a %b %d %H:%M:%S %Y')
+    Agenda.irc_reminders['users'].should == Agenda.voters
+
+    a1.meeting_time = 10.years.from_now
+    a1.save!
+
+    Agenda.irc_reminders.should be_empty
+  end
 end

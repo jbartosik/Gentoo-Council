@@ -6,6 +6,7 @@ Council::Application.routes.draw do
   match 'users/voters' => 'users#voters', :as => 'voters'
   match 'agendas/current_items' => 'agendas#current_items', :as => 'current_items'
   match 'agendas/results' => 'agendas#results', :as => 'results'
+  match 'agendas/reminders' => 'agendas#reminders', :as => 'reminders'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
