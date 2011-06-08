@@ -37,6 +37,9 @@ class Participation < ActiveRecord::Base
     agenda = Agenda.current
     for nick in participant_nicks
       user = ::User.find_by_irc_nick(nick)
+      unless user.council_member?
+        user = Proxy.proxy_is(user).agenda_is(agenda)._?.first.council_member
+      end
       next if user.nil?
       Participation.create! :irc_nick => user.irc_nick,
                             :participant => user,

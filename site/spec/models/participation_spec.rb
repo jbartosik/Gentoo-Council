@@ -25,15 +25,21 @@ describe Participation do
       a = Factory(:agenda)
       Factory(:agenda, :state => 'old')
 
+      Factory(:proxy, :proxy => u.first,
+                      :council_member => non_participants.last,
+                      :agenda => a)
+
       results_hash = {
           'Whatever' => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'Yes', u[2].irc_nick => 'Yes'},
           'Something else' => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'No'}
       }
 
+      present = u - [u.first] + [non_participants.last]
       Participation.mark_participations(results_hash)
-      (Participation.all.*.irc_nick - u.*.irc_nick).should be_empty
-      (u.*.irc_nick - Participation.all.*.irc_nick).should be_empty
-      (u - Participation.all.*.participant).should be_empty
+      (Participation.all.*.irc_nick - present.*.irc_nick).should be_empty
+      (present.*.irc_nick - Participation.all.*.irc_nick).should be_empty
+      (present - Participation.all.*.participant).should be_empty
+      (Participation.all.*.participant - present).should be_empty
     end
   end
 end
