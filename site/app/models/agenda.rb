@@ -19,14 +19,7 @@ class Agenda < ActiveRecord::Base
     transition :close, {:open => :submissions_closed}, :available_to => '::Agenda.transitions_available(acting_user)'
     transition :reopen, {:submissions_closed=> :open}, :available_to => '::Agenda.transitions_available(acting_user)'
     transition :archive, {:submissions_closed => :old}, :available_to =>  '::Agenda.transitions_available(acting_user)' do
-      ActiveRecord::Base.transaction do
         Agenda.new.save!
-        ::User.council_member_is(true).each do |participant|
-          Participation.create! :irc_nick => participant.irc_nick,
-                                :participant => participant,
-                                :agenda => self
-        end
-      end
     end
   end
 

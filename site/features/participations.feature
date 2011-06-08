@@ -3,8 +3,8 @@ Feature: In order to track presence on the council meetings
 
   Scenario: When archiving agenda mark all council members as participants
     Given some council members
+    And an agenda
     And I am logged in as council member
-    And an closed agenda
-    When I am on the current agenda page
-    And I archive current agenda
-    Then I should see all council members as participants
+    When application got voting results from IRC bot
+    And I am on the current agenda page
+    Then I should see some council members as participants

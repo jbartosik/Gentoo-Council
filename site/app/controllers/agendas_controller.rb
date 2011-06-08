@@ -14,7 +14,9 @@ class AgendasController < ApplicationController
   end
 
   def results
-    Agenda.process_results JSON.parse(request.env["rack.input"].read)
+    data = JSON.parse(request.env["rack.input"].read)
+    Agenda.process_results data
+    Participation.mark_participations data
   end
 
   def reminders

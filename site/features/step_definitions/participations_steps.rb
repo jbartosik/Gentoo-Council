@@ -17,8 +17,13 @@ Given /^I am logged in as council member$/ do
   When 'I press "Login"'
 end
 
-Then /^I should see all council members as participants$/ do
-  User.council_member_is(true).each do |m|
-    Then "I should see \"#{m.name}\" within \".collection.participations.participations-collection\""
-  end
+When /^application got voting results from IRC bot$/ do
+  Participation.mark_participations({ 'Some item' =>
+    { User.first.irc_nick => 'Some vote',
+      User.last.irc_nick => 'Some other vote' } })
+end
+
+Then /^I should see some council members as participants$/ do
+  Then "I should see \"#{User.first.name}\" within \".collection.participations.participations-collection\""
+  Then "I should see \"#{User.last.name}\" within \".collection.participations.participations-collection\""
 end

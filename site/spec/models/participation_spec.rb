@@ -17,4 +17,23 @@ describe Participation do
       p.should be_viewable_by(u)
     end
   end
+
+  describe '.mark_participations' do
+    it 'should properly create participations' do
+      u = users_factory(:user, :council, :council_admin)
+      non_participants = users_factory(:user, :council, :council_admin)
+      a = Factory(:agenda)
+      Factory(:agenda, :state => 'old')
+
+      results_hash = {
+          'Whatever' => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'Yes', u[2].irc_nick => 'Yes'},
+          'Something else' => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'No'}
+      }
+
+      Participation.mark_participations(results_hash)
+      (Participation.all.*.irc_nick - u.*.irc_nick).should be_empty
+      (u.*.irc_nick - Participation.all.*.irc_nick).should be_empty
+      (u - Participation.all.*.participant).should be_empty
+    end
+  end
 end

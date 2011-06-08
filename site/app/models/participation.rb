@@ -31,4 +31,16 @@ class Participation < ActiveRecord::Base
   def name
     participant.name
   end
+
+  def self.mark_participations(results)
+    participant_nicks = results.values.*.keys.flatten.uniq
+    agenda = Agenda.current
+    for nick in participant_nicks
+      user = ::User.find_by_irc_nick(nick)
+      next if user.nil?
+      Participation.create! :irc_nick => user.irc_nick,
+                            :participant => user,
+                            :agenda => agenda
+    end
+  end
 end
