@@ -53,6 +53,23 @@ class User < ActiveRecord::Base
     true
   end
 
+  def slacking_status_in_period(start_date, end_date)
+    num_status = 0
+    agendas = Agenda.all :conditions => ['agendas.meeting_time BETWEEN ? AND ?', start_date, end_date],
+                          :order => :meeting_time
+    for agenda in agendas
+      if Participation.participant_is(self).agenda_is(agenda).count == 0
+        num_status += 1 if num_status < 3
+      else
+        num_status = 0 if num_status == 1
+      end
+    end
+
+    a = ['Was on last meeting', 'Skipped last meeting',
+          'Slacker', 'No more a council']
+    a[num_status]
+  end
+
   def can_appoint_a_proxy?(user)
     return false unless council_member?
     return false if user.council_member?

@@ -27,3 +27,62 @@ Then /^I should see some council members as participants$/ do
   Then "I should see \"#{User.first.name}\" within \".collection.participations.participations-collection\""
   Then "I should see \"#{User.last.name}\" within \".collection.participations.participations-collection\""
 end
+
+Given /^some agendas$/ do
+  for i in 1..11
+    Factory(:agenda, :state => 'old', :meeting_time => i.months.ago)
+  end
+  Factory(:agenda)
+end
+
+Given /^some council members who attended properly$/ do
+  users = users_factory([:council]*3)
+  for a in Agenda.all
+    for u in users
+      Factory(:participation, :participant => u, :agenda => a)
+    end
+  end
+end
+
+Given /^some council members who skipped last meeting$/ do
+  users = users_factory([:council]*3)
+  for a in Agenda.all - [Agenda.last]
+    for u in users
+      Factory(:participation, :participant => u, :agenda => a)
+    end
+  end
+end
+
+Given /^some slackers$/ do
+  users = users_factory([:council]*3)
+  i = 0
+  for a in Agenda.all
+    next if i < 2
+    for u in users
+      Factory(:participation, :participant => u, :agenda => a)
+    end
+  end
+end
+
+Given /^some slackers who skipped a meeting$/ do
+  users = users_factory([:council]*3)
+  i = 0
+  for a in Agenda.all - [Agenda.last]
+    next if i < 2
+    for u in users
+      Factory(:participation, :participant => u, :agenda => a)
+    end
+  end
+end
+
+Given /^council term started a year ago$/ do
+  CustomConfig['CouncilTerm']['start_time'] = 1.year.ago
+end
+
+Then /^I should see list of all council members with proper indication of their attendance$/ do
+  start = CustomConfig['CouncilTerm']['start_time']
+  stop = Agenda.current.meeting_time - 1.minute
+  for user in User.council_member_is(true)
+    Then "I should see \"#{user.name} - #{user.slacking_status_in_period(start, stop)}\" within \".collection.slacking-statuses\""
+  end
+end

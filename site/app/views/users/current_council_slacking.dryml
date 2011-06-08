@@ -1,0 +1,7 @@
+<page>
+  <content:>
+    <collection with="&@slackings" class="collection slacking-statuses">
+      <%= this.first %> - <%= this.last %>
+    </collection>
+  </content:>
+</page>

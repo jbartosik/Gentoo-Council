@@ -4,6 +4,7 @@ Council::Application.routes.draw do
   match 'search' => 'front#search', :as => 'site_search'
 
   match 'users/voters' => 'users#voters', :as => 'voters'
+  match 'users/current_council_slacking' => 'users#current_council_slacking', :as => 'current_council_slacking'
   match 'agendas/current_items' => 'agendas#current_items', :as => 'current_items'
   match 'agendas/results' => 'agendas#results', :as => 'results'
   match 'agendas/reminders' => 'agendas#reminders', :as => 'reminders'
