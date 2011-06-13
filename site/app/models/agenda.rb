@@ -86,7 +86,7 @@ class Agenda < ActiveRecord::Base
   end
 
   def current?
-    ['open', 'submissions_closed'].include?(state.to_s)
+    ['open', 'submissions_closed', 'meeting_ongoing'].include?(state.to_s)
   end
 
   def voting_array

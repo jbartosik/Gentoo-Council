@@ -204,4 +204,47 @@ describe Agenda do
 
     Agenda.irc_reminders.should be_empty
   end
+
+  it 'should return proper possible_transitions for each state' do
+    a = Factory(:agenda)
+    u = users_factory(:council)
+    a.possible_transitions.should == [["Close this agenda.", "agenda_close_path"]]
+    a.lifecycle.close!(u)
+    a.possible_transitions.should == [["Reopen this agenda.", "agenda_reopen_path"], ["Archive this agenda.", "agenda_archive_path"]]
+    a.lifecycle.archive!(u)
+    a.possible_transitions.should == []
+  end
+
+  describe '#current?' do
+    it 'should return true if agenda is in open state' do
+      Factory(:agenda).should be_current
+    end
+
+    it 'should return true if agenda is in submissions_closed state' do
+      Factory(:agenda, :state => 'submissions_closed').should be_current
+    end
+
+    it 'should return true if agenda is in meeting_ongoing state' do
+      Factory(:agenda, :state => 'meeting_ongoing').should be_current
+    end
+
+    it 'should return true if agenda is in old state' do
+      Factory(:agenda, :state => 'old').should_not be_current
+    end
+  end
+
+  it 'should return proper voting_array' do
+    old_agenda = Factory(:agenda, :state => 'old')
+    current_agenda = Factory(:agenda)
+    i1 = Factory(:agenda_item, :agenda => old_agenda)
+    i2 = Factory(:agenda_item, :agenda => current_agenda)
+    i3 = Factory(:agenda_item, :agenda => current_agenda)
+
+    v11 = Factory(:voting_option, :agenda_item => i1)
+    v21 = Factory(:voting_option, :agenda_item => i2)
+    v22 = Factory(:voting_option, :agenda_item => i2, :description => 'other')
+
+    old_agenda.voting_array.should == [[i1.title, [v11.description]]]
+    current_agenda.voting_array.should == [[i2.title, [v21.description, v22.description]], [i3.title, []]]
+  end
 end
