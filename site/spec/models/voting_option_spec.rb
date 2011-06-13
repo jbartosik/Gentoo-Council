@@ -38,4 +38,11 @@ describe VotingOption do
       v2.should_not be_destroyable_by(u)
     end
   end
+
+  it 'should allow everyone to view' do
+    v = Factory(:voting_option)
+    for u in users_factory(AllRoles)
+      v.should be_viewable_by(u)
+    end
+  end
 end
