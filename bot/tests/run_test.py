@@ -7,19 +7,14 @@ import shutil
 import sys
 import tempfile
 import unittest
-import time
 
 os.environ['MEETBOT_RUNNING_TESTS'] = '1'
 import ircmeeting.meeting as meeting
 import ircmeeting.writers as writers
 
-running_tests = True
+import test_meeting
 
-def parse_time(time_):
-    try: return time.strptime(time_, "%H:%M:%S")
-    except ValueError: pass
-    try: return time.strptime(time_, "%H:%M")
-    except ValueError: pass
+running_tests = True
 
 def process_meeting(contents, extraConfig={}, dontSave=True,
                     filename='/dev/null'):
@@ -347,21 +342,13 @@ class MeetBotTest(unittest.TestCase):
     def test_agenda(self):
         """ Test agenda management
         """
-        logline_re = re.compile(r'\[?([0-9: ]*)\]? *<[@+]?([^>]+)> *(.*)')
-        loglineAction_re = re.compile(r'\[?([0-9: ]*)\]? *\* *([^ ]+) *(.*)')
 
-        M = process_meeting('#startmeeting')
-        log = []
-        M._sendReply = lambda x: log.append(x)
-        M.config.agenda._voters = ['x', 'z']
-        M.config.agenda._agenda = [['first item', ['opt1', 'opt2']], ['second item', []]]
-        M.config.agenda._votes = { }
-        for i in M.config.agenda._agenda:
-            M.config.agenda._votes[i[0]] = { }
-
-
-        M.starttime = time.gmtime(0)
-        contents = """20:13:50 <x> #nextitem
+        test = test_meeting.TestMeeting()
+        test.set_voters(['x', 'z'])
+        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []]])
+        test.process("""
+        20:13:50 <x> #startmeeting
+        20:13:50 <x> #nextitem
         20:13:50 <x> #nextitem
         20:13:50 <x> #previtem
         20:13:50 <x> #previtem
@@ -371,27 +358,8 @@ class MeetBotTest(unittest.TestCase):
         20:13:50 <y> #vote 0
         20:13:50 <z> #vote 0
         20:13:50 <x> #endvote
-        20:13:50 <x> #endmeeting"""
+        20:13:50 <x> #endmeeting""")
 
-        for line in contents.split('\n'):
-            # match regular spoken lines:
-            m = logline_re.match(line)
-            if m:
-                time_ = parse_time(m.group(1).strip())
-                nick = m.group(2).strip()
-                line = m.group(3).strip()
-                if M.owner is None:
-                    M.owner = nick ; M.chairs = {nick:True}
-                M.addline(nick, line, time_=time_)
-            # match /me lines
-            m = loglineAction_re.match(line)
-            if m:
-                time_ = parse_time(m.group(1).strip())
-                nick = m.group(2).strip()
-                line = m.group(3).strip()
-                M.addline(nick, "ACTION "+line, time_=time_)
-
-        self.assert_(M.config.agenda._votes == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}})
 
         answers = ['Current agenda item is second item.',
             'Current agenda item is second item.',
@@ -406,7 +374,9 @@ class MeetBotTest(unittest.TestCase):
             "You voted for #1 - ['opt1', 'opt2']",
             'You can not vote. Only x, z can vote',
             'You voted for #0 - first item']
-        self.assert_(log[0:len(answers)] == answers)
+
+        self.assert_(test.votes == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}})
+        self.assert_(test.log[0:len(answers)] == answers)
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))
