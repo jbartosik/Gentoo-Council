@@ -43,8 +43,8 @@ class Agenda < ActiveRecord::Base
     true
   end
 
-  before_create do |a|
-    a.meeting_time ||= Time.now
+  before_create do |agenda|
+    agenda.meeting_time ||= Time.now
   end
 
   def self.current
@@ -58,14 +58,14 @@ class Agenda < ActiveRecord::Base
   end
 
   def self.process_results(results)
-    a = Agenda.current
+    agenda = Agenda.current
     for item_title in results.keys
-      i = AgendaItem.first :conditions => { :agenda_id => a, :title => item_title }
+      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_title }
       votes = results[item_title]
       for voter in votes.keys
-        o = VotingOption.first :conditions => { :agenda_item_id => i.id, :description => votes[voter] }
-        u = ::User.find_by_irc_nick voter
-        Vote.create! :voting_option => o, :user => u
+        option = VotingOption.first :conditions => { :agenda_item_id => item.id, :description => votes[voter] }
+        user = ::User.find_by_irc_nick voter
+        Vote.create! :voting_option => option, :user => user
       end
     end
   end
@@ -137,16 +137,16 @@ class Agenda < ActiveRecord::Base
               'users' => Agenda.voters}
   end
 
-  before_save do |a|
-    return true if a.new_record?
-    return true unless a.meeting_time_changed?
-    a.email_reminder_sent = false
+  before_save do |agenda|
+    return true if agenda.new_record?
+    return true unless agenda.meeting_time_changed?
+    agenda.email_reminder_sent = false
     true
   end
 
-  after_save do |a|
-    if a.new_record? or a.meeting_time_changed?
-      Agenda.delay(:run_at => a.time_for_reminders(:email)).send_current_agenda_reminders
+  after_save do |agenda|
+    if agenda.new_record? or agenda.meeting_time_changed?
+      Agenda.delay(:run_at => agenda.time_for_reminders(:email)).send_current_agenda_reminders
     end
   end
 

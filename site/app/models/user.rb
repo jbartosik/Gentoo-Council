@@ -66,9 +66,9 @@ class User < ActiveRecord::Base
       end
     end
 
-    a = ['Was on last meeting', 'Skipped last meeting',
+    text_statuses = ['Was on last meeting', 'Skipped last meeting',
           'Slacker', 'No more a council']
-    a[num_status]
+    text_statuses[num_status]
   end
 
   def can_appoint_a_proxy?(user)

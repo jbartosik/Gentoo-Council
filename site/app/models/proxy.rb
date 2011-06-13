@@ -40,9 +40,9 @@ class Proxy < ActiveRecord::Base
     true
   end
 
-  before_create do |p|
-    p.council_member_nick = p.council_member.irc_nick
-    p.proxy_nick          = p.proxy.irc_nick
+  before_create do |proxy|
+    proxy.council_member_nick = proxy.council_member.irc_nick
+    proxy.proxy_nick          = proxy.proxy.irc_nick
   end
 
   protected
