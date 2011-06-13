@@ -1,8 +1,11 @@
 site/.bundle
 site/db/*.sqlite3
 site/log/*.log
-site/tmp/**/*
 site/app/views/taglibs/auto
 site/config/*.yml
 *.swp
 *.pyc
+site/tmp/*
+!site/tmp/metric_fu
+site/tmp/metric_fu/*
+!site/tmp/metric_fu/_data

@@ -1,0 +1,4796 @@
+--- 
+:flog: 
+  :method_containers: 
+  - :highest_score: 34.1272618298041
+    :total_score: 86.7042628493293
+    :methods: 
+      Agenda#possible_transitions: 
+        :score: 6.70373030483775
+        :operators: 
+          :assignment: 2.5
+          :state: 1.2
+          :camelize: 1.3
+          :branch: 5.0
+          :collect: 1.2
+        :path: app/models/agenda.rb:73
+      Agenda#there_is_only_one_non_archival_agenda: 
+        :score: 20.4567837159217
+        :operators: 
+          :assignment: 1.2
+          :count: 3.0
+          :state: 1.6
+          :branch: 5.0
+          :id: 3.3
+          :==: 3.8
+          :to_s: 1.4
+          :add: 1.2
+          :errors: 1.4
+          :id_is_not: 1.7
+          :nil?: 1.2
+          :state_is_not: 1.2
+        :path: app/models/agenda.rb:155
+      Agenda#voting_array: 
+        :score: 8.5842879728024
+        :operators: 
+          :description: 1.3
+          :assignment: 1.3
+          :branch: 1.2
+          :collect: 1.2
+          :agenda_items: 1.4
+          :*: 1.5
+          :voting_options: 1.7
+          :title: 1.3
+        :path: app/models/agenda.rb:92
+      Agenda#none: 
+        :score: 34.1272618298041
+        :operators: 
+          :time_for_reminders: 1.7
+          :now: 1.2
+          :assignment: 4.9
+          :lifecycle: 1.1
+          :delay: 1.5
+          :state: 2.6
+          :timestamps: 1.3
+          :after_save: 1.1
+          :branch: 10.5
+          :protected: 1.1
+          :has_many: 3.3
+          :hobo_model: 1.1
+          :new_record?: 2.6
+          :before_create: 1.1
+          :validate: 1.1
+          :transition: 2.6
+          :fields: 1.1
+          :meeting_time_changed?: 2.6
+          :before_save: 1.1
+          :meeting_time: 1.3
+          :send_current_agenda_reminders: 1.3
+          :email_reminder_sent: 1.3
+        :path: 
+      Agenda#update_permitted?: 
+        :score: 5.72712842531054
+        :operators: 
+          :acting_user: 3.0
+          :administrator?: 1.3
+          :branch: 1.2
+          :council_member?: 1.3
+        :path: app/models/agenda.rb:34
+      Agenda#time_for_reminders: 
+        :score: 6.90507060065283
+        :operators: 
+          :hours: 1.2
+          :assignment: 1.2
+          :-: 1.2
+          :meeting_time: 1.4
+          :[]: 3.0
+        :path: app/models/agenda.rb:98
+      Agenda#current?: 
+        :score: 4.2
+        :operators: 
+          :include?: 1.2
+          :state: 1.6
+          :to_s: 1.4
+        :path: app/models/agenda.rb:88
+    :average_score: 12.3863232641899
+    :name: Agenda
+    :path: app/models/agenda.rb
+  - :highest_score: 29.7294466816993
+    :total_score: 71.7210423363462
+    :methods: 
+      AgendaItem#edit_permitted?: 
+        :score: 29.7294466816993
+        :operators: 
+          :acting_user: 4.3
+          :agenda: 4.7
+          :administrator?: 1.2
+          :include?: 1.2
+          :rejected?: 1.3
+          :state: 1.4
+          :branch: 12.0
+          :user: 1.5
+          :_?: 1.6
+          :council_member?: 1.2
+          :==: 6.3
+          :nil?: 2.5
+        :path: app/models/agenda_item.rb:43
+      AgendaItem#update_permitted?: 
+        :score: 20.3184645089141
+        :operators: 
+          :acting_user: 4.2
+          :agenda: 3.2
+          :administrator?: 1.2
+          :state: 1.4
+          :branch: 7.2
+          :user: 1.4
+          :_?: 1.6
+          :council_member?: 1.2
+          :user_changed?: 1.2
+          :==: 2.4
+          :nil?: 1.2
+        :path: app/models/agenda_item.rb:24
+      AgendaItem#destroy_permitted?: 
+        :score: 2.6
+        :operators: 
+          :acting_user: 1.4
+          :administrator?: 1.2
+        :path: app/models/agenda_item.rb:34
+      AgendaItem#none: 
+        :score: 12.050311199301
+        :operators: 
+          :body: 1.3
+          :discussion: 1.3
+          :timestamps: 1.3
+          :rejected: 1.3
+          :branch: 1.1
+          :has_many: 1.1
+          :belongs_to: 2.2
+          :hobo_model: 1.1
+          :fields: 1.1
+          :title: 1.3
+        :path: 
+      AgendaItem#create_permitted?: 
+        :score: 7.02281994643178
+        :operators: 
+          :acting_user: 2.8
+          :branch: 2.4
+          :guest?: 1.2
+          :user: 1.4
+          :==: 1.2
+        :path: app/models/agenda_item.rb:18
+    :average_score: 14.3442084672692
+    :name: AgendaItem
+    :path: app/models/agenda_item.rb
+  - :highest_score: 26.6062022844299
+    :total_score: 48.3038586879209
+    :methods: 
+      Vote#user_voted_only_once: 
+        :score: 26.6062022844299
+        :operators: 
+          :agenda_item: 1.4
+          :>: 1.2
+          :assignment: 2.5
+          :count: 1.4
+          :agenda_item_id: 1.4
+          :branch: 6.0
+          :joins: 1.4
+          :user_id: 1.4
+          :user: 1.4
+          :new_record?: 1.2
+          :where: 1.2
+          :id: 1.5
+          :add: 1.3
+          :errors: 1.5
+          :id_is_not: 1.3
+          :voting_option: 4.6
+          :nil?: 3.6
+        :path: app/models/vote.rb:38
+      Vote#user_is_council_member: 
+        :score: 8.35224520712844
+        :operators: 
+          :branch: 2.4
+          :user: 2.8
+          :council_member?: 1.2
+          :add: 1.3
+          :errors: 1.5
+          :nil?: 1.2
+        :path: app/models/vote.rb:50
+      Vote#none: 
+        :score: 13.3454111963626
+        :operators: 
+          :timestamps: 1.2
+          :branch: 1.1
+          :protected: 1.1
+          :belongs_to: 2.2
+          :validates_presence_of: 2.2
+          :hobo_model: 1.1
+          :validate: 2.2
+          :validates_uniqueness_of: 1.1
+          :fields: 1.1
+          :index: 1.1
+        :path: 
+    :average_score: 16.101286229307
+    :name: Vote
+    :path: app/models/vote.rb
+  - :highest_score: 25.8158865817155
+    :total_score: 25.8158865817155
+    :methods: 
+      Participation::mark_participations: 
+        :score: 25.8158865817155
+        :operators: 
+          :agenda_is: 2.0
+          :flatten: 1.4
+          :current: 1.2
+          :assignment: 6.3
+          :uniq: 1.2
+          :branch: 2.6
+          :values: 2.0
+          :council_member: 1.4
+          :find_by_irc_nick: 1.3
+          :first: 1.6
+          :_?: 1.8
+          :keys: 1.6
+          :create!: 1.3
+          :irc_nick: 1.5
+          :*: 1.8
+          :proxy_is: 2.2
+          :council_member?: 1.3
+          :nil?: 1.3
+        :path: app/models/participation.rb:35
+    :average_score: 25.8158865817155
+    :name: Participation::mark_participations
+    :path: app/models/participation.rb
+  - :highest_score: 23.1207698833754
+    :total_score: 52.0669965239357
+    :methods: 
+      Proxy#none: 
+        :score: 23.1207698833754
+        :operators: 
+          :assignment: 3.8
+          :council_member_nick: 1.3
+          :timestamps: 1.3
+          :proxy_nick: 1.3
+          :branch: 2.2
+          :protected: 1.1
+          :belongs_to: 3.3
+          :council_member: 1.5
+          :validates_presence_of: 1.1
+          :hobo_model: 1.1
+          :proxy: 1.5
+          :irc_nick: 2.6
+          :before_create: 1.1
+          :validate: 2.2
+          :validates_uniqueness_of: 2.2
+          :fields: 1.1
+        :path: 
+      Proxy#proxy_must_not_be_council_member: 
+        :score: 8.35224520712844
+        :operators: 
+          :branch: 2.4
+          :proxy: 2.8
+          :council_member?: 1.2
+          :add: 1.3
+          :errors: 1.5
+          :nil?: 1.2
+        :path: app/models/proxy.rb:53
+      Proxy#destroy_permitted?: 
+        :score: 6.90507060065283
+        :operators: 
+          :acting_user: 1.4
+          :agenda: 1.6
+          :council_member_is?: 1.2
+          :state: 1.4
+          :branch: 1.2
+          :==: 1.2
+        :path: app/models/proxy.rb:34
+      Proxy#council_member_must_be_council_member: 
+        :score: 8.35224520712844
+        :operators: 
+          :branch: 2.4
+          :council_member: 2.8
+          :council_member?: 1.2
+          :add: 1.3
+          :errors: 1.5
+          :nil?: 1.2
+        :path: app/models/proxy.rb:49
+      Proxy#create_permitted?: 
+        :score: 5.33666562565053
+        :operators: 
+          :acting_user: 2.8
+          :council_member_is?: 1.2
+          :branch: 1.2
+          :council_member?: 1.2
+        :path: app/models/proxy.rb:25
+    :average_score: 10.4133993047871
+    :name: Proxy
+    :path: app/models/proxy.rb
+  - :highest_score: 16.4468842033985
+    :total_score: 16.4468842033985
+    :methods: 
+      Agenda::process_results: 
+        :score: 16.4468842033985
+        :operators: 
+          :current: 1.2
+          :assignment: 9.1
+          :find_by_irc_nick: 1.4
+          :first: 2.7
+          :keys: 2.5
+          :create!: 1.4
+          :id: 1.6
+          :[]: 2.9
+        :path: app/models/agenda.rb:60
+    :average_score: 16.4468842033985
+    :name: Agenda::process_results
+    :path: app/models/agenda.rb
+  - :highest_score: 16.365818036383
+    :total_score: 58.8309399555275
+    :methods: 
+      User#can_appoint_a_proxy?: 
+        :score: 16.365818036383
+        :operators: 
+          :agenda_is: 3.2
+          :current: 1.2
+          :assignment: 1.2
+          :count: 2.8
+          :council_member_is: 1.8
+          :branch: 4.8
+          :proxy_is: 1.8
+          :==: 2.4
+          :council_member?: 2.4
+        :path: app/models/user.rb:74
+      User#update_permitted?: 
+        :score: 7.62167960491649
+        :operators: 
+          :acting_user: 3.1
+          :administrator?: 1.3
+          :only_changed?: 1.4
+          :branch: 2.5
+          :==: 1.4
+        :path: app/models/user.rb:40
+      User#none: 
+        :score: 16.2496153800636
+        :operators: 
+          :lifecycle: 1.1
+          :state: 1.3
+          :timestamps: 1.3
+          :create: 1.3
+          :branch: 2.2
+          :has_many: 1.1
+          :council_member: 1.3
+          :transition: 1.3
+          :irc_nick: 1.3
+          :name: 1.3
+          :fields: 1.1
+          :hobo_devise_user_model: 1.1
+          :administrator: 1.3
+          :email: 1.3
+        :path: 
+      User#slacking_status_in_period: 
+        :score: 15.9938269341643
+        :operators: 
+          :+: 1.4
+          :agenda_is: 1.6
+          :participant_is: 1.8
+          :assignment: 7.6
+          :count: 1.4
+          :branch: 3.8
+          :lit_fixnum: 1.15
+          :<: 1.3
+          :[]: 1.2
+          :==: 2.5
+          :all: 1.2
+        :path: app/models/user.rb:57
+      User#destroy_permitted?: 
+        :score: 2.6
+        :operators: 
+          :acting_user: 1.4
+          :administrator?: 1.2
+        :path: app/models/user.rb:49
+    :average_score: 11.7661879911055
+    :name: User
+    :path: app/models/user.rb
+  - :highest_score: 16.1307160411434
+    :total_score: 31.7962435490622
+    :methods: 
+      VotingOption#none: 
+        :score: 9.2655275079188
+        :operators: 
+          :description: 1.3
+          :timestamps: 1.3
+          :branch: 1.1
+          :has_many: 1.1
+          :belongs_to: 1.1
+          :validates_presence_of: 1.1
+          :hobo_model: 1.1
+          :validates_uniqueness_of: 1.1
+          :fields: 1.1
+        :path: 
+      VotingOption#destroy_permitted?: 
+        :score: 2.6
+        :operators: 
+          :acting_user: 1.4
+          :updatable_by?: 1.2
+        :path: app/models/voting_option.rb:34
+      VotingOption#update_permitted?: 
+        :score: 16.1307160411434
+        :operators: 
+          :agenda: 3.0
+          :acting_user: 1.4
+          :agenda_item: 4.8
+          :state: 1.4
+          :branch: 4.8
+          :==: 1.2
+          :council_member?: 1.2
+          :nil?: 2.4
+        :path: app/models/voting_option.rb:26
+      VotingOption#name: 
+        :score: 1.2
+        :operators: 
+          :description: 1.2
+        :path: app/models/voting_option.rb:16
+      VotingOption#create_permitted?: 
+        :score: 2.6
+        :operators: 
+          :acting_user: 1.4
+          :council_member?: 1.2
+        :path: app/models/voting_option.rb:22
+    :average_score: 6.35924870981243
+    :name: VotingOption
+    :path: app/models/voting_option.rb
+  - :highest_score: 14.6931957041346
+    :total_score: 30.4151918586844
+    :methods: 
+      UsersController#none: 
+        :score: 2.2
+        :operators: 
+          :hobo_user_controller: 1.1
+          :auto_actions: 1.1
+        :path: 
+      UsersController#voters: 
+        :score: 2.6
+        :operators: 
+          :voters: 1.4
+          :render: 1.2
+        :path: app/controllers/users_controller.rb:17
+      UsersController#current_council_slacking: 
+        :score: 14.6931957041346
+        :operators: 
+          :minute: 1.4
+          :current: 1.6
+          :assignment: 4.9
+          :council_member_is: 1.4
+          :branch: 1.2
+          :slacking_status_in_period: 1.3
+          :collect: 1.2
+          :-: 1.2
+          :lit_fixnum: 0.4
+          :name: 1.3
+          :meeting_time: 1.4
+          :[]: 2.6
+        :path: app/controllers/users_controller.rb:21
+      UsersController#create: 
+        :score: 10.9219961545498
+        :operators: 
+          :assignment: 3.0
+          :valid?: 1.3
+          :home_page: 1.7
+          :hobo_create: 1.2
+          :branch: 2.5
+          :redirect_to: 1.5
+          :this: 1.5
+          :t: 1.5
+          :flash: 1.5
+        :path: app/controllers/users_controller.rb:7
+    :average_score: 7.6037979646711
+    :name: UsersController
+    :path: app/controllers/users_controller.rb
+  - :highest_score: 13.2196822957286
+    :total_score: 13.2196822957286
+    :methods: 
+      Agenda::voters_users: 
+        :score: 13.2196822957286
+        :operators: 
+          :flatten: 1.2
+          :+: 1.4
+          :proxies: 1.4
+          :current: 1.6
+          :assignment: 2.4
+          :council_member_is: 1.2
+          :-: 1.6
+          :council_member: 1.8
+          :proxy: 1.6
+          :*: 1.2
+        :path: app/models/agenda.rb:103
+    :average_score: 13.2196822957286
+    :name: Agenda::voters_users
+    :path: app/models/agenda.rb
+  - :highest_score: 12.1934408597409
+    :total_score: 12.1934408597409
+    :methods: 
+      Agenda::send_current_agenda_reminders: 
+        :score: 12.1934408597409
+        :operators: 
+          :time_for_reminders: 1.4
+          :voters_users: 1.2
+          :now: 1.4
+          :current: 1.2
+          :assignment: 3.6
+          :delay: 1.4
+          :branch: 2.4
+          :deliver_meeting_reminder: 1.2
+          :<: 1.2
+          :email_reminder_sent?: 1.2
+          :save!: 1.2
+        :path: app/models/agenda.rb:118
+    :average_score: 12.1934408597409
+    :name: Agenda::send_current_agenda_reminders
+    :path: app/models/agenda.rb
+  - :highest_score: 10.4690018626419
+    :total_score: 34.4090215864886
+    :methods: 
+      AgendasController#reminders: 
+        :score: 2.6
+        :operators: 
+          :render: 1.2
+          :irc_reminders: 1.4
+        :path: app/controllers/agendas_controller.rb:22
+      AgendasController#results: 
+        :score: 10.4690018626419
+        :operators: 
+          :process_results: 1.2
+          :assignment: 1.2
+          :env: 1.8
+          :request: 2.0
+          :mark_participations: 1.2
+          :read: 1.4
+          :parse: 1.2
+          :[]: 1.6
+        :path: app/controllers/agendas_controller.rb:16
+      AgendasController#current_items: 
+        :score: 4.2
+        :operators: 
+          :current: 1.6
+          :render: 1.2
+          :voting_array: 1.4
+        :path: app/controllers/agendas_controller.rb:12
+      AgendasController#none: 
+        :score: 4.4
+        :operators: 
+          :before_filter: 1.1
+          :private: 1.1
+          :hobo_model_controller: 1.1
+          :auto_actions: 1.1
+        :path: 
+      AgendasController#index: 
+        :score: 2.6
+        :operators: 
+          :state_is: 1.4
+          :hobo_index: 1.2
+        :path: app/controllers/agendas_controller.rb:8
+      AgendasController#authenticate_bot: 
+        :score: 10.1400197238467
+        :operators: 
+          :assignment: 5.1
+          :authenticate_or_request_with_http_basic: 1.2
+          :branch: 2.5
+          :==: 2.8
+          :[]: 4.4
+        :path: app/controllers/agendas_controller.rb:27
+    :average_score: 5.73483693108144
+    :name: AgendasController
+    :path: app/controllers/agendas_controller.rb
+  - :highest_score: 9.39148550549912
+    :total_score: 9.39148550549912
+    :methods: 
+      Agenda::irc_reminders: 
+        :score: 9.39148550549912
+        :operators: 
+          :time_for_reminders: 1.4
+          :now: 1.4
+          :current: 1.2
+          :assignment: 2.4
+          :branch: 1.2
+          :voters: 1.2
+          :<: 1.2
+          :strftime: 1.2
+          :meeting_time: 1.4
+        :path: app/models/agenda.rb:132
+    :average_score: 9.39148550549912
+    :name: Agenda::irc_reminders
+    :path: app/models/agenda.rb
+  - :highest_score: 7.7
+    :total_score: 7.7
+    :methods: 
+      User::transition#request_password_reset: 
+        :score: 7.7
+        :operators: 
+          :deliver: 1.3
+          :lifecycle: 1.9
+          :forgot_password: 1.5
+          :key: 1.7
+          :transition: 1.3
+        :path: app/models/user.rb:27
+    :average_score: 7.7
+    :name: User::transition
+    :path: app/models/user.rb
+  - :highest_score: 7.08590149522275
+    :total_score: 9.68590149522275
+    :methods: 
+      Participation#name: 
+        :score: 2.6
+        :operators: 
+          :participant: 1.4
+          :name: 1.2
+        :path: app/models/participation.rb:31
+      Participation#none: 
+        :score: 7.08590149522275
+        :operators: 
+          :timestamps: 1.3
+          :branch: 1.1
+          :belongs_to: 2.2
+          :hobo_model: 1.1
+          :irc_nick: 1.3
+          :fields: 1.1
+        :path: 
+    :average_score: 4.84295074761138
+    :name: Participation
+    :path: app/models/participation.rb
+  - :highest_score: 6.09261848469113
+    :total_score: 13.8740681035206
+    :methods: 
+      UserMailer#none: 
+        :score: 2.4
+        :operators: 
+          :host: 1.3
+          :default: 1.1
+        :path: 
+      UserMailer#forgot_password: 
+        :score: 5.38144961882949
+        :operators: 
+          :assignment: 3.6
+          :app_name: 1.4
+          :mail: 1.2
+          :email: 1.4
+        :path: app/mailers/user_mailer.rb:4
+      UserMailer#meeting_reminder: 
+        :score: 6.09261848469113
+        :operators: 
+          :assignment: 2.4
+          :mail: 1.2
+          :to_s: 1.4
+          :meeting_time: 1.6
+          :email: 1.4
+        :path: app/mailers/user_mailer.rb:10
+    :average_score: 4.6246893678402
+    :name: UserMailer
+    :path: app/mailers/user_mailer.rb
+  - :highest_score: 5.53172667437573
+    :total_score: 9.93172667437574
+    :methods: 
+      AgendaItemsController#none: 
+        :score: 4.4
+        :operators: 
+          :before_filter: 1.1
+          :protected: 1.1
+          :hobo_model_controller: 1.1
+          :auto_actions: 1.1
+        :path: 
+      AgendaItemsController#login: 
+        :score: 5.53172667437573
+        :operators: 
+          :branch: 1.2
+          :redirect_to: 1.3
+          :user_login_path: 1.5
+          :signed_up?: 1.2
+          :current_user: 1.4
+        :path: app/controllers/agenda_items_controller.rb:9
+    :average_score: 4.96586333718787
+    :name: AgendaItemsController
+    :path: app/controllers/agenda_items_controller.rb
+  - :highest_score: 5.53172667437573
+    :total_score: 10.8849607380031
+    :methods: 
+      FrontController#none: 
+        :score: 1.1
+        :operators: 
+          :hobo_controller: 1.1
+        :path: 
+      FrontController#search: 
+        :score: 4.25323406362735
+        :operators: 
+          :params: 1.4
+          :assignment: 1.2
+          :branch: 1.2
+          :site_search: 1.3
+          :[]: 1.2
+        :path: app/controllers/front_controller.rb:13
+      FrontController#summary: 
+        :score: 5.53172667437573
+        :operators: 
+          :administrator?: 1.2
+          :branch: 1.2
+          :redirect_to: 1.3
+          :user_login_path: 1.5
+          :current_user: 1.4
+        :path: app/controllers/front_controller.rb:7
+    :average_score: 3.62832024600103
+    :name: FrontController
+    :path: app/controllers/front_controller.rb
+  - :highest_score: 4.2
+    :total_score: 4.2
+    :methods: 
+      Agenda::voters: 
+        :score: 4.2
+        :operators: 
+          :voters_users: 1.6
+          :irc_nick: 1.2
+          :*: 1.4
+        :path: app/models/agenda.rb:114
+    :average_score: 4.2
+    :name: Agenda::voters
+    :path: app/models/agenda.rb
+  - :highest_score: 4.1
+    :total_score: 4.1
+    :methods: 
+      Agenda::transition#archive: 
+        :score: 4.1
+        :operators: 
+          :transition: 1.3
+          :save!: 1.3
+          :new: 1.5
+        :path: app/models/agenda.rb:23
+    :average_score: 4.1
+    :name: Agenda::transition
+    :path: app/models/agenda.rb
+  - :highest_score: 3.39411254969543
+    :total_score: 3.39411254969543
+    :methods: 
+      Agenda::transitions_available: 
+        :score: 3.39411254969543
+        :operators: 
+          :administrator?: 1.2
+          :branch: 2.4
+          :council_member?: 1.2
+        :path: app/models/agenda.rb:54
+    :average_score: 3.39411254969543
+    :name: Agenda::transitions_available
+    :path: app/models/agenda.rb
+  - :highest_score: 2.6
+    :total_score: 2.6
+    :methods: 
+      Agenda::current: 
+        :score: 2.6
+        :operators: 
+          :first: 1.2
+          :state_is_not: 1.4
+        :path: app/models/agenda.rb:50
+    :average_score: 2.6
+    :name: Agenda::current
+    :path: app/models/agenda.rb
+  - :highest_score: 2.2
+    :total_score: 2.2
+    :methods: 
+      VotingOptionsController#none: 
+        :score: 2.2
+        :operators: 
+          :hobo_model_controller: 1.1
+          :auto_actions: 1.1
+        :path: 
+    :average_score: 2.2
+    :name: VotingOptionsController
+    :path: ""
+  - :highest_score: 2.2
+    :total_score: 2.2
+    :methods: 
+      ProxiesController#none: 
+        :score: 2.2
+        :operators: 
+          :hobo_model_controller: 1.1
+          :auto_actions: 1.1
+        :path: 
+    :average_score: 2.2
+    :name: ProxiesController
+    :path: ""
+  - :highest_score: 1.0
+    :total_score: 1.0
+    :methods: 
+      ApplicationController#none: 
+        :score: 1.0
+        :operators: 
+          :protect_from_forgery: 1.0
+        :path: 
+    :average_score: 1.0
+    :name: ApplicationController
+    :path: ""
+  - :highest_score: 1.0
+    :total_score: 1.0
+    :methods: 
+      AgendaHints#none: 
+        :score: 1.0
+        :operators: 
+          :children: 1.0
+        :path: 
+    :average_score: 1.0
+    :name: AgendaHints
+    :path: ""
+  - :highest_score: 1.0
+    :total_score: 1.0
+    :methods: 
+      AgendaItemHints#none: 
+        :score: 1.0
+        :operators: 
+          :children: 1.0
+        :path: 
+    :average_score: 1.0
+    :name: AgendaItemHints
+    :path: ""
+  :average: 8.693626251603
+  :total: 565.085706354195
+:flay: 
+  :total_score: "0"
+  :matches: []
+
+:rails_best_practices: 
+  :problems: 
+  - :file: app/models/proxy.rb
+    :problem: law of demeter
+    :line: "44"
+  - :file: app/models/proxy.rb
+    :problem: law of demeter
+    :line: "45"
+  :total: 
+  - Found 2 errors.
+:reek: 
+  :matches: 
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: AgendaItemsController
+      :message: has no descriptive comment
+    :file_path: app/controllers/agenda_items_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: AgendasController
+      :message: has no descriptive comment
+    - :type: LowCohesion
+      :method: AgendasController#authenticate_bot
+      :message: refers to botconf more than self
+    :file_path: app/controllers/agendas_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: ApplicationController
+      :message: has no descriptive comment
+    :file_path: app/controllers/application_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: FrontController
+      :message: has no descriptive comment
+    :file_path: app/controllers/front_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: ProxiesController
+      :message: has no descriptive comment
+    :file_path: app/controllers/proxies_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: UsersController
+      :message: has no descriptive comment
+    - :type: LowCohesion
+      :method: UsersController#current_council_slacking
+      :message: refers to user more than self
+    :file_path: app/controllers/users_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: VotingOptionsController
+      :message: has no descriptive comment
+    :file_path: app/controllers/voting_options_controller.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: UserMailer
+      :message: has no descriptive comment
+    :file_path: app/mailers/user_mailer.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: Agenda
+      :message: has no descriptive comment
+    - :type: LongMethod
+      :method: Agenda#self.process_results
+      :message: has approx 6 statements
+    - :type: LongMethod
+      :method: Agenda#self.send_current_agenda_reminders
+      :message: has approx 6 statements
+    - :type: Duplication
+      :method: Agenda#there_is_only_one_non_archival_agenda
+      :message: calls id twice
+    - :type: Duplication
+      :method: Agenda#update_permitted?
+      :message: calls acting_user twice
+    - :type: LowCohesion
+      :method: Agenda#voting_array
+      :message: refers to item more than self
+    :file_path: app/models/agenda.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: AgendaItem
+      :message: has no descriptive comment
+    - :type: Duplication
+      :method: AgendaItem#create_permitted?
+      :message: calls acting_user twice
+    - :type: Duplication
+      :method: AgendaItem#edit_permitted?
+      :message: calls acting_user 3 times
+    - :type: Duplication
+      :method: AgendaItem#edit_permitted?
+      :message: calls agenda 3 times
+    - :type: Duplication
+      :method: AgendaItem#edit_permitted?
+      :message: calls agenda.nil? twice
+    - :type: LongMethod
+      :method: AgendaItem#edit_permitted?
+      :message: has approx 8 statements
+    - :type: Duplication
+      :method: AgendaItem#update_permitted?
+      :message: calls acting_user 3 times
+    - :type: Duplication
+      :method: AgendaItem#update_permitted?
+      :message: calls agenda twice
+    - :type: LongMethod
+      :method: AgendaItem#update_permitted?
+      :message: has approx 7 statements
+    :file_path: app/models/agenda_item.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: Guest
+      :message: has no descriptive comment
+    :file_path: app/models/guest.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: Participation
+      :message: has no descriptive comment
+    - :type: LongMethod
+      :method: Participation#self.mark_participations
+      :message: has approx 6 statements
+    :file_path: app/models/participation.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: Proxy
+      :message: has no descriptive comment
+    - :type: Duplication
+      :method: Proxy#council_member_must_be_council_member
+      :message: calls council_member twice
+    - :type: Duplication
+      :method: Proxy#create_permitted?
+      :message: calls acting_user twice
+    - :type: Duplication
+      :method: Proxy#proxy_must_not_be_council_member
+      :message: calls proxy twice
+    :file_path: app/models/proxy.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: User
+      :message: has no descriptive comment
+    - :type: LongMethod
+      :method: User#can_appoint_a_proxy?
+      :message: has approx 6 statements
+    - :type: LongMethod
+      :method: User#slacking_status_in_period
+      :message: has approx 6 statements
+    - :type: LowCohesion
+      :method: User#slacking_status_in_period
+      :message: refers to num_status more than self
+    - :type: Duplication
+      :method: User#update_permitted?
+      :message: calls acting_user twice
+    :file_path: app/models/user.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: Vote
+      :message: has no descriptive comment
+    - :type: Duplication
+      :method: Vote#user_is_council_member
+      :message: calls user twice
+    - :type: Duplication
+      :method: Vote#user_voted_only_once
+      :message: calls voting_option 3 times
+    - :type: LongMethod
+      :method: Vote#user_voted_only_once
+      :message: has approx 6 statements
+    :file_path: app/models/vote.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: VotingOption
+      :message: has no descriptive comment
+    - :type: Duplication
+      :method: VotingOption#update_permitted?
+      :message: calls agenda_item 3 times
+    - :type: Duplication
+      :method: VotingOption#update_permitted?
+      :message: calls agenda_item.agenda twice
+    :file_path: app/models/voting_option.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: AgendaHints
+      :message: has no descriptive comment
+    :file_path: app/viewhints/agenda_hints.rb
+  - :code_smells: 
+    - :type: IrresponsibleModule
+      :method: AgendaItemHints
+      :message: has no descriptive comment
+    :file_path: app/viewhints/agenda_item_hints.rb
+:stats: 
+  :lines: 
+  - :classes: 7
+    :methods: 12
+    :loc: 84
+    :lines: 109
+    :methods_per_class: 1
+    :loc_per_method: 5
+    :name: Controllers
+  - :classes: 8
+    :methods: 53
+    :loc: 397
+    :lines: 515
+    :methods_per_class: 6
+    :loc_per_method: 5
+    :name: Models
+  - :classes: 0
+    :methods: 0
+    :loc: 0
+    :lines: 0
+    :methods_per_class: 0
+    :loc_per_method: 0
+    :name: Libraries
+  - :classes: 0
+    :methods: 1
+    :loc: 688
+    :lines: 803
+    :methods_per_class: 0
+    :loc_per_method: 686
+    :name: Model specs
+  - :classes: 15
+    :methods: 66
+    :loc: 1169
+    :lines: 1427
+    :methods_per_class: 4
+    :loc_per_method: 15
+    :name: Total
+  :codeLOC: 481
+  :testLOC: 688
+  :code_to_test_ratio: 1.4
+:roodi: 
+  :problems: 
+  - :file: app/models/agenda_item.rb
+    :problem: Method name "edit_permitted?" cyclomatic complexity is 11.  It should be 8 or less.
+    :line: "43"
+  - :file: app/models/participation.rb
+    :problem: Don't use 'for' loops. Use Enumerable.each instead.
+    :line: "38"
+  - :file: app/models/agenda.rb
+    :problem: Don't use 'for' loops. Use Enumerable.each instead.
+    :line: "62"
+  - :file: app/models/agenda.rb
+    :problem: Don't use 'for' loops. Use Enumerable.each instead.
+    :line: "65"
+  - :file: app/models/agenda.rb
+    :problem: Don't use 'for' loops. Use Enumerable.each instead.
+    :line: "124"
+  - :file: app/models/user.rb
+    :problem: Don't use 'for' loops. Use Enumerable.each instead.
+    :line: "61"
+  :total: 
+  - Found 6 errors.
+:hotspots: 
+  :classes: 
+  - :details: 
+      :flog: average complexity is 7.6
+      :reek: found 2 code smells
+      :rcov: average uncovered code is 80.4%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UsersController
+      file_path: app/controllers/users_controller.rb
+      hash: -6808167173
+      method_name: 
+  - :details: 
+      :flog: average complexity is 5.7
+      :reek: found 2 code smells
+      :rcov: average uncovered code is 72.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb
+      hash: -7309286179
+      method_name: 
+  - :details: 
+      :flog: average complexity is 5.0
+      :reek: found 1 code smells
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItemsController
+      file_path: app/controllers/agenda_items_controller.rb
+      hash: 1664841588
+      method_name: 
+  - :details: 
+      :flog: average complexity is 3.6
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 54.4%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: FrontController
+      file_path: app/controllers/front_controller.rb
+      hash: -3594902175
+      method_name: 
+  - :details: 
+      :flog: average complexity is 4.6
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 40.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UserMailer
+      file_path: app/mailers/user_mailer.rb
+      hash: 2707280106
+      method_name: 
+  - :details: 
+      :flog: average complexity is 11.8
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 11.1%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb
+      hash: 7757610798
+      method_name: 
+  - :details: 
+      :flog: average complexity is 6.4
+      :reek: found 3 code smells
+      :rcov: average uncovered code is 13.3%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb
+      hash: 2905660262
+      method_name: 
+  - :details: 
+      :flog: average complexity is 16.1
+      :reek: found 4 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: 7757507918
+      method_name: 
+  - :details: 
+      :flog: average complexity is 14.3
+      :reek: found 9 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb
+      hash: -5035814879
+      method_name: 
+  - :details: 
+      :flog: average complexity is 11.8
+      :reek: found 5 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: 5848101834
+      method_name: 
+  - :details: 
+      :flog: average complexity is 10.6
+      :reek: found 4 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: -3730202817
+      method_name: 
+  - :details: 
+      :flog: average complexity is 10.4
+      :reek: found 4 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: -1191471501
+      method_name: 
+  - :details: 
+      :flog: complexity is 7.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User::transition
+      file_path: app/models/user.rb:27
+      hash: 183345966
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda::transition
+      file_path: app/models/agenda.rb:23
+      hash: 6766809590
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.2
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: ProxiesController
+      file_path: app/controllers/proxies_controller.rb
+      hash: -7547713743
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.2
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOptionsController
+      file_path: app/controllers/voting_options_controller.rb
+      hash: -6084749627
+      method_name: 
+  - :details: 
+      :flog: complexity is 1.0
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItemHints
+      file_path: app/viewhints/agenda_item_hints.rb
+      hash: 7400462498
+      method_name: 
+  - :details: 
+      :flog: complexity is 1.0
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: ApplicationController
+      file_path: app/controllers/application_controller.rb
+      hash: -849426859
+      method_name: 
+  - :details: 
+      :flog: complexity is 1.0
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaHints
+      file_path: app/viewhints/agenda_hints.rb
+      hash: -2724790439
+      method_name: 
+  - :details: 
+      :reek: found 2 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda#self
+      file_path: app/models/agenda.rb
+      hash: 1314439188
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Guest
+      file_path: app/models/guest.rb
+      hash: -8440822711
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation#self
+      file_path: app/models/participation.rb
+      hash: -7698802495
+      method_name: 
+  :methods: 
+  - :details: 
+      :flog: complexity is 14.7
+      :reek: found 1 code smells
+      :rcov: uncovered code is 85.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UsersController
+      file_path: app/controllers/users_controller.rb
+      hash: -8033409820
+      method_name: UsersController#current_council_slacking
+      simple_method_name: "#current_council_slacking"
+  - :details: 
+      :flog: complexity is 10.9
+      :rcov: uncovered code is 88.9%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UsersController
+      file_path: app/controllers/users_controller.rb:7
+      hash: -7389976158
+      method_name: UsersController#create
+      simple_method_name: "#create"
+  - :details: 
+      :flog: complexity is 10.1
+      :reek: found 1 code smells
+      :rcov: uncovered code is 83.3%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb
+      hash: -7615033496
+      method_name: AgendasController#authenticate_bot
+      simple_method_name: "#authenticate_bot"
+  - :details: 
+      :flog: complexity is 10.5
+      :rcov: uncovered code is 80.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb:16
+      hash: 3196590891
+      method_name: AgendasController#results
+      simple_method_name: "#results"
+  - :details: 
+      :flog: complexity is 4.3
+      :rcov: uncovered code is 83.3%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: FrontController
+      file_path: app/controllers/front_controller.rb:13
+      hash: -3077568522
+      method_name: FrontController#search
+      simple_method_name: "#search"
+  - :details: 
+      :flog: complexity is 5.5
+      :rcov: uncovered code is 80.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: FrontController
+      file_path: app/controllers/front_controller.rb:7
+      hash: -6909153691
+      method_name: FrontController#summary
+      simple_method_name: "#summary"
+  - :details: 
+      :flog: complexity is 5.4
+      :rcov: uncovered code is 80.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UserMailer
+      file_path: app/mailers/user_mailer.rb:4
+      hash: -6189363561
+      method_name: UserMailer#forgot_password
+      simple_method_name: "#forgot_password"
+  - :details: 
+      :flog: complexity is 5.5
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItemsController
+      file_path: app/controllers/agenda_items_controller.rb:9
+      hash: -2028625198
+      method_name: AgendaItemsController#login
+      simple_method_name: "#login"
+  - :details: 
+      :flog: complexity is 4.2
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb:12
+      hash: -3541997722
+      method_name: AgendasController#current_items
+      simple_method_name: "#current_items"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb:31
+      hash: -2111476977
+      method_name: Participation#name
+      simple_method_name: "#name"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb:8
+      hash: 66122189
+      method_name: AgendasController#index
+      simple_method_name: "#index"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: app/controllers/agendas_controller.rb:22
+      hash: -3486956953
+      method_name: AgendasController#reminders
+      simple_method_name: "#reminders"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UsersController
+      file_path: app/controllers/users_controller.rb:17
+      hash: -2247814548
+      method_name: UsersController#voters
+      simple_method_name: "#voters"
+  - :details: 
+      :flog: complexity is 1.2
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb:16
+      hash: 4039868729
+      method_name: VotingOption#name
+      simple_method_name: "#name"
+  - :details: 
+      :flog: complexity is 34.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: 
+      hash: -2827963183
+      method_name: Agenda#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 29.7
+      :reek: found 4 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb
+      hash: -4847094737
+      method_name: AgendaItem#edit_permitted?
+      simple_method_name: "#edit_permitted?"
+  - :details: 
+      :flog: complexity is 26.6
+      :reek: found 2 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: -7069467347
+      method_name: Vote#user_voted_only_once
+      simple_method_name: "#user_voted_only_once"
+  - :details: 
+      :flog: complexity is 25.8
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb:35
+      hash: -1649195807
+      method_name: Participation#mark_participations
+      simple_method_name: "#mark_participations"
+  - :details: 
+      :flog: complexity is 23.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: 
+      hash: -700748165
+      method_name: Proxy#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 20.3
+      :reek: found 3 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb
+      hash: 5968411805
+      method_name: AgendaItem#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :flog: complexity is 20.5
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: -4286626142
+      method_name: Agenda#there_is_only_one_non_archival_agenda
+      simple_method_name: "#there_is_only_one_non_archival_agenda"
+  - :details: 
+      :flog: complexity is 16.1
+      :reek: found 2 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb
+      hash: -4055621579
+      method_name: VotingOption#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :flog: complexity is 16.0
+      :reek: found 2 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: -6248212558
+      method_name: User#slacking_status_in_period
+      simple_method_name: "#slacking_status_in_period"
+  - :details: 
+      :flog: complexity is 16.4
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: -5816349015
+      method_name: User#can_appoint_a_proxy?
+      simple_method_name: "#can_appoint_a_proxy?"
+  - :details: 
+      :flog: complexity is 16.4
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:60
+      hash: 5474030519
+      method_name: Agenda#process_results
+      simple_method_name: "#process_results"
+  - :details: 
+      :flog: complexity is 16.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: 
+      hash: -2592387804
+      method_name: User#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 13.3
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: 
+      hash: 1236702108
+      method_name: Vote#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 13.2
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:103
+      hash: -884332623
+      method_name: Agenda#voters_users
+      simple_method_name: "#voters_users"
+  - :details: 
+      :flog: complexity is 12.2
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:118
+      hash: -2110963092
+      method_name: Agenda#send_current_agenda_reminders
+      simple_method_name: "#send_current_agenda_reminders"
+  - :details: 
+      :flog: complexity is 12.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: 
+      hash: -541983663
+      method_name: AgendaItem#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 9.4
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:132
+      hash: -108644190
+      method_name: Agenda#irc_reminders
+      simple_method_name: "#irc_reminders"
+  - :details: 
+      :flog: complexity is 9.3
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: 
+      hash: -1087061653
+      method_name: VotingOption#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 8.6
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: 3102066624
+      method_name: Agenda#voting_array
+      simple_method_name: "#voting_array"
+  - :details: 
+      :flog: complexity is 8.4
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: 663572185
+      method_name: Proxy#proxy_must_not_be_council_member
+      simple_method_name: "#proxy_must_not_be_council_member"
+  - :details: 
+      :flog: complexity is 8.4
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: -270381083
+      method_name: Proxy#council_member_must_be_council_member
+      simple_method_name: "#council_member_must_be_council_member"
+  - :details: 
+      :flog: complexity is 8.4
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: -7283951484
+      method_name: Vote#user_is_council_member
+      simple_method_name: "#user_is_council_member"
+  - :details: 
+      :flog: complexity is 7.6
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: -4880775695
+      method_name: User#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :flog: complexity is 7.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User::transition
+      file_path: app/models/user.rb:27
+      hash: -930913488
+      method_name: User#transition#request_password_reset
+      simple_method_name: User#transition#request_password_reset
+  - :details: 
+      :flog: complexity is 7.0
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb
+      hash: 5816698784
+      method_name: AgendaItem#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :flog: complexity is 7.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: 
+      hash: -1089346790
+      method_name: Participation#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 6.9
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:98
+      hash: -5987388244
+      method_name: Agenda#time_for_reminders
+      simple_method_name: "#time_for_reminders"
+  - :details: 
+      :flog: complexity is 6.9
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb:34
+      hash: -6843055537
+      method_name: Proxy#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :flog: complexity is 6.7
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:73
+      hash: 5636748869
+      method_name: Agenda#possible_transitions
+      simple_method_name: "#possible_transitions"
+  - :details: 
+      :flog: complexity is 6.1
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UserMailer
+      file_path: app/mailers/user_mailer.rb:10
+      hash: 7895182425
+      method_name: UserMailer#meeting_reminder
+      simple_method_name: "#meeting_reminder"
+  - :details: 
+      :flog: complexity is 5.7
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: -4250859813
+      method_name: Agenda#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :flog: complexity is 5.3
+      :reek: found 1 code smells
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: -1730139696
+      method_name: Proxy#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :flog: complexity is 4.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendasController
+      file_path: 
+      hash: -3141584236
+      method_name: AgendasController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 4.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItemsController
+      file_path: 
+      hash: -2344126857
+      method_name: AgendaItemsController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 4.2
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:114
+      hash: -887776710
+      method_name: Agenda#voters
+      simple_method_name: "#voters"
+  - :details: 
+      :flog: complexity is 4.2
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:88
+      hash: -6006927813
+      method_name: Agenda#current?
+      simple_method_name: "#current?"
+  - :details: 
+      :flog: complexity is 4.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda::transition
+      file_path: app/models/agenda.rb:23
+      hash: -6848257363
+      method_name: Agenda#transition#archive
+      simple_method_name: Agenda#transition#archive
+  - :details: 
+      :flog: complexity is 3.4
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:54
+      hash: -4646714808
+      method_name: Agenda#transitions_available
+      simple_method_name: "#transitions_available"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb:34
+      hash: -3057963144
+      method_name: VotingOption#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb:49
+      hash: 2736301596
+      method_name: User#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb:22
+      hash: 3948701722
+      method_name: VotingOption#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb:34
+      hash: 7955180730
+      method_name: AgendaItem#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :flog: complexity is 2.6
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb:50
+      hash: 6408845197
+      method_name: Agenda#current
+      simple_method_name: "#current"
+  - :details: 
+      :flog: complexity is 2.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UserMailer
+      file_path: 
+      hash: 671978196
+      method_name: UserMailer#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 2.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: ProxiesController
+      file_path: 
+      hash: 403384836
+      method_name: ProxiesController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 2.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: UsersController
+      file_path: 
+      hash: 552219161
+      method_name: UsersController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 2.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOptionsController
+      file_path: 
+      hash: -1069640404
+      method_name: VotingOptionsController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 1.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: FrontController
+      file_path: 
+      hash: -768859878
+      method_name: FrontController#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 1.0
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaHints
+      file_path: 
+      hash: -97652658
+      method_name: AgendaHints#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 1.0
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItemHints
+      file_path: 
+      hash: 3177186232
+      method_name: AgendaItemHints#none
+      simple_method_name: "#none"
+  - :details: 
+      :flog: complexity is 1.0
+    :location: !ruby/object:MetricFu::Location 
+      class_name: ApplicationController
+      file_path: 
+      hash: -3794771106
+      method_name: ApplicationController#none
+      simple_method_name: "#none"
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda#self
+      file_path: app/models/agenda.rb
+      hash: -1825421151
+      method_name: Agenda#self.send_current_agenda_reminders
+      simple_method_name: .send_current_agenda_reminders
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation#self
+      file_path: app/models/participation.rb
+      hash: -7614111282
+      method_name: Participation#self.mark_participations
+      simple_method_name: .mark_participations
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda#self
+      file_path: app/models/agenda.rb
+      hash: -2008975968
+      method_name: Agenda#self.process_results
+      simple_method_name: .process_results
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Guest
+      file_path: app/models/guest.rb
+      hash: -6932425427
+      method_name: Guest#can_appoint_a_proxy?
+      simple_method_name: "#can_appoint_a_proxy?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: 7256237147
+      method_name: Vote#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: VotingOption
+      file_path: app/models/voting_option.rb
+      hash: -3542209912
+      method_name: VotingOption#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: AgendaItem
+      file_path: app/models/agenda_item.rb
+      hash: 5569652850
+      method_name: AgendaItem#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Guest
+      file_path: app/models/guest.rb
+      hash: 7981298925
+      method_name: Guest#council_member?
+      simple_method_name: "#council_member?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: -5978061632
+      method_name: User#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: -2424148
+      method_name: Proxy#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: -7931274486
+      method_name: Vote#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb
+      hash: -7269240100
+      method_name: Participation#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: 3718929303
+      method_name: Agenda#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb
+      hash: 7433421006
+      method_name: Participation#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: 2219701128
+      method_name: Agenda#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: FrontController
+      file_path: app/controllers/front_controller.rb
+      hash: -3176019833
+      method_name: FrontController#index
+      simple_method_name: "#index"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: -7611291969
+      method_name: Vote#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: User
+      file_path: app/models/user.rb
+      hash: 4396683973
+      method_name: User#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Guest
+      file_path: app/models/guest.rb
+      hash: 6936351870
+      method_name: Guest#administrator?
+      simple_method_name: "#administrator?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Vote
+      file_path: app/models/vote.rb
+      hash: -8534107253
+      method_name: Vote#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb
+      hash: 6621270454
+      method_name: Participation#create_permitted?
+      simple_method_name: "#create_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Proxy
+      file_path: app/models/proxy.rb
+      hash: 1986235969
+      method_name: Proxy#view_permitted?
+      simple_method_name: "#view_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Participation
+      file_path: app/models/participation.rb
+      hash: 7074987237
+      method_name: Participation#update_permitted?
+      simple_method_name: "#update_permitted?"
+  - :details: 
+      :rcov: uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: Agenda
+      file_path: app/models/agenda.rb
+      hash: -2619761967
+      method_name: Agenda#destroy_permitted?
+      simple_method_name: "#destroy_permitted?"
+  :files: 
+  - :details: 
+      :reek: found 2 code smells
+      :rcov: average uncovered code is 80.4%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/users_controller.rb
+      hash: -7080349177
+      method_name: 
+  - :details: 
+      :reek: found 2 code smells
+      :rcov: average uncovered code is 72.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb
+      hash: -4410225469
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+      :rcov: uncovered code is 66.7%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agenda_items_controller.rb
+      hash: 4083719980
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 54.4%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/front_controller.rb
+      hash: -3760888389
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 40.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/mailers/user_mailer.rb
+      hash: 2671295684
+      method_name: 
+  - :details: 
+      :flog: complexity is 29.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda_item.rb:43
+      hash: -8541140381
+      method_name: 
+  - :details: 
+      :flog: complexity is 26.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/vote.rb:38
+      hash: 1992469400
+      method_name: 
+  - :details: 
+      :flog: complexity is 25.8
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/participation.rb:35
+      hash: 609714216
+      method_name: 
+  - :details: 
+      :flog: complexity is 20.5
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:155
+      hash: 2454758248
+      method_name: 
+  - :details: 
+      :flog: complexity is 20.3
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda_item.rb:24
+      hash: -8541681561
+      method_name: 
+  - :details: 
+      :flog: complexity is 16.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:60
+      hash: -7670399129
+      method_name: 
+  - :details: 
+      :flog: complexity is 16.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb:74
+      hash: 692940036
+      method_name: 
+  - :details: 
+      :flog: complexity is 16.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/voting_option.rb:26
+      hash: -3105851029
+      method_name: 
+  - :details: 
+      :flog: complexity is 16.0
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb:57
+      hash: 692398860
+      method_name: 
+  - :details: 
+      :flog: complexity is 14.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/users_controller.rb:21
+      hash: 3868904788
+      method_name: 
+  - :details: 
+      :reek: found 3 code smells
+      :rcov: average uncovered code is 13.3%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/voting_option.rb
+      hash: -2198016985
+      method_name: 
+  - :details: 
+      :flog: complexity is 13.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:103
+      hash: 2453405300
+      method_name: 
+  - :details: 
+      :reek: found 2 code smells
+      :roodi: found 1 design problems
+      :rcov: average uncovered code is 11.1%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/participation.rb
+      hash: 6563481476
+      method_name: 
+  - :details: 
+      :flog: complexity is 12.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:118
+      hash: 2453675884
+      method_name: 
+  - :details: 
+      :flog: complexity is 10.9
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/users_controller.rb:7
+      hash: -6828281965
+      method_name: 
+  - :details: 
+      :flog: complexity is 10.5
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb:16
+      hash: -1961211293
+      method_name: 
+  - :details: 
+      :flog: complexity is 10.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb:27
+      hash: -1960940693
+      method_name: 
+  - :details: 
+      :flog: complexity is 9.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:132
+      hash: 2454217084
+      method_name: 
+  - :details: 
+      :flog: complexity is 8.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:92
+      hash: -7669587309
+      method_name: 
+  - :details: 
+      :flog: complexity is 8.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/vote.rb:50
+      hash: 1993010532
+      method_name: 
+  - :details: 
+      :flog: complexity is 8.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/proxy.rb:53
+      hash: 8251911580
+      method_name: 
+  - :details: 
+      :flog: complexity is 8.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/proxy.rb:49
+      hash: 8251640968
+      method_name: 
+  - :details: 
+      :flog: complexity is 7.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb:27
+      hash: 691587096
+      method_name: 
+  - :details: 
+      :flog: complexity is 7.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb:40
+      hash: 692128224
+      method_name: 
+  - :details: 
+      :flog: complexity is 7.0
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda_item.rb:18
+      hash: -8541952149
+      method_name: 
+  - :details: 
+      :flog: complexity is 6.9
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:98
+      hash: -7669587317
+      method_name: 
+  - :details: 
+      :flog: complexity is 6.9
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/proxy.rb:34
+      hash: 8251370384
+      method_name: 
+  - :details: 
+      :flog: complexity is 6.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:73
+      hash: -7670128489
+      method_name: 
+  - :details: 
+      :flog: complexity is 6.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/mailers/user_mailer.rb:10
+      hash: -8513832713
+      method_name: 
+  - :details: 
+      :flog: complexity is 5.7
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:34
+      hash: -7671210897
+      method_name: 
+  - :details: 
+      :flog: complexity is 5.5
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/front_controller.rb:7
+      hash: -7122757881
+      method_name: 
+  - :details: 
+      :flog: complexity is 5.5
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agenda_items_controller.rb:9
+      hash: 3907430832
+      method_name: 
+  - :details: 
+      :flog: complexity is 5.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/mailers/user_mailer.rb:4
+      hash: -5382211745
+      method_name: 
+  - :details: 
+      :flog: complexity is 5.3
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/proxy.rb:25
+      hash: 8251099792
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.3
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/front_controller.rb:13
+      hash: -2208692265
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:114
+      hash: 2453675900
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb:12
+      hash: -1961211277
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:88
+      hash: -7669857905
+      method_name: 
+  - :details: 
+      :flog: complexity is 4.1
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:23
+      hash: -7671481497
+      method_name: 
+  - :details: 
+      :flog: complexity is 3.4
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:54
+      hash: -7670669717
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb:50
+      hash: -7670669701
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/voting_option.rb:22
+      hash: -3105851013
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/users_controller.rb:17
+      hash: 3868634176
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/voting_option.rb:34
+      hash: -3105580433
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb:22
+      hash: -1960940673
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb:49
+      hash: 692128264
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda_item.rb:34
+      hash: -8541410973
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/participation.rb:31
+      hash: 609714232
+      method_name: 
+  - :details: 
+      :flog: complexity is 2.6
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/agendas_controller.rb:8
+      hash: -3509672373
+      method_name: 
+  - :details: 
+      :reek: found 6 code smells
+      :roodi: found 3 design problems
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda.rb
+      hash: 654602220
+      method_name: 
+  - :details: 
+      :flog: complexity is 1.2
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/voting_option.rb:16
+      hash: -3106121617
+      method_name: 
+  - :details: 
+      :reek: found 5 code smells
+      :roodi: found 1 design problems
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/user.rb
+      hash: -8340527469
+      method_name: 
+  - :details: 
+      :reek: found 9 code smells
+      :roodi: found 1 design problems
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/agenda_item.rb
+      hash: -5853850421
+      method_name: 
+  - :details: 
+      :reek: found 4 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/vote.rb
+      hash: -6975752653
+      method_name: 
+  - :details: 
+      :reek: found 4 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/proxy.rb
+      hash: -328931813
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 6 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/features/step_definitions/within_steps.rb
+      hash: 4198953756
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 9 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/spec/models/agenda_spec.rb
+      hash: 8431928768
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 8 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/Gemfile
+      hash: 6344630448
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/views/agenda_items/show.dryml
+      hash: 8012165076
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: .gitignore
+      hash: 6366673832
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 5 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/config/routes.rb
+      hash: 8124134220
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 7 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/controllers/agendas_controller.rb
+      hash: -8547752545
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 14 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/models/agenda.rb
+      hash: 2851085712
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/models/agenda_item.rb
+      hash: -2661158269
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/viewhints/agenda_hints.rb
+      hash: -4725681689
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/views/taglibs/application.dryml
+      hash: 7776683188
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/spec/models/participation_spec.rb
+      hash: -364726629
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 8 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/Gemfile.lock
+      hash: -4027842221
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/config/initializers/custom_configs.rb
+      hash: -4183533133
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 7 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/features/support/paths.rb
+      hash: -380868217
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/features/step_definitions/participations_steps.rb
+      hash: -6551512665
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/features/step_definitions/login_steps.rb
+      hash: -7103914313
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 4 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/spec/spec_helper.rb
+      hash: -4819999681
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 4 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: bot/ircmeeting/meeting.py
+      hash: -3409590857
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 4 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/spec/models/user_spec.rb
+      hash: -3851659129
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 4 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/controllers/users_controller.rb
+      hash: -947292589
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/mailers/user_mailer.rb
+      hash: -7217705777
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/views/agendas/show.dryml
+      hash: -6720673785
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 4 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/models/guest.rb
+      hash: 5297160888
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/models/participation.rb
+      hash: -3604874785
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 7 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/spec/factories.rb
+      hash: 2240747408
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 10 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/app/models/user.rb
+      hash: -8484304761
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 6 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/config/hobo_routes.rb
+      hash: -6755658157
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: bot/ircmeeting/agenda.py
+      hash: -7349855829
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 11 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/db/schema.rb
+      hash: 4413241372
+      method_name: 
+  - :details: 
+      :churn: detected high level of churn (changed 3 times)
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: site/features/participations.feature
+      hash: 1103907820
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/voting_options_controller.rb
+      hash: -6161869781
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/application_controller.rb
+      hash: -3466206413
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/viewhints/agenda_item_hints.rb
+      hash: -6096648869
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/viewhints/agenda_hints.rb
+      hash: -3493049553
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/controllers/proxies_controller.rb
+      hash: 8402976308
+      method_name: 
+  - :details: 
+      :reek: found 1 code smells
+      :rcov: average uncovered code is 0.0%
+    :location: !ruby/object:MetricFu::Location 
+      class_name: 
+      file_path: app/models/guest.rb
+      hash: -6080109981
+      method_name: 
+:churn: 
+  :class_churn: []
+
+  :method_churn: []
+
+  :changed_methods: []
+
+  :changed_files: 
+  - site/app/models/user.rb
+  - site/app/models/agenda.rb
+  - site/app/controllers/agendas_controller.rb
+  - site/app/controllers/front_controller.rb
+  :changes: 
+  - :file_path: site/app/models/agenda.rb
+    :times_changed: 14
+  - :file_path: site/db/schema.rb
+    :times_changed: 11
+  - :file_path: site/app/models/user.rb
+    :times_changed: 10
+  - :file_path: site/spec/models/agenda_spec.rb
+    :times_changed: 9
+  - :file_path: site/Gemfile
+    :times_changed: 8
+  - :file_path: site/Gemfile.lock
+    :times_changed: 8
+  - :file_path: site/features/support/paths.rb
+    :times_changed: 7
+  - :file_path: site/spec/factories.rb
+    :times_changed: 7
+  - :file_path: site/app/controllers/agendas_controller.rb
+    :times_changed: 7
+  - :file_path: site/features/step_definitions/within_steps.rb
+    :times_changed: 6
+  - :file_path: site/config/hobo_routes.rb
+    :times_changed: 6
+  - :file_path: site/config/routes.rb
+    :times_changed: 5
+  - :file_path: site/app/models/guest.rb
+    :times_changed: 4
+  - :file_path: bot/ircmeeting/meeting.py
+    :times_changed: 4
+  - :file_path: site/app/controllers/users_controller.rb
+    :times_changed: 4
+  - :file_path: site/spec/spec_helper.rb
+    :times_changed: 4
+  - :file_path: site/spec/models/user_spec.rb
+    :times_changed: 4
+  - :file_path: site/features/step_definitions/login_steps.rb
+    :times_changed: 3
+  - :file_path: site/app/mailers/user_mailer.rb
+    :times_changed: 3
+  - :file_path: site/config/initializers/custom_configs.rb
+    :times_changed: 3
+  - :file_path: site/app/views/agendas/show.dryml
+    :times_changed: 3
+  - :file_path: bot/ircmeeting/agenda.py
+    :times_changed: 3
+  - :file_path: site/app/models/agenda_item.rb
+    :times_changed: 3
+  - :file_path: site/features/participations.feature
+    :times_changed: 3
+  - :file_path: site/features/step_definitions/participations_steps.rb
+    :times_changed: 3
+  - :file_path: .gitignore
+    :times_changed: 3
+  - :file_path: site/app/viewhints/agenda_hints.rb
+    :times_changed: 3
+  - :file_path: site/app/models/participation.rb
+    :times_changed: 3
+  - :file_path: site/app/views/taglibs/application.dryml
+    :times_changed: 3
+  - :file_path: site/spec/models/participation_spec.rb
+    :times_changed: 3
+  - :file_path: site/app/views/agenda_items/show.dryml
+    :times_changed: 3
+  :changed_classes: []
+
+:saikuro: 
+  :classes: 
+  - :complexity: 41
+    :lines: 164
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#create_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#view_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#self.current
+    - :complexity: 3
+      :lines: 4
+      :name: Agenda#self.transitions_available
+    - :complexity: 3
+      :lines: 11
+      :name: Agenda#self.process_results
+    - :complexity: 4
+      :lines: 13
+      :name: Agenda#possible_transitions
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#current?
+    - :complexity: 2
+      :lines: 4
+      :name: Agenda#voting_array
+    - :complexity: 1
+      :lines: 3
+      :name: Agenda#time_for_reminders
+    - :complexity: 1
+      :lines: 9
+      :name: Agenda#self.voters_users
+    - :complexity: 1
+      :lines: 2
+      :name: Agenda#self.voters
+    - :complexity: 4
+      :lines: 12
+      :name: Agenda#self.send_current_agenda_reminders
+    - :complexity: 2
+      :lines: 7
+      :name: Agenda#self.irc_reminders
+    - :complexity: 5
+      :lines: 9
+      :name: Agenda#there_is_only_one_non_archival_agenda
+    :name: Agenda
+  - :complexity: 22
+    :lines: 52
+    :defs: 
+    - :complexity: 3
+      :lines: 4
+      :name: AgendaItem#create_permitted?
+    - :complexity: 7
+      :lines: 8
+      :name: AgendaItem#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: AgendaItem#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: AgendaItem#view_permitted?
+    - :complexity: 9
+      :lines: 9
+      :name: AgendaItem#edit_permitted?
+    :name: AgendaItem
+  - :complexity: 17
+    :lines: 81
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: User#create_permitted?
+    - :complexity: 1
+      :lines: 7
+      :name: User#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: User#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: User#view_permitted?
+    - :complexity: 5
+      :lines: 15
+      :name: User#slacking_status_in_period
+    - :complexity: 5
+      :lines: 7
+      :name: User#can_appoint_a_proxy?
+    :name: User
+  - :complexity: 14
+    :lines: 53
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: Vote#create_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Vote#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Vote#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Vote#view_permitted?
+    - :complexity: 6
+      :lines: 10
+      :name: Vote#user_voted_only_once
+    - :complexity: 3
+      :lines: 3
+      :name: Vote#user_is_council_member
+    :name: Vote
+  - :complexity: 14
+    :lines: 56
+    :defs: 
+    - :complexity: 2
+      :lines: 3
+      :name: Proxy#create_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Proxy#update_permitted?
+    - :complexity: 2
+      :lines: 3
+      :name: Proxy#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Proxy#view_permitted?
+    - :complexity: 3
+      :lines: 3
+      :name: Proxy#council_member_must_be_council_member
+    - :complexity: 3
+      :lines: 3
+      :name: Proxy#proxy_must_not_be_council_member
+    :name: Proxy
+  - :complexity: 10
+    :lines: 48
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: Participation#create_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Participation#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Participation#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Participation#view_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: Participation#name
+    - :complexity: 4
+      :lines: 13
+      :name: Participation#self.mark_participations
+    :name: Participation
+  - :complexity: 10
+    :lines: 40
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: VotingOption#name
+    - :complexity: 1
+      :lines: 2
+      :name: VotingOption#create_permitted?
+    - :complexity: 5
+      :lines: 6
+      :name: VotingOption#update_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: VotingOption#destroy_permitted?
+    - :complexity: 1
+      :lines: 2
+      :name: VotingOption#view_permitted?
+    :name: VotingOption
+  - :complexity: 6
+    :lines: 27
+    :defs: 
+    - :complexity: 3
+      :lines: 8
+      :name: UsersController#create
+    - :complexity: 1
+      :lines: 2
+      :name: UsersController#voters
+    - :complexity: 2
+      :lines: 6
+      :name: UsersController#current_council_slacking
+    :name: UsersController
+  - :complexity: 6
+    :lines: 32
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: AgendasController#index
+    - :complexity: 1
+      :lines: 2
+      :name: AgendasController#current_items
+    - :complexity: 1
+      :lines: 4
+      :name: AgendasController#results
+    - :complexity: 1
+      :lines: 2
+      :name: AgendasController#reminders
+    - :complexity: 2
+      :lines: 5
+      :name: AgendasController#authenticate_bot
+    :name: AgendasController
+  - :complexity: 5
+    :lines: 19
+    :defs: 
+    - :complexity: 1
+      :lines: 0
+      :name: FrontController#index
+    - :complexity: 2
+      :lines: 4
+      :name: FrontController#summary
+    - :complexity: 2
+      :lines: 5
+      :name: FrontController#search
+    :name: FrontController
+  - :complexity: 3
+    :lines: 13
+    :defs: 
+    - :complexity: 1
+      :lines: 2
+      :name: Guest#administrator?
+    - :complexity: 1
+      :lines: 2
+      :name: Guest#council_member?
+    - :complexity: 1
+      :lines: 2
+      :name: Guest#can_appoint_a_proxy?
+    :name: Guest
+  - :complexity: 2
+    :lines: 11
+    :defs: 
+    - :complexity: 2
+      :lines: 2
+      :name: AgendaItemsController#login
+    :name: AgendaItemsController
+  - :complexity: 2
+    :lines: 15
+    :defs: 
+    - :complexity: 1
+      :lines: 4
+      :name: UserMailer#forgot_password
+    - :complexity: 1
+      :lines: 5
+      :name: UserMailer#meeting_reminder
+    :name: UserMailer
+  - :complexity: 0
+    :lines: 2
+    :name: ApplicationController
+  - :complexity: 0
+    :lines: 5
+    :name: VotingOptionsController
+  - :complexity: 0
+    :lines: 4
+    :name: AgendaHints
+  - :complexity: 0
+    :lines: 4
+    :name: AgendaItemHints
+  - :complexity: 0
+    :lines: 6
+    :name: ProxiesController
+  - :complexity: 0
+    :lines: 0
+    :name: ""
+  :methods: 
+  - :complexity: 9
+    :lines: 9
+    :name: AgendaItem#edit_permitted?
+  - :complexity: 7
+    :lines: 8
+    :name: AgendaItem#update_permitted?
+  - :complexity: 6
+    :lines: 10
+    :name: Vote#user_voted_only_once
+  - :complexity: 5
+    :lines: 6
+    :name: VotingOption#update_permitted?
+  - :complexity: 5
+    :lines: 15
+    :name: User#slacking_status_in_period
+  - :complexity: 5
+    :lines: 9
+    :name: Agenda#there_is_only_one_non_archival_agenda
+  - :complexity: 5
+    :lines: 7
+    :name: User#can_appoint_a_proxy?
+  - :complexity: 4
+    :lines: 13
+    :name: Agenda#possible_transitions
+  - :complexity: 4
+    :lines: 12
+    :name: Agenda#self.send_current_agenda_reminders
+  - :complexity: 4
+    :lines: 13
+    :name: Participation#self.mark_participations
+  - :complexity: 3
+    :lines: 3
+    :name: Vote#user_is_council_member
+  - :complexity: 3
+    :lines: 4
+    :name: Agenda#self.transitions_available
+  - :complexity: 3
+    :lines: 11
+    :name: Agenda#self.process_results
+  - :complexity: 3
+    :lines: 3
+    :name: Proxy#proxy_must_not_be_council_member
+  - :complexity: 3
+    :lines: 8
+    :name: UsersController#create
+  - :complexity: 3
+    :lines: 3
+    :name: Proxy#council_member_must_be_council_member
+  - :complexity: 3
+    :lines: 4
+    :name: AgendaItem#create_permitted?
+  - :complexity: 2
+    :lines: 2
+    :name: AgendaItemsController#login
+  - :complexity: 2
+    :lines: 7
+    :name: Agenda#self.irc_reminders
+  - :complexity: 2
+    :lines: 3
+    :name: Proxy#create_permitted?
+  - :complexity: 2
+    :lines: 3
+    :name: Proxy#destroy_permitted?
+  - :complexity: 2
+    :lines: 5
+    :name: AgendasController#authenticate_bot
+  - :complexity: 2
+    :lines: 4
+    :name: FrontController#summary
+  - :complexity: 2
+    :lines: 5
+    :name: FrontController#search
+  - :complexity: 2
+    :lines: 4
+    :name: Agenda#voting_array
+  - :complexity: 2
+    :lines: 6
+    :name: UsersController#current_council_slacking
+  - :complexity: 1
+    :lines: 5
+    :name: UserMailer#meeting_reminder
+  - :complexity: 1
+    :lines: 2
+    :name: VotingOption#name
+  - :complexity: 1
+    :lines: 2
+    :name: VotingOption#destroy_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: VotingOption#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Vote#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Vote#destroy_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Vote#update_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Vote#create_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Participation#create_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Participation#update_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Proxy#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Participation#destroy_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Proxy#update_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Participation#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Participation#name
+  - :complexity: 1
+    :lines: 2
+    :name: UsersController#voters
+  - :complexity: 1
+    :lines: 2
+    :name: User#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: User#destroy_permitted?
+  - :complexity: 1
+    :lines: 7
+    :name: User#update_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: User#create_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: AgendasController#index
+  - :complexity: 1
+    :lines: 2
+    :name: AgendaItem#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: AgendaItem#destroy_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: AgendasController#current_items
+  - :complexity: 1
+    :lines: 2
+    :name: VotingOption#create_permitted?
+  - :complexity: 1
+    :lines: 4
+    :name: AgendasController#results
+  - :complexity: 1
+    :lines: 2
+    :name: AgendasController#reminders
+  - :complexity: 1
+    :lines: 0
+    :name: FrontController#index
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#self.voters
+  - :complexity: 1
+    :lines: 9
+    :name: Agenda#self.voters_users
+  - :complexity: 1
+    :lines: 3
+    :name: Agenda#time_for_reminders
+  - :complexity: 1
+    :lines: 2
+    :name: Guest#administrator?
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#current?
+  - :complexity: 1
+    :lines: 2
+    :name: Guest#council_member?
+  - :complexity: 1
+    :lines: 2
+    :name: Guest#can_appoint_a_proxy?
+  - :complexity: 1
+    :lines: 4
+    :name: UserMailer#forgot_password
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#self.current
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#view_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#destroy_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#update_permitted?
+  - :complexity: 1
+    :lines: 2
+    :name: Agenda#create_permitted?
+  :files: 
+  - :classes: 
+    - :complexity: 41
+      :methods: 
+      - :complexity: 5
+        :lines: 9
+        :name: Agenda#there_is_only_one_non_archival_agenda
+      - :complexity: 4
+        :lines: 13
+        :name: Agenda#possible_transitions
+      - :complexity: 4
+        :lines: 12
+        :name: Agenda#self.send_current_agenda_reminders
+      - :complexity: 3
+        :lines: 4
+        :name: Agenda#self.transitions_available
+      - :complexity: 3
+        :lines: 11
+        :name: Agenda#self.process_results
+      - :complexity: 2
+        :lines: 7
+        :name: Agenda#self.irc_reminders
+      - :complexity: 2
+        :lines: 4
+        :name: Agenda#voting_array
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#current?
+      - :complexity: 1
+        :lines: 3
+        :name: Agenda#time_for_reminders
+      - :complexity: 1
+        :lines: 9
+        :name: Agenda#self.voters_users
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#self.voters
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#self.current
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#destroy_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Agenda#create_permitted?
+      :lines: 164
+      :class_name: Agenda
+    :filename: app/models/agenda.rb
+  - :classes: 
+    - :complexity: 22
+      :methods: 
+      - :complexity: 9
+        :lines: 9
+        :name: AgendaItem#edit_permitted?
+      - :complexity: 7
+        :lines: 8
+        :name: AgendaItem#update_permitted?
+      - :complexity: 3
+        :lines: 4
+        :name: AgendaItem#create_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: AgendaItem#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: AgendaItem#destroy_permitted?
+      :lines: 52
+      :class_name: AgendaItem
+    :filename: app/models/agenda_item.rb
+  - :classes: 
+    - :complexity: 17
+      :methods: 
+      - :complexity: 5
+        :lines: 7
+        :name: User#can_appoint_a_proxy?
+      - :complexity: 5
+        :lines: 15
+        :name: User#slacking_status_in_period
+      - :complexity: 1
+        :lines: 2
+        :name: User#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: User#destroy_permitted?
+      - :complexity: 1
+        :lines: 7
+        :name: User#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: User#create_permitted?
+      :lines: 81
+      :class_name: User
+    :filename: app/models/user.rb
+  - :classes: 
+    - :complexity: 14
+      :methods: 
+      - :complexity: 3
+        :lines: 3
+        :name: Proxy#proxy_must_not_be_council_member
+      - :complexity: 3
+        :lines: 3
+        :name: Proxy#council_member_must_be_council_member
+      - :complexity: 2
+        :lines: 3
+        :name: Proxy#destroy_permitted?
+      - :complexity: 2
+        :lines: 3
+        :name: Proxy#create_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Proxy#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Proxy#view_permitted?
+      :lines: 56
+      :class_name: Proxy
+    :filename: app/models/proxy.rb
+  - :classes: 
+    - :complexity: 14
+      :methods: 
+      - :complexity: 6
+        :lines: 10
+        :name: Vote#user_voted_only_once
+      - :complexity: 3
+        :lines: 3
+        :name: Vote#user_is_council_member
+      - :complexity: 1
+        :lines: 2
+        :name: Vote#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Vote#destroy_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Vote#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Vote#create_permitted?
+      :lines: 53
+      :class_name: Vote
+    :filename: app/models/vote.rb
+  - :classes: 
+    - :complexity: 10
+      :methods: 
+      - :complexity: 5
+        :lines: 6
+        :name: VotingOption#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: VotingOption#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: VotingOption#destroy_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: VotingOption#create_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: VotingOption#name
+      :lines: 40
+      :class_name: VotingOption
+    :filename: app/models/voting_option.rb
+  - :classes: 
+    - :complexity: 10
+      :methods: 
+      - :complexity: 4
+        :lines: 13
+        :name: Participation#self.mark_participations
+      - :complexity: 1
+        :lines: 2
+        :name: Participation#view_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Participation#name
+      - :complexity: 1
+        :lines: 2
+        :name: Participation#destroy_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Participation#update_permitted?
+      - :complexity: 1
+        :lines: 2
+        :name: Participation#create_permitted?
+      :lines: 48
+      :class_name: Participation
+    :filename: app/models/participation.rb
+  - :classes: 
+    - :complexity: 6
+      :methods: 
+      - :complexity: 3
+        :lines: 8
+        :name: UsersController#create
+      - :complexity: 2
+        :lines: 6
+        :name: UsersController#current_council_slacking
+      - :complexity: 1
+        :lines: 2
+        :name: UsersController#voters
+      :lines: 27
+      :class_name: UsersController
+    :filename: app/controllers/users_controller.rb
+  - :classes: 
+    - :complexity: 6
+      :methods: 
+      - :complexity: 2
+        :lines: 5
+        :name: AgendasController#authenticate_bot
+      - :complexity: 1
+        :lines: 4
+        :name: AgendasController#results
+      - :complexity: 1
+        :lines: 2
+        :name: AgendasController#reminders
+      - :complexity: 1
+        :lines: 2
+        :name: AgendasController#current_items
+      - :complexity: 1
+        :lines: 2
+        :name: AgendasController#index
+      :lines: 32
+      :class_name: AgendasController
+    :filename: app/controllers/agendas_controller.rb
+  - :classes: 
+    - :complexity: 5
+      :methods: 
+      - :complexity: 2
+        :lines: 5
+        :name: FrontController#search
+      - :complexity: 2
+        :lines: 4
+        :name: FrontController#summary
+      - :complexity: 1
+        :lines: 0
+        :name: FrontController#index
+      :lines: 19
+      :class_name: FrontController
+    :filename: app/controllers/front_controller.rb
+  - :classes: 
+    - :complexity: 3
+      :methods: 
+      - :complexity: 1
+        :lines: 2
+        :name: Guest#can_appoint_a_proxy?
+      - :complexity: 1
+        :lines: 2
+        :name: Guest#council_member?
+      - :complexity: 1
+        :lines: 2
+        :name: Guest#administrator?
+      :lines: 13
+      :class_name: Guest
+    :filename: app/models/guest.rb
+  - :classes: 
+    - :complexity: 2
+      :methods: 
+      - :complexity: 2
+        :lines: 2
+        :name: AgendaItemsController#login
+      :lines: 11
+      :class_name: AgendaItemsController
+    :filename: app/controllers/agenda_items_controller.rb
+  - :classes: 
+    - :complexity: 2
+      :methods: 
+      - :complexity: 1
+        :lines: 5
+        :name: UserMailer#meeting_reminder
+      - :complexity: 1
+        :lines: 4
+        :name: UserMailer#forgot_password
+      :lines: 15
+      :class_name: UserMailer
+    :filename: app/mailers/user_mailer.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 5
+      :class_name: VotingOptionsController
+    :filename: app/controllers/voting_options_controller.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 2
+      :class_name: ApplicationController
+    :filename: app/controllers/application_controller.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 4
+      :class_name: AgendaHints
+    :filename: app/viewhints/agenda_hints.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 4
+      :class_name: AgendaItemHints
+    :filename: app/viewhints/agenda_item_hints.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 6
+      :class_name: ProxiesController
+    :filename: app/controllers/proxies_controller.rb
+  - :classes: 
+    - :complexity: 0
+      :methods: []
+
+      :lines: 0
+      :class_name: ""
+    :filename: app/views/user_mailer/forgot_password.erb
+:rcov: 
+  app/controllers/agenda_items_controller.rb: 
+    :methods: 
+      AgendaItemsController#login: 66.6666666666667
+    :lines: 
+    - :was_run: true
+      :content: class AgendaItemsController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_model_controller"
+    - :was_run: true
+      :content: "  auto_actions :all, :except => :index"
+    - :was_run: true
+      :content: "  before_filter :login, :except => :show"
+    - :was_run: true
+      :content: "  protected"
+    - :was_run: true
+      :content: "    def login"
+    - :was_run: false
+      :content: "      redirect_to user_login_path unless current_user.signed_up?"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: end
+    :percent_run: 67
+  app/models/participation.rb: 
+    :methods: 
+      Participation#view_permitted?: 0.0
+      Participation::mark_participations: 0.0
+      Participation#destroy_permitted?: 0.0
+      Participation#name: 66.6666666666667
+      Participation#update_permitted?: 0.0
+      Participation#create_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class Participation < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    irc_nick :string"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  belongs_to :participant, :class_name => 'User'"
+    - :was_run: true
+      :content: "  belongs_to :agenda"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def name"
+    - :was_run: false
+      :content: "    participant.name"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.mark_participations(results)"
+    - :was_run: true
+      :content: "    participant_nicks = results.values.*.keys.flatten.uniq"
+    - :was_run: true
+      :content: "    agenda = Agenda.current"
+    - :was_run: true
+      :content: "    for nick in participant_nicks"
+    - :was_run: true
+      :content: "      user = ::User.find_by_irc_nick(nick)"
+    - :was_run: true
+      :content: "      unless user.council_member?"
+    - :was_run: true
+      :content: "        user = Proxy.proxy_is(user).agenda_is(agenda)._?.first.council_member"
+    - :was_run: true
+      :content: "      end"
+    - :was_run: true
+      :content: "      next if user.nil?"
+    - :was_run: true
+      :content: "      Participation.create! :irc_nick => user.irc_nick,"
+    - :was_run: true
+      :content: "                            :participant => user,"
+    - :was_run: true
+      :content: "                            :agenda => agenda"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 95
+  app/controllers/proxies_controller.rb: 
+    :methods: {}
+
+    :lines: 
+    - :was_run: true
+      :content: class ProxiesController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_model_controller"
+    - :was_run: true
+      :content: "  auto_actions :all"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/models/proxy.rb: 
+    :methods: 
+      Proxy#proxy_must_not_be_council_member: 0.0
+      Proxy#destroy_permitted?: 0.0
+      Proxy#view_permitted?: 0.0
+      Proxy#council_member_must_be_council_member: 0.0
+      Proxy#create_permitted?: 0.0
+      Proxy#update_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class Proxy < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    # Remeber nicks from when meeting took place"
+    - :was_run: true
+      :content: "    # May be useful when reading logs (if user changes nick)"
+    - :was_run: true
+      :content: "    council_member_nick :string, :null => false"
+    - :was_run: true
+      :content: "    proxy_nick          :string, :null => false"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  belongs_to :council_member, :class_name => 'User', :null => false"
+    - :was_run: true
+      :content: "  belongs_to :proxy, :class_name => 'User', :null => false"
+    - :was_run: true
+      :content: "  belongs_to :agenda, :null => false"
+    - :was_run: true
+      :content: "  validates_presence_of :council_member, :proxy, :agenda"
+    - :was_run: true
+      :content: "  validates_uniqueness_of :council_member_id, :scope => :agenda_id"
+    - :was_run: true
+      :content: "  validates_uniqueness_of :proxy_id, :scope => :agenda_id"
+    - :was_run: true
+      :content: "  validate :council_member_must_be_council_member"
+    - :was_run: true
+      :content: "  validate :proxy_must_not_be_council_member"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    return false unless acting_user.council_member?"
+    - :was_run: true
+      :content: "    council_member_is?(acting_user)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    return false if agenda.state == 'old'"
+    - :was_run: true
+      :content: "    council_member_is?(acting_user)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  before_create do |proxy|"
+    - :was_run: true
+      :content: "    proxy.council_member_nick = proxy.council_member.irc_nick"
+    - :was_run: true
+      :content: "    proxy.proxy_nick          = proxy.proxy.irc_nick"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  protected"
+    - :was_run: true
+      :content: "    def council_member_must_be_council_member"
+    - :was_run: true
+      :content: "      return if council_member.nil?"
+    - :was_run: true
+      :content: "      errors.add(:council_member, 'must be council member') unless council_member.council_member?"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "    def proxy_must_not_be_council_member"
+    - :was_run: true
+      :content: "      return if proxy.nil?"
+    - :was_run: true
+      :content: "      errors.add(:proxy, 'must not be council member') if proxy.council_member?"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/models/voting_option.rb: 
+    :methods: 
+      VotingOption#destroy_permitted?: 0.0
+      VotingOption#update_permitted?: 0.0
+      VotingOption#view_permitted?: 0.0
+      VotingOption#name: 66.6666666666667
+      VotingOption#create_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class VotingOption < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    description :string"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  belongs_to  :agenda_item, :null => false"
+    - :was_run: true
+      :content: "  has_many    :votes"
+    - :was_run: true
+      :content: "  validates_presence_of :agenda_item"
+    - :was_run: true
+      :content: "  validates_uniqueness_of :description, :scope => :agenda_item_id"
+    - :was_run: true
+      :content: "  def name"
+    - :was_run: false
+      :content: "    description"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    acting_user.council_member?"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    return false unless acting_user.council_member?"
+    - :was_run: true
+      :content: "    return true if agenda_item.nil?"
+    - :was_run: true
+      :content: "    return true if agenda_item.agenda.nil?"
+    - :was_run: true
+      :content: "    return true if agenda_item.agenda.state == 'open'"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    updatable_by?(acting_user)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 94
+  :global_percent_run: 89.2
+  app/viewhints/agenda_item_hints.rb: 
+    :methods: {}
+
+    :lines: 
+    - :was_run: true
+      :content: class AgendaItemHints < Hobo::ViewHints
+    - :was_run: true
+      :content: "  children :voting_options"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/models/user.rb: 
+    :methods: 
+      User#view_permitted?: 0.0
+      User#can_appoint_a_proxy?: 0.0
+      User#update_permitted?: 0.0
+      User#slacking_status_in_period: 0.0
+      User#destroy_permitted?: 0.0
+      User#create_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class User < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_devise_user_model :auth_methods => [:database_authenticable]"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    name            :string, :required, :unique"
+    - :was_run: true
+      :content: "    irc_nick        :string, :required, :unique"
+    - :was_run: true
+      :content: "    email           :email_address, :login => true"
+    - :was_run: true
+      :content: "    administrator   :boolean, :default => false"
+    - :was_run: true
+      :content: "    council_member  :boolean, :default => false, :null => false"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  has_many  :votes"
+    - :was_run: true
+      :content: "  # --- Signup lifecycle --- #"
+    - :was_run: true
+      :content: "  lifecycle do"
+    - :was_run: true
+      :content: "    state :active, :default => true"
+    - :was_run: true
+      :content: "    create :signup, :available_to => \"Guest\","
+    - :was_run: true
+      :content: "           :params => [:name, :email, :irc_nick, :password, :password_confirmation],"
+    - :was_run: true
+      :content: "           :become => :active"
+    - :was_run: true
+      :content: "    transition :request_password_reset, { :active => :active }, :new_key => true do"
+    - :was_run: false
+      :content: "      UserMailer.forgot_password(self, lifecycle.key).deliver"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: true
+      :content: "    transition :reset_password, { :active => :active }, :available_to => :key_holder,"
+    - :was_run: true
+      :content: "               :params => [ :password, :password_confirmation ]"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    acting_user.administrator? ||"
+    - :was_run: true
+      :content: "      (acting_user == self && only_changed?(:email, :crypted_password,"
+    - :was_run: true
+      :content: "                                            :current_password, :password,"
+    - :was_run: true
+      :content: "                                            :password_confirmation, :irc_nick))"
+    - :was_run: true
+      :content: "    # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed"
+    - :was_run: true
+      :content: "    # directly from a form submission."
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    acting_user.administrator?"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def slacking_status_in_period(start_date, end_date)"
+    - :was_run: true
+      :content: "    num_status = 0"
+    - :was_run: true
+      :content: "    agendas = Agenda.all :conditions => ['agendas.meeting_time BETWEEN ? AND ?', start_date, end_date],"
+    - :was_run: true
+      :content: "                          :order => :meeting_time"
+    - :was_run: true
+      :content: "    for agenda in agendas"
+    - :was_run: true
+      :content: "      if Participation.participant_is(self).agenda_is(agenda).count == 0"
+    - :was_run: true
+      :content: "        num_status += 1 if num_status < 3"
+    - :was_run: true
+      :content: "      else"
+    - :was_run: true
+      :content: "        num_status = 0 if num_status == 1"
+    - :was_run: true
+      :content: "      end"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "    text_statuses = ['Was on last meeting', 'Skipped last meeting',"
+    - :was_run: true
+      :content: "          'Slacker', 'No more a council']"
+    - :was_run: true
+      :content: "    text_statuses[num_status]"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def can_appoint_a_proxy?(user)"
+    - :was_run: true
+      :content: "    agenda = Agenda.current"
+    - :was_run: true
+      :content: "    return false unless council_member?"
+    - :was_run: true
+      :content: "    return false if user.council_member?"
+    - :was_run: true
+      :content: "    return false unless Proxy.council_member_is(self).agenda_is(agenda).count ==  0"
+    - :was_run: true
+      :content: "    return false unless Proxy.proxy_is(user).agenda_is(agenda).count ==  0"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 97
+  app/models/agenda.rb: 
+    :methods: 
+      Agenda::voters_users: 0.0
+      Agenda#create_permitted?: 0.0
+      Agenda#view_permitted?: 0.0
+      Agenda::current: 0.0
+      Agenda#possible_transitions: 0.0
+      Agenda#there_is_only_one_non_archival_agenda: 0.0
+      Agenda::voters: 0.0
+      Agenda#voting_array: 0.0
+      Agenda#destroy_permitted?: 0.0
+      Agenda#update_permitted?: 0.0
+      Agenda::transitions_available: 0.0
+      Agenda#time_for_reminders: 0.0
+      Agenda::irc_reminders: 0.0
+      Agenda::process_results: 0.0
+      Agenda#current?: 0.0
+      Agenda::send_current_agenda_reminders: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class Agenda < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    meeting_time        :datetime"
+    - :was_run: true
+      :content: "    email_reminder_sent :boolean, :null => false, :default => false"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  has_many :agenda_items"
+    - :was_run: true
+      :content: "  has_many :participations"
+    - :was_run: true
+      :content: "  has_many :proxies"
+    - :was_run: true
+      :content: "  lifecycle do"
+    - :was_run: true
+      :content: "    state :open, :default => true"
+    - :was_run: true
+      :content: "    state :submissions_closed, :meeting_ongoing, :old"
+    - :was_run: true
+      :content: "    transition :close, {:open => :submissions_closed}, :available_to => '::Agenda.transitions_available(acting_user)'"
+    - :was_run: true
+      :content: "    transition :reopen, {:submissions_closed=> :open}, :available_to => '::Agenda.transitions_available(acting_user)'"
+    - :was_run: true
+      :content: "    transition :archive, {:submissions_closed => :old}, :available_to =>  '::Agenda.transitions_available(acting_user)' do"
+    - :was_run: true
+      :content: "        Agenda.new.save!"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  validate  :there_is_only_one_non_archival_agenda"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    acting_user.council_member? || acting_user.administrator?"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  before_create do |agenda|"
+    - :was_run: true
+      :content: "    agenda.meeting_time ||= Time.now"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.current"
+    - :was_run: true
+      :content: "    Agenda.state_is_not(:old).first"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.transitions_available(user)"
+    - :was_run: true
+      :content: "    return user if user.council_member?"
+    - :was_run: true
+      :content: "    return user if user.administrator?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.process_results(results)"
+    - :was_run: true
+      :content: "    agenda = Agenda.current"
+    - :was_run: true
+      :content: "    for item_title in results.keys"
+    - :was_run: true
+      :content: "      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_title }"
+    - :was_run: true
+      :content: "      votes = results[item_title]"
+    - :was_run: true
+      :content: "      for voter in votes.keys"
+    - :was_run: true
+      :content: "        option = VotingOption.first :conditions => { :agenda_item_id => item.id, :description => votes[voter] }"
+    - :was_run: true
+      :content: "        user = ::User.find_by_irc_nick voter"
+    - :was_run: true
+      :content: "        Vote.create! :voting_option => option, :user => user"
+    - :was_run: true
+      :content: "      end"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def possible_transitions"
+    - :was_run: true
+      :content: "    transitions = case state"
+    - :was_run: true
+      :content: "      when 'open'"
+    - :was_run: true
+      :content: "        ['close']"
+    - :was_run: true
+      :content: "      when 'submissions_closed'"
+    - :was_run: true
+      :content: "        ['reopen', 'archive']"
+    - :was_run: true
+      :content: "      else"
+    - :was_run: true
+      :content: "        []"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "    transitions.collect do |transition|"
+    - :was_run: true
+      :content: "      [\"#{transition.camelize} this agenda.\", \"agenda_#{transition}_path\"]"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def current?"
+    - :was_run: true
+      :content: "    ['open', 'submissions_closed', 'meeting_ongoing'].include?(state.to_s)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def voting_array"
+    - :was_run: true
+      :content: "    agenda_items.collect do |item|"
+    - :was_run: true
+      :content: "      [item.title, item.voting_options.*.description]"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def time_for_reminders(type)"
+    - :was_run: true
+      :content: "    offset = CustomConfig['Reminders'][\"hours_before_meeting_to_send_#{type}_reminders\"].hours"
+    - :was_run: true
+      :content: "    meeting_time - offset"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.voters_users"
+    - :was_run: true
+      :content: "    # It's possible to rewrite this as SQL, but"
+    - :was_run: true
+      :content: "    #  * this method is rarely called"
+    - :was_run: true
+      :content: "    #  * it fetches little data"
+    - :was_run: true
+      :content: "    # So I think efficiency improvement would be insignificant."
+    - :was_run: true
+      :content: "    # Joachim"
+    - :was_run: true
+      :content: "    council = ::User.council_member_is(true)"
+    - :was_run: true
+      :content: "    proxies = Agenda.current.proxies.*"
+    - :was_run: true
+      :content: "    [council - proxies.council_member + proxies.proxy].flatten"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.voters"
+    - :was_run: true
+      :content: "    Agenda.voters_users.*.irc_nick"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.send_current_agenda_reminders"
+    - :was_run: true
+      :content: "    agenda = Agenda.current"
+    - :was_run: true
+      :content: "    return if agenda.email_reminder_sent?"
+    - :was_run: true
+      :content: "    return if Time.now < agenda.time_for_reminders(:email)"
+    - :was_run: true
+      :content: "    for user in Agenda.voters_users"
+    - :was_run: true
+      :content: "      UserMailer.delay.deliver_meeting_reminder(user, agenda)"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "    agenda.email_reminder_sent = true"
+    - :was_run: true
+      :content: "    agenda.save!"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def self.irc_reminders"
+    - :was_run: true
+      :content: "    agenda = Agenda.current"
+    - :was_run: true
+      :content: "    meeting_time = agenda.meeting_time.strftime('%a %b %d %H:%M:%S %Y')"
+    - :was_run: true
+      :content: "    return {} if Time.now < agenda.time_for_reminders(:irc)"
+    - :was_run: true
+      :content: "    return { 'remind_time' => meeting_time,"
+    - :was_run: true
+      :content: "              'message' => \"Remember about council meeting on #{meeting_time}\","
+    - :was_run: true
+      :content: "              'users' => Agenda.voters}"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  before_save do |agenda|"
+    - :was_run: true
+      :content: "    return true if agenda.new_record?"
+    - :was_run: true
+      :content: "    return true unless agenda.meeting_time_changed?"
+    - :was_run: true
+      :content: "    agenda.email_reminder_sent = false"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  after_save do |agenda|"
+    - :was_run: true
+      :content: "    if agenda.new_record? or agenda.meeting_time_changed?"
+    - :was_run: true
+      :content: "      Agenda.delay(:run_at => agenda.time_for_reminders(:email)).send_current_agenda_reminders"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  protected"
+    - :was_run: true
+      :content: "    def there_is_only_one_non_archival_agenda"
+    - :was_run: true
+      :content: "      return if(state.to_s == 'old')"
+    - :was_run: true
+      :content: "      not_old_agendas = Agenda.state_is_not(:old)"
+    - :was_run: true
+      :content: "      if id.nil?"
+    - :was_run: true
+      :content: "        return if not_old_agendas.count == 0"
+    - :was_run: true
+      :content: "      else"
+    - :was_run: true
+      :content: "        return if not_old_agendas.id_is_not(id).count == 0"
+    - :was_run: true
+      :content: "      end"
+    - :was_run: true
+      :content: "      errors.add(:state, 'There can be only one non-archival agenda at time.')"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/controllers/agendas_controller.rb: 
+    :methods: 
+      AgendasController#reminders: 66.6666666666667
+      AgendasController#results: 80.0
+      AgendasController#current_items: 66.6666666666667
+      AgendasController#index: 66.6666666666667
+      AgendasController#authenticate_bot: 83.3333333333333
+    :lines: 
+    - :was_run: true
+      :content: class AgendasController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_model_controller"
+    - :was_run: true
+      :content: "  before_filter :authenticate_bot, :only => :results"
+    - :was_run: true
+      :content: "  auto_actions :all"
+    - :was_run: true
+      :content: "  def index"
+    - :was_run: false
+      :content: "    hobo_index Agenda.state_is(:old)"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def current_items"
+    - :was_run: false
+      :content: "    render :json => Agenda.current.voting_array"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def results"
+    - :was_run: false
+      :content: "    data = JSON.parse(request.env[\"rack.input\"].read)"
+    - :was_run: false
+      :content: "    Agenda.process_results data"
+    - :was_run: false
+      :content: "    Participation.mark_participations data"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def reminders"
+    - :was_run: false
+      :content: "    render :json => Agenda.irc_reminders"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  private"
+    - :was_run: true
+      :content: "    def authenticate_bot"
+    - :was_run: false
+      :content: "      botconf = CustomConfig['Bot']"
+    - :was_run: false
+      :content: "      authenticate_or_request_with_http_basic do |user_name, password|"
+    - :was_run: false
+      :content: "        user_name == botconf['user'] && password == botconf['password']"
+    - :was_run: false
+      :content: "      end"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: end
+    :percent_run: 38
+  app/models/agenda_item.rb: 
+    :methods: 
+      AgendaItem#edit_permitted?: 0.0
+      AgendaItem#update_permitted?: 0.0
+      AgendaItem#destroy_permitted?: 0.0
+      AgendaItem#create_permitted?: 0.0
+      AgendaItem#view_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class AgendaItem < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    title      :string"
+    - :was_run: true
+      :content: "    discussion :string"
+    - :was_run: true
+      :content: "    body       :text"
+    - :was_run: true
+      :content: "    rejected   :boolean, :default => false"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  belongs_to :user, :creator => true"
+    - :was_run: true
+      :content: "  belongs_to :agenda"
+    - :was_run: true
+      :content: "  has_many   :voting_options"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    return false if acting_user.guest?"
+    - :was_run: true
+      :content: "    return false if user != acting_user"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    return false if agenda._?.state == 'old'"
+    - :was_run: true
+      :content: "    return false if user_changed?"
+    - :was_run: true
+      :content: "    return true if acting_user.council_member?"
+    - :was_run: true
+      :content: "    return true if acting_user.administrator?"
+    - :was_run: true
+      :content: "    return false unless agenda.nil?"
+    - :was_run: true
+      :content: "    return true if acting_user == user"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    acting_user.administrator?"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  # Not deduced properly"
+    - :was_run: true
+      :content: "  def edit_permitted?(field)"
+    - :was_run: true
+      :content: "    return false if field == :rejected && !agenda.nil?"
+    - :was_run: true
+      :content: "    return false if field == :agenda && rejected?"
+    - :was_run: true
+      :content: "    return false if agenda._?.state == 'old'"
+    - :was_run: true
+      :content: "    return false if field == :user"
+    - :was_run: true
+      :content: "    return true if acting_user.administrator?"
+    - :was_run: true
+      :content: "    return true if acting_user.council_member?"
+    - :was_run: true
+      :content: "    return false unless agenda.nil?"
+    - :was_run: true
+      :content: "    return acting_user == user if [nil, :title, :discussion, :body].include?(field)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/controllers/application_controller.rb: 
+    :methods: {}
+
+    :lines: 
+    - :was_run: true
+      :content: class ApplicationController < ActionController::Base
+    - :was_run: true
+      :content: "  protect_from_forgery"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/controllers/voting_options_controller.rb: 
+    :methods: {}
+
+    :lines: 
+    - :was_run: true
+      :content: class VotingOptionsController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_model_controller"
+    - :was_run: true
+      :content: "  auto_actions :all"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/controllers/users_controller.rb: 
+    :methods: 
+      UsersController#voters: 66.6666666666667
+      UsersController#current_council_slacking: 85.7142857142857
+      UsersController#create: 88.8888888888889
+    :lines: 
+    - :was_run: true
+      :content: class UsersController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_user_controller"
+    - :was_run: true
+      :content: "  auto_actions :all, :except => [ :index, :new, :create ]"
+    - :was_run: true
+      :content: "  def create"
+    - :was_run: false
+      :content: "    hobo_create do"
+    - :was_run: false
+      :content: "      if valid?"
+    - :was_run: false
+      :content: "        self.current_user = this"
+    - :was_run: false
+      :content: "        flash[:notice] = t(\"hobo.messages.you_are_site_admin\", :default=>\"You are now the site administrator\")"
+    - :was_run: false
+      :content: "        redirect_to home_page"
+    - :was_run: false
+      :content: "      end"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def voters"
+    - :was_run: false
+      :content: "    render :json => ::Agenda.voters"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def current_council_slacking"
+    - :was_run: false
+      :content: "    start = CustomConfig['CouncilTerm']['start_time']"
+    - :was_run: false
+      :content: "    stop = Agenda.current.meeting_time - 1.minute"
+    - :was_run: false
+      :content: "    @slackings = ::User.council_member_is(true).collect do |user|"
+    - :was_run: false
+      :content: "      [user.name, user.slacking_status_in_period(start, stop)]"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: false
+      :content: end
+    :percent_run: 26
+  app/viewhints/agenda_hints.rb: 
+    :methods: {}
+
+    :lines: 
+    - :was_run: true
+      :content: class AgendaHints < Hobo::ViewHints
+    - :was_run: true
+      :content: "  children :agenda_items, :participations, :proxies"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/mailers/user_mailer.rb: 
+    :methods: 
+      UserMailer#forgot_password: 80.0
+      UserMailer#meeting_reminder: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class UserMailer < ActionMailer::Base
+    - :was_run: true
+      :content: "  default :from => \"no-reply@#{host}\""
+    - :was_run: true
+      :content: "  def forgot_password(user, key)"
+    - :was_run: false
+      :content: "    @user, @key = user, key"
+    - :was_run: false
+      :content: "    mail( :subject => \"#{app_name} -- forgotten password\","
+    - :was_run: false
+      :content: "          :to      => user.email )"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def meeting_reminder(user, agenda)"
+    - :was_run: true
+      :content: "    @user = user"
+    - :was_run: true
+      :content: "    @agenda = agenda"
+    - :was_run: true
+      :content: "    mail(:subject => \"Upcoming meeting reminder - #{agenda.meeting_time.to_s}\","
+    - :was_run: true
+      :content: "          :to => user.email)"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 71
+  app/models/guest.rb: 
+    :methods: 
+      Guest#administrator?: 0.0
+      Guest#can_appoint_a_proxy?: 0.0
+      Guest#council_member?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class Guest < Hobo::Model::Guest
+    - :was_run: true
+      :content: "  def administrator?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def council_member?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def can_appoint_a_proxy?(user)"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/models/vote.rb: 
+    :methods: 
+      Vote#user_voted_only_once: 0.0
+      Vote#view_permitted?: 0.0
+      Vote#destroy_permitted?: 0.0
+      Vote#update_permitted?: 0.0
+      Vote#user_is_council_member: 0.0
+      Vote#create_permitted?: 0.0
+    :lines: 
+    - :was_run: true
+      :content: class Vote < ActiveRecord::Base
+    - :was_run: true
+      :content: "  hobo_model # Don't put anything above this"
+    - :was_run: true
+      :content: "  fields do"
+    - :was_run: true
+      :content: "    timestamps"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  belongs_to :voting_option, :null => false"
+    - :was_run: true
+      :content: "  belongs_to :user, :null => false"
+    - :was_run: true
+      :content: "  index [:voting_option_id, :user_id], :unique => true"
+    - :was_run: true
+      :content: "  validates_presence_of :voting_option"
+    - :was_run: true
+      :content: "  validates_presence_of :user"
+    - :was_run: true
+      :content: "  validates_uniqueness_of :voting_option_id, :scope => :user_id"
+    - :was_run: true
+      :content: "  validate :user_voted_only_once"
+    - :was_run: true
+      :content: "  validate :user_is_council_member"
+    - :was_run: true
+      :content: "  # --- Permissions --- #"
+    - :was_run: true
+      :content: "  def create_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def update_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def destroy_permitted?"
+    - :was_run: true
+      :content: "    false"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  def view_permitted?(field)"
+    - :was_run: true
+      :content: "    true"
+    - :was_run: true
+      :content: "  end"
+    - :was_run: true
+      :content: "  protected"
+    - :was_run: true
+      :content: "    def user_voted_only_once"
+    - :was_run: true
+      :content: "      return if user.nil?"
+    - :was_run: true
+      :content: "      return if voting_option.nil?"
+    - :was_run: true
+      :content: "      return if voting_option.agenda_item.nil?"
+    - :was_run: true
+      :content: "      other_votes = Vote.joins(:voting_option).where(['voting_options.agenda_item_id = ? AND votes.user_id = ?',"
+    - :was_run: true
+      :content: "                                                        voting_option.agenda_item_id, user_id])"
+    - :was_run: true
+      :content: "      other_votes = other_votes.id_is_not(id) unless new_record?"
+    - :was_run: true
+      :content: "      if other_votes.count > 0"
+    - :was_run: true
+      :content: "        errors.add(:user, 'User can vote only once per agenda item.')"
+    - :was_run: true
+      :content: "      end"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: "    def user_is_council_member"
+    - :was_run: true
+      :content: "      return if user.nil?"
+    - :was_run: true
+      :content: "      errors.add(:user, 'Only council members can vote.') unless user.council_member?"
+    - :was_run: true
+      :content: "    end"
+    - :was_run: true
+      :content: end
+    :percent_run: 100
+  app/controllers/front_controller.rb: 
+    :methods: 
+      FrontController#index: 0.0
+      FrontController#search: 83.3333333333333
+      FrontController#summary: 80.0
+    :lines: 
+    - :was_run: true
+      :content: class FrontController < ApplicationController
+    - :was_run: true
+      :content: "  hobo_controller"
+    - :was_run: true
+      :content: "  def index; end"
+    - :was_run: true
+      :content: "  def summary"
+    - :was_run: false
+      :content: "    if !current_user.administrator?"
+    - :was_run: false
+      :content: "      redirect_to user_login_path"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: true
+      :content: "  def search"
+    - :was_run: false
+      :content: "    query = params[:query]"
+    - :was_run: false
+      :content: "    if query"
+    - :was_run: false
+      :content: "      site_search(query)"
+    - :was_run: false
+      :content: "    end"
+    - :was_run: false
+      :content: "  end"
+    - :was_run: false
+      :content: end
+    :percent_run: 33
