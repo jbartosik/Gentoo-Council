@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
   def update_permitted?
     acting_user.administrator? ||
       (acting_user == self && only_changed?(:email, :crypted_password,
-                                            :current_password, :password, :password_confirmation))
+                                            :current_password, :password,
+                                            :password_confirmation, :irc_nick))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -74,6 +75,7 @@ class User < ActiveRecord::Base
     return false unless council_member?
     return false if user.council_member?
     return false unless Proxy.council_member_is(self).agenda_is(Agenda.current).count ==  0
+    return false unless Proxy.proxy_is(user).agenda_is(Agenda.current).count ==  0
     true
   end
 end

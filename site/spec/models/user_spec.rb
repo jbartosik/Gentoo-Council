@@ -82,4 +82,111 @@ describe User do
                                     agendas.last.meeting_time + 1.minute).should == 'No more a council'
     end
   end
+
+  it 'should allow no one to create' do
+    for u in users_factory(AllRoles)
+      User.new.should_not be_creatable_by(u)
+    end
+  end
+
+  it 'should allow only administrators to destroy' do
+    for u in users_factory(:user, :council, :guest)
+      Factory(:user).should_not be_destroyable_by(u)
+    end
+
+    for u in users_factory(:admin, :council_admin)
+      Factory(:user).should be_destroyable_by(u)
+    end
+  end
+
+  it 'should allow everybody to view' do
+    for u1 in users_factory(AllRoles)
+      for u2 in users_factory(AllRoles - [:guest])
+        u2.should be_viewable_by(u1)
+      end
+    end
+  end
+
+  describe '#updatable_by?' do
+    it 'should return true if user changes own email, irc_nick and password' do
+      u = Factory(:user)
+      u.password = 'changed'
+      u.password_confirmation = 'changed'
+      u.current_password = 'changed'
+      u.crypted_password = 'changed'
+      u.irc_nick = 'changed'
+      u.email = 'changed@changed.com'
+      u.should be_updatable_by u
+    end
+
+    it 'should return false if user changes someone' do
+      u = Factory(:user)
+      u.should_not be_updatable_by(Factory(:user))
+    end
+
+    it 'should return true if administrator changes something' do
+      u = Factory(:user)
+      u.password = 'changed'
+      u.password_confirmation = 'changed'
+      u.current_password = 'changed'
+      u.crypted_password = 'changed'
+      u.email = 'changed@changed.com'
+      u.irc_nick = 'changed'
+      u.administrator = true
+      u.council_member = true
+      u.should be_updatable_by(users_factory(:admin))
+    end
+
+  end
+
+  describe '#can_appoint_a_proxy?' do
+    it 'should return false for users who are not council members' do
+      for u in users_factory(:user, :admin, :guest)
+        proxy = Factory(:user)
+        u.can_appoint_a_proxy?(proxy).should be_false
+      end
+    end
+
+    it 'should return true for council members who never appointed a proxy' do
+      for u in users_factory(:council, :council_admin)
+        proxy = Factory(:user)
+        u.can_appoint_a_proxy?(proxy).should be_true
+      end
+    end
+
+    it 'should return true for council members who appointed a proxy for past meeting' do
+      Factory(:agenda)
+      old_a = Factory(:agenda, :state => 'old')
+      for u in users_factory(:council, :council_admin)
+        proxy = Factory(:user)
+        Factory(:proxy, :council_member => u, :agenda => old_a)
+        u.can_appoint_a_proxy?(proxy).should be_true
+      end
+    end
+
+    it 'should return false for council members who appointed a proxy for current meeting' do
+      current_a = Factory(:agenda)
+      proxy = Factory(:user)
+      for u in users_factory(:council, :council_admin)
+        Factory(:proxy, :council_member => u, :agenda => current_a)
+        u.can_appoint_a_proxy?(proxy).should be_false
+      end
+    end
+
+    it 'should return false for council members checking if they can appoint another council member as proxy' do
+      proxy = users_factory(:council)
+      for u in users_factory(:council, :council_admin)
+        u.can_appoint_a_proxy?(proxy).should be_false
+      end
+    end
+
+    it 'should return false for council members checking if they can appoint someone who is a aleady a proxy for current meeting as proxy' do
+      a = Factory(:agenda)
+      proxy = users_factory(:user)
+      Factory(:proxy, :proxy => proxy, :agenda => a)
+      for u in users_factory(:council, :council_admin)
+        u.can_appoint_a_proxy?(proxy).should be_false
+      end
+    end
+  end
 end
