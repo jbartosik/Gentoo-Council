@@ -107,8 +107,8 @@ class Agenda < ActiveRecord::Base
     # So I think efficiency improvement would be insignificant.
     # Joachim
     council = ::User.council_member_is(true)
-    proxies = Agenda.current.proxies
-    [council - proxies.*.council_member + proxies.*.proxy].flatten
+    proxies = Agenda.current.proxies.*
+    [council - proxies.council_member + proxies.proxy].flatten
   end
 
   def self.voters
@@ -131,9 +131,10 @@ class Agenda < ActiveRecord::Base
 
   def self.irc_reminders
     agenda = Agenda.current
+    meeting_time = agenda.meeting_time.strftime('%a %b %d %H:%M:%S %Y')
     return {} if Time.now < agenda.time_for_reminders(:irc)
-    return { 'remind_time' => agenda.meeting_time.strftime('%a %b %d %H:%M:%S %Y'),
-              'message' => "Remember about council meeting on #{agenda.meeting_time.to_s}",
+    return { 'remind_time' => meeting_time,
+              'message' => "Remember about council meeting on #{meeting_time}",
               'users' => Agenda.voters}
   end
 
@@ -153,10 +154,11 @@ class Agenda < ActiveRecord::Base
   protected
     def there_is_only_one_non_archival_agenda
       return if(state.to_s == 'old')
+      not_old_agendas = Agenda.state_is_not(:old)
       if id.nil?
-        return if Agenda.state_is_not(:old).count == 0
+        return if not_old_agendas.count == 0
       else
-        return if Agenda.state_is_not(:old).id_is_not(id).count == 0
+        return if not_old_agendas.id_is_not(id).count == 0
       end
       errors.add(:state, 'There can be only one non-archival agenda at time.')
     end

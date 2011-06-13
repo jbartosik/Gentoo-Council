@@ -72,10 +72,11 @@ class User < ActiveRecord::Base
   end
 
   def can_appoint_a_proxy?(user)
+    agenda = Agenda.current
     return false unless council_member?
     return false if user.council_member?
-    return false unless Proxy.council_member_is(self).agenda_is(Agenda.current).count ==  0
-    return false unless Proxy.proxy_is(user).agenda_is(Agenda.current).count ==  0
+    return false unless Proxy.council_member_is(self).agenda_is(agenda).count ==  0
+    return false unless Proxy.proxy_is(user).agenda_is(agenda).count ==  0
     true
   end
 end

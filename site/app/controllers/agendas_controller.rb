@@ -25,8 +25,9 @@ class AgendasController < ApplicationController
 
   private
     def authenticate_bot
+      botconf = CustomConfig['Bot']
       authenticate_or_request_with_http_basic do |user_name, password|
-        user_name == CustomConfig['Bot']['user'] && password == CustomConfig['Bot']['password']
+        user_name == botconf['user'] && password == botconf['password']
       end
     end
 end
