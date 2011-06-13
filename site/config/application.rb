@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Council
   class Application < Rails::Application
-  
+
   config.hobo.dryml_only_templates = true
 
     # Settings in config/environments/* take precedence over those specified here.
