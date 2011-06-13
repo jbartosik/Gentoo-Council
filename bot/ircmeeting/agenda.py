@@ -60,7 +60,7 @@ class Agenda(object):
     def end_vote(self):
         if self._vote_open:
             self._vote_open = False
-            return voting_already_closed_msg
+            return self.voting_already_closed_msg
         return voting_close_msg
 
     def get_data(self):
