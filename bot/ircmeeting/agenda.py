@@ -7,8 +7,8 @@ class Agenda(object):
     empty_agenda_msg = "Agenda is empty so I can't help you manage meeting (and voting)."
     current_item_msg = "Current agenda item is {}."
     voting_already_open_msg = "Voting is already open. You can end it with #endvote."
-    voting_open_msg = "Voting started. Your choices are: {} Vote #vote <option number>.\n End voting with #endvote."
-    voting_close_msg = "Voting is closed."
+    voting_open_msg = "Voting started. Your choices are:{}Vote #vote <option number>.\nEnd voting with #endvote."
+    voting_close_msg = "Voting closed."
     voting_already_closed_msg = "Voting is already closed. You can start it with #startvote."
     voting_open_so_item_not_changed_msg = "Voting is currently open so I didn't change item. Please #endvote first"
     can_not_vote_msg = "You can not vote. Only {} can vote"
@@ -38,7 +38,7 @@ class Agenda(object):
         if not self.conf.manage_agenda:
           return('')
         if self._vote_open:
-            return voting_open_so_item_not_changed_msg
+            return self.voting_open_so_item_not_changed_msg
         else:
             if (self._current_item + 1) < len(self._agenda):
                 self._current_item += 1
@@ -48,7 +48,7 @@ class Agenda(object):
         if not self.conf.manage_agenda:
           return('')
         if self._vote_open:
-            return voting_open_so_item_not_changed_msg
+            return self.voting_open_so_item_not_changed_msg
         else:
             if self._current_item > 0:
                 self._current_item -= 1
@@ -70,8 +70,8 @@ class Agenda(object):
           return('')
         if self._vote_open:
             self._vote_open = False
-            return self.voting_already_closed_msg
-        return voting_close_msg
+            return self.voting_close_msg
+        return self.voting_already_closed_msg
 
     def get_data(self):
         if not self.conf.manage_agenda:
