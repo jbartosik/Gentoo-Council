@@ -27,12 +27,16 @@ class Agenda(object):
       self.conf = conf
 
     def get_agenda_item(self):
+        if not self.conf.manage_agenda:
+          return('')
         if self._current_item < len(self._agenda):
             return str.format(self.current_item_msg, self._agenda[self._current_item][0])
         else:
             return self.empty_agenda_msg
 
     def next_agenda_item(self):
+        if not self.conf.manage_agenda:
+          return('')
         if self._vote_open:
             return voting_open_so_item_not_changed_msg
         else:
@@ -41,6 +45,8 @@ class Agenda(object):
             return(self.get_agenda_item())
 
     def prev_agenda_item(self):
+        if not self.conf.manage_agenda:
+          return('')
         if self._vote_open:
             return voting_open_so_item_not_changed_msg
         else:
@@ -49,6 +55,8 @@ class Agenda(object):
             return(self.get_agenda_item())
 
     def start_vote(self):
+        if not self.conf.manage_agenda:
+          return('')
         if self._vote_open:
             return self.voting_already_open_msg
         self._vote_open = True
@@ -58,12 +66,16 @@ class Agenda(object):
         return str.format(self.voting_open_msg, options)
 
     def end_vote(self):
+        if not self.conf.manage_agenda:
+          return('')
         if self._vote_open:
             self._vote_open = False
             return self.voting_already_closed_msg
         return voting_close_msg
 
     def get_data(self):
+        if not self.conf.manage_agenda:
+          return('')
         self._voters = self._get_json(self.conf.voters_url)
         self._agenda = self._get_json(self.conf.agenda_url)
         self._votes = { }
@@ -71,6 +83,8 @@ class Agenda(object):
             self._votes[i[0]] = { }
 
     def vote(self, nick, line):
+        if not self.conf.manage_agenda:
+          return('')
         if not nick in self._voters:
             return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if not line.isdigit():
@@ -91,6 +105,8 @@ class Agenda(object):
         return result
 
     def post_result(self):
+        if not self.conf.manage_agenda:
+          return('')
         data = urllib.quote(json.dumps([self._votes]))
         result_url = str.format(self.conf.result_url,
                       self.conf.voting_results_user,

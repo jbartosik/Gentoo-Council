@@ -344,6 +344,7 @@ class MeetBotTest(unittest.TestCase):
         """
 
         test = test_meeting.TestMeeting()
+        test.M.config.manage_agenda = True
         test.set_voters(['x', 'z'])
         test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []]])
         test.process("""
