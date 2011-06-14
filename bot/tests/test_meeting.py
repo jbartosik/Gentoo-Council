@@ -2,13 +2,6 @@ import ircmeeting.meeting as meeting
 import ircmeeting.writers as writers
 import re
 import time
-def process_meeting(contents, extraConfig={}, dontSave=True,
-                    filename='/dev/null'):
-    """Take a test script, return Meeting object of that meeting.
-
-    To access the results (a dict keyed by extensions), use M.save(),
-    with M being the return of this function.
-    """
 class TestMeeting:
   logline_re = re.compile(r'\[?([0-9: ]*)\]? *<[@+]?([^>]+)> *(.*)')
   loglineAction_re = re.compile(r'\[?([0-9: ]*)\]? *\* *([^ ]+) *(.*)')
@@ -56,6 +49,15 @@ class TestMeeting:
           nick = m.group(2).strip()
           line = m.group(3).strip()
           self.M.addline(nick, "ACTION "+line, time_=time_)
+
+  def answer_should_match(self, line, answer_regexp):
+    self.log = []
+    self.process(line)
+    answer = '\n'.join(self.log)
+    error_msg = "Answer for:\n\t'" + line + "'\n was \n\t'" + answer +\
+                "'\ndid not match regexp\n\t'" + answer_regexp + "'"
+    answer_matches = re.match(answer_regexp, answer)
+    assert answer_matches, error_msg
 
   def votes(self):
     return(self.M.config.agenda._votes)
