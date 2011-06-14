@@ -105,6 +105,7 @@ class Config(object):
     # Credentials for posting voting results
     voting_results_user = 'user'
     voting_results_password = 'password'
+    manage_agenda = False
 
     def enc(self, text):
         return text.encode(self.output_codec, 'replace')
