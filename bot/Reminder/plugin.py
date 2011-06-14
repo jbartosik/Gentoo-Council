@@ -41,11 +41,11 @@ import json
 import supybot.ircmsgs as ircmsgs
 
 class Reminder(callbacks.Plugin):
-    def __init__(self, irc):
+    def __init__(self, irc, sleep = 10):
         self.__parent = super(Reminder, self)
         self.__parent.__init__(irc)
         self.irc = irc
-        self.sleep = 10
+        self.sleep = sleep
         self.source_url = 'http://localhost:3000/agendas/reminders'
         self.last_remind_time = time.gmtime(0)
         self.data = {}
@@ -102,9 +102,7 @@ class Reminder(callbacks.Plugin):
 
             msg = self.data['message']
 
-            print msg
             for nick in self.data['users']:
-                print nick
                 self.irc.sendMsg(ircmsgs.privmsg(str(nick), str(msg)))
 
 Class = Reminder
