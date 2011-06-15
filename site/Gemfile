@@ -15,6 +15,7 @@ group :development, :test do
 
   gem 'cucumber-rails'
   gem 'capybara'
+  gem 'capybara-webkit', :git => 'git://github.com/ahenobarbi/capybara-webkit.git', :branch => 'master'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'show_me_the_cookies'

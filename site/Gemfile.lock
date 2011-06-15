@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/ahenobarbi/capybara-webkit.git
+  revision: d3793b7abe792e4a51c6a9cff66d9394280cdedc
+  branch: master
+  specs:
+    capybara-webkit (0.1.1)
+      capybara (~> 0.4.1)
+
+GIT
   remote: git://github.com/ahenobarbi/hobo.git
   revision: b33a9a69a2e1ce09b98c00ecee6c51bd1459fee5
   branch: rails3
@@ -217,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   bluecloth
   capybara
+  capybara-webkit!
   cucumber-rails
   database_cleaner
   delayed_job

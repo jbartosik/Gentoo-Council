@@ -15,11 +15,15 @@ When /^I login as example user$/ do
 end
 
 When /^I close browser$/ do
-  Capybara.current_session.driver.is_a?(Capybara::Driver::Selenium).should be_true
-  browser = Capybara.current_session.driver.browser
-  browser.manage.all_cookies.each do |cookie|
-    if cookie[:expires].nil? || cookie[:expires] < Time.now
-      browser.manage.delete_cookie(cookie[:name])
+  driver = Capybara.current_session.driver
+  if driver.is_a?(Capybara::Driver::Selenium)
+    browser = Capybara.current_session.driver.browser
+    browser.manage.all_cookies.each do |cookie|
+      if cookie[:expires].nil? || cookie[:expires] < Time.now
+        browser.manage.delete_cookie(cookie[:name])
+      end
     end
+  else
+    driver.remove_session_cookies!
   end
 end
