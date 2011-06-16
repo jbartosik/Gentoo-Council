@@ -5,13 +5,13 @@ import time
 class TestMeeting:
   logline_re = re.compile(r'\[?([0-9: ]*)\]? *<[@+]?([^>]+)> *(.*)')
   loglineAction_re = re.compile(r'\[?([0-9: ]*)\]? *\* *([^ ]+) *(.*)')
-  M = meeting.process_meeting(contents = '',
-                                channel = "#none",  filename = '/dev/null',
-                                dontSave = True, safeMode = False,
-                                extraConfig = {})
   log = []
 
   def __init__(self):
+    self.M = meeting.process_meeting(contents = '',
+                                channel = "#none",  filename = '/dev/null',
+                                dontSave = True, safeMode = False,
+                                extraConfig = {})
     self.M._sendReply = lambda x: self.log.append(x)
     self.M.starttime = time.gmtime(0)
 
