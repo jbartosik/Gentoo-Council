@@ -1,9 +1,11 @@
 import json
 import urllib
+import re
 
 class Agenda(object):
 
     # Messages
+    added_option_msg = "You added new voting option: {}"
     empty_agenda_msg = "Agenda is empty so I can't help you manage meeting (and voting)."
     current_item_msg = "Current agenda item is {}."
     voting_already_open_msg = "Voting is already open. You can end it with #endvote."
@@ -11,7 +13,7 @@ class Agenda(object):
     voting_close_msg = "Voting closed."
     voting_already_closed_msg = "Voting is already closed. You can start it with #startvote."
     voting_open_so_item_not_changed_msg = "Voting is currently open so I didn't change item. Please #endvote first"
-    can_not_vote_msg = "You can not vote. Only {} can vote"
+    can_not_vote_msg = "You can not vote or change agenda. Only {} can."
     not_a_number_msg = "Your vote was not recognized as a number. Please retry."
     out_of_range_msg = "Your vote was out of range!"
     vote_confirm_msg = "You voted for #{} - {}"
@@ -111,6 +113,17 @@ class Agenda(object):
           for i in range(n):
               options += str.format("{}. {}\n", i, options_list[i])
           return options
+    def add_option(self, nick, line):
+        if not self.conf.manage_agenda:
+            return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
+        options_list = self._agenda[self._current_item][1]
+        option_text = re.match( ' *?add (.*)', line).group(1)
+        options_list.append(option_text)
+        return str.format(self.added_option_msg, option_text)
+
+
 
     def post_result(self):
         if not self.conf.manage_agenda:
