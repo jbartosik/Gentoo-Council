@@ -340,6 +340,12 @@ class MeetingCommands(object):
         for messageline in self.config.agenda.vote(nick, line).split('\n'):
             self.reply(messageline)
 
+    def do_option(self, nick, time_, line, **kwargs):
+        if re.match( ' *?list', line):
+          result = self.config.agenda.options()
+        for messageline in result.split('\n'):
+            self.reply(messageline)
+
     def do_endmeeting(self, nick, time_, **kwargs):
         """End the meeting."""
         if not self.isChair(nick): return

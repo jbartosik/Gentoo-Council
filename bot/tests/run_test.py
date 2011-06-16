@@ -339,40 +339,65 @@ class MeetBotTest(unittest.TestCase):
         assert M.config.filename().endswith('somechannel-blah1234'),\
                "Filename not as expected: "+M.config.filename()
 
-    def test_agenda(self):
-        """ Test agenda management
-        """
-
+    def get_simple_agenda_test(self):
         test = test_meeting.TestMeeting()
         test.set_voters(['x', 'z'])
         test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []]])
+        test.M.config.manage_agenda = False
 
-
-        # Test starting meeting. Enable agenda management after that
         test.answer_should_match("20:13:50 <x> #startmeeting",
         "Meeting started .*\nUseful Commands: #action #agreed #help #info #idea #link #topic.\n")
         test.M.config.manage_agenda = True
 
-        # Test moving through items
+        return(test)
+
+    def test_agenda_item_changing(self):
+        test = self.get_simple_agenda_test()
+
+        # Test changing item before vote
         test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
         test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
         test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
         test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
 
-        # Test voting
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
-                                  'Your choices are:\n0. opt1\n1. opt2\nVote ' +\
-                                  '#vote <option number>.\nEnd voting with #endvote.')
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
-                                  'You can end it with #endvote.')
-        test.answer_should_match('20:13:50 <x> #vote 10', 'Your vote was out of range\!')
-        test.answer_should_match('20:13:50 <x> #vote 1', 'You voted for #1 - opt2')
-        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
-        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
+        # Test changing item during vote
+        test.process('20:13:50 <x> #startvote')
         test.answer_should_match('20:13:50 <x> #nextitem', 'Voting is currently ' +\
                                   'open so I didn\'t change item. Please #endvote first')
         test.answer_should_match('20:13:50 <x> #previtem', 'Voting is currently ' +\
                                   'open so I didn\'t change item. Please #endvote first')
+
+        # Test changing item after vote
+        test.process('20:13:50 <x> #endvote')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+
+    def test_agenda_option_listing(self):
+        test = self.get_simple_agenda_test()
+
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
+        test.process('20:13:50 <x> #nextitem')
+        test.answer_should_match('20:13:50 <x> #option list', 'No voting options available.')
+        test.process('20:13:50 <x> #previtem')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
+
+    def test_agenda_voting(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
+                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
+                                  '#vote <option number>.\nEnd voting with #endvote.')
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
+                                  'You can end it with #endvote.')
+        test.answer_should_match('20:13:50 <x> #vote 10', 'Your vote was out of range\!')
+        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <x> #vote 1', 'You voted for #1 - opt2')
+        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1\n1. opt2\n')
         test.answer_should_match('20:13:50 <x> #endvote', 'Voting closed.')
         test.answer_should_match('20:13:50 <x> #endvote', 'Voting is already closed. ' +\
                                   'You can start it with #startvote.')
