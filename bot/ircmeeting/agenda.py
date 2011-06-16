@@ -7,7 +7,7 @@ class Agenda(object):
     empty_agenda_msg = "Agenda is empty so I can't help you manage meeting (and voting)."
     current_item_msg = "Current agenda item is {}."
     voting_already_open_msg = "Voting is already open. You can end it with #endvote."
-    voting_open_msg = "Voting started. Your choices are:{}Vote #vote <option number>.\nEnd voting with #endvote."
+    voting_open_msg = "Voting started. {}Vote #vote <option number>.\nEnd voting with #endvote."
     voting_close_msg = "Voting closed."
     voting_already_closed_msg = "Voting is already closed. You can start it with #startvote."
     voting_open_so_item_not_changed_msg = "Voting is currently open so I didn't change item. Please #endvote first"
@@ -60,10 +60,7 @@ class Agenda(object):
         if self._vote_open:
             return self.voting_already_open_msg
         self._vote_open = True
-        options = "\n"
-        for i in range(len(self._agenda[self._current_item][1])):
-            options += str.format("{}. {}\n", i, self._agenda[self._current_item][1][i])
-        return str.format(self.voting_open_msg, options)
+        return str.format(self.voting_open_msg, self.options())
 
     def end_vote(self):
         if not self.conf.manage_agenda:
@@ -103,6 +100,17 @@ class Agenda(object):
         str = urllib.unquote(str)
         result = json.loads(str)
         return result
+
+    def options(self):
+        options_list = self._agenda[self._current_item][1]
+        n = len(options_list)
+        if n == 0:
+          return 'No voting options available.'
+        else:
+          options = "Available voting options are:\n"
+          for i in range(n):
+              options += str.format("{}. {}\n", i, options_list[i])
+          return options
 
     def post_result(self):
         if not self.conf.manage_agenda:
