@@ -343,6 +343,8 @@ class MeetingCommands(object):
     def do_option(self, nick, time_, line, **kwargs):
         if re.match( ' *?list', line):
           result = self.config.agenda.options()
+        elif re.match( ' *?add .*', line):
+          result = self.config.agenda.add_option(nick, line)
         for messageline in result.split('\n'):
             self.reply(messageline)
 
