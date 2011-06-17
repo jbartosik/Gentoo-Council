@@ -8,6 +8,7 @@ class Agenda(object):
     added_option_msg = "You added new voting option: {}"
     empty_agenda_msg = "Agenda is empty so I can't help you manage meeting (and voting)."
     current_item_msg = "Current agenda item is {}."
+    removed_option_msg = "You removed voting option {}: {}"
     voting_already_open_msg = "Voting is already open. You can end it with #endvote."
     voting_open_msg = "Voting started. {}Vote #vote <option number>.\nEnd voting with #endvote."
     voting_close_msg = "Voting closed."
@@ -86,13 +87,10 @@ class Agenda(object):
           return('')
         if not nick in self._voters:
             return str.format(self.can_not_vote_msg, ", ".join(self._voters))
-        if not line.isdigit():
-            return self.not_a_number_msg
 
-        opt = int(line)
-
-        if opt < 0 or opt >= len(self._agenda[self._current_item][1]):
-            return self.out_of_range_msg
+        opt = self._to_voting_option_number(line)
+        if opt.__class__ is not int:
+          return(opt)
 
         self._votes[self._agenda[self._current_item][0]][nick] = self._agenda[self._current_item][1][opt]
         return str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][1][opt])
@@ -102,6 +100,14 @@ class Agenda(object):
         str = urllib.unquote(str)
         result = json.loads(str)
         return result
+
+    def _to_voting_option_number(self, line):
+        if not line.isdigit():
+            return self.not_a_number_msg
+        opt = int(line)
+        if opt < 0 or opt >= len(self._agenda[self._current_item][1]):
+            return self.out_of_range_msg
+        return(opt)
 
     def options(self):
         options_list = self._agenda[self._current_item][1]
@@ -113,6 +119,7 @@ class Agenda(object):
           for i in range(n):
               options += str.format("{}. {}\n", i, options_list[i])
           return options
+
     def add_option(self, nick, line):
         if not self.conf.manage_agenda:
             return('')
@@ -123,7 +130,19 @@ class Agenda(object):
         options_list.append(option_text)
         return str.format(self.added_option_msg, option_text)
 
+    def remove_option(self, nick, line):
+        if not self.conf.manage_agenda:
+            return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
 
+        opt_str = re.match( ' *?remove (.*)', line).group(1)
+        opt = self._to_voting_option_number(opt_str)
+        if opt.__class__ is not int:
+          return(opt)
+
+        option = self._agenda[self._current_item][1].pop(opt)
+        return str.format(self.removed_option_msg, str(opt), option)
 
     def post_result(self):
         if not self.conf.manage_agenda:
