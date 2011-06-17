@@ -345,6 +345,8 @@ class MeetingCommands(object):
           result = self.config.agenda.options()
         elif re.match( ' *?add .*', line):
           result = self.config.agenda.add_option(nick, line)
+        elif re.match( ' *?remove .*', line):
+          result = self.config.agenda.remove_option(nick, line)
         for messageline in result.split('\n'):
             self.reply(messageline)
 

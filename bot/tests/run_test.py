@@ -395,6 +395,15 @@ class MeetBotTest(unittest.TestCase):
         test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
                                   'are:\n0. first option')
 
+    def test_agenda_option_removing(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <not_allowed> #option remove 1',
+                                  'You can not vote or change agenda. Only x, z can.')
+        test.answer_should_match('20:13:50 <x> #option remove 1',
+                                  'You removed voting option 1: opt2')
+        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
+                                  'are:\n0. opt1')
+
     def test_agenda_voting(self):
         test = self.get_simple_agenda_test()
         test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
