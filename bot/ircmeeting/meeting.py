@@ -105,6 +105,7 @@ class Config(object):
     # Credentials for posting voting results
     voting_results_user = 'user'
     voting_results_password = 'password'
+    manage_agenda = False
 
     def enc(self, text):
         return text.encode(self.output_codec, 'replace')
@@ -337,6 +338,16 @@ class MeetingCommands(object):
 
     def do_vote(self, nick, time_, line, **kwargs):
         for messageline in self.config.agenda.vote(nick, line).split('\n'):
+            self.reply(messageline)
+
+    def do_option(self, nick, time_, line, **kwargs):
+        if re.match( ' *?list', line):
+          result = self.config.agenda.options()
+        elif re.match( ' *?add .*', line):
+          result = self.config.agenda.add_option(nick, line)
+        elif re.match( ' *?remove .*', line):
+          result = self.config.agenda.remove_option(nick, line)
+        for messageline in result.split('\n'):
             self.reply(messageline)
 
     def do_endmeeting(self, nick, time_, **kwargs):
