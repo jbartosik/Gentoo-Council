@@ -15,8 +15,8 @@ class Agenda(object):
     voting_already_closed_msg = "Voting is already closed. You can start it with #startvote."
     voting_open_so_item_not_changed_msg = "Voting is currently open so I didn't change item. Please #endvote first"
     can_not_vote_msg = "You can not vote or change agenda. Only {} can."
-    not_a_number_msg = "Your vote was not recognized as a number. Please retry."
-    out_of_range_msg = "Your vote was out of range!"
+    not_a_number_msg = "Your choice was not recognized as a number. Please retry."
+    out_of_range_msg = "Your choice was out of range!"
     vote_confirm_msg = "You voted for #{} - {}"
 
     # Internal
@@ -109,13 +109,19 @@ class Agenda(object):
         result = json.loads(str)
         return result
 
-    def _to_voting_option_number(self, line):
+    def _to_number(self, line, upper_limit):
         if not line.isdigit():
             return self.not_a_number_msg
         opt = int(line)
-        if opt < 0 or opt >= len(self._agenda[self._current_item][1]):
+        if opt < 0 or opt >= upper_limit:
             return self.out_of_range_msg
         return(opt)
+
+    def _to_voting_option_number(self, line):
+        return(self._to_number(line, len(self._agenda[self._current_item][1])))
+
+    def _to_agenda_item_number(self, line):
+        return(self._to_number(line, len(self._agenda)))
 
     def options(self):
         options_list = self._agenda[self._current_item][1]
@@ -137,6 +143,17 @@ class Agenda(object):
         option_text = re.match( ' *?add (.*)', line).group(1)
         options_list.append(option_text)
         return str.format(self.added_option_msg, option_text)
+
+    def change_agenda_item(self, line):
+        if not self.conf.manage_agenda:
+          return('')
+        if self._vote_open:
+            return self.voting_open_so_item_not_changed_msg
+        opt = self._to_agenda_item_number(line)
+        if opt.__class__ is not int:
+          return(opt)
+        self._current_item = opt
+        return(self.get_agenda_item())
 
     def remove_option(self, nick, line):
         if not self.conf.manage_agenda:
