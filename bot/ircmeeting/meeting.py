@@ -328,6 +328,9 @@ class MeetingCommands(object):
     def do_previtem(self, nick, time_, line, **kwargs):
         self.reply(self.config.agenda.prev_agenda_item())
 
+    def do_changeitem(self, nick, time_, line, **kwargs):
+        self.reply(self.config.agenda.change_agenda_item(line))
+
     def do_startvote(self, nick, time_, line, **kwargs):
        for messageline in self.config.agenda.start_vote().split('\n'):
             self.reply(messageline)

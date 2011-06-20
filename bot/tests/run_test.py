@@ -342,7 +342,7 @@ class MeetBotTest(unittest.TestCase):
     def get_simple_agenda_test(self):
         test = test_meeting.TestMeeting()
         test.set_voters(['x', 'z'])
-        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []]])
+        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []], ['third item', []]])
         test.M.config.manage_agenda = False
 
         test.answer_should_match("20:13:50 <x> #startmeeting",
@@ -356,9 +356,16 @@ class MeetBotTest(unittest.TestCase):
 
         # Test changing item before vote
         test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is second item.')
         test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
         test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 1', 'Current agenda item is second item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 0', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 10', 'Your choice was out of range!')
+        test.answer_should_match('20:13:50 <x> #changeitem puppy', 'Your choice was not recognized as a number. Please retry.')
 
         # Test changing item during vote
         test.process('20:13:50 <x> #startvote')
@@ -366,13 +373,14 @@ class MeetBotTest(unittest.TestCase):
                                   'open so I didn\'t change item. Please #endvote first')
         test.answer_should_match('20:13:50 <x> #previtem', 'Voting is currently ' +\
                                   'open so I didn\'t change item. Please #endvote first')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Voting is currently ' +\
+                                  'open so I didn\'t change item. Please #endvote first')
 
         # Test changing item after vote
         test.process('20:13:50 <x> #endvote')
         test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
         test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
+        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
 
     def test_agenda_option_listing(self):
         test = self.get_simple_agenda_test()
@@ -412,7 +420,7 @@ class MeetBotTest(unittest.TestCase):
                                   '#vote <option number>.\nEnd voting with #endvote.')
         test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
                                   'You can end it with #endvote.')
-        test.answer_should_match('20:13:50 <x> #vote 10', 'Your vote was out of range\!')
+        test.answer_should_match('20:13:50 <x> #vote 10', 'Your choice was out of range\!')
         test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
         test.answer_should_match('20:13:50 <x> #vote 1', 'You voted for #1 - opt2')
         test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1')
@@ -426,7 +434,7 @@ class MeetBotTest(unittest.TestCase):
         test.answer_should_match('20:13:50 <x> #endmeeting', 'Meeting ended ' +\
                                   '.*\nMinutes:.*\nMinutes \(text\):.*\nLog:.*')
 
-        assert(test.votes() == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}})
+        assert(test.votes() == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}, 'third item': {}})
 
     def test_agenda_close_voting_after_last_vote(self):
         test = self.get_simple_agenda_test()
