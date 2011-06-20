@@ -15,7 +15,8 @@ class AgendasController < ApplicationController
 
   def results
     data = JSON.parse(request.env["rack.input"].read)
-    Agenda.process_results data
+    Agenda.update_voting_options data['agenda']
+    Agenda.process_results data data['votes']
     Participation.mark_participations data
   end
 

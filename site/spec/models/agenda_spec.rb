@@ -248,4 +248,30 @@ describe Agenda do
     current_agenda.voting_array.should == [[i2.title, [v21.description, v22.description],
                                             i2.timelimits], [i3.title, [], i3.timelimits]]
   end
+
+  describe '.update_voting_options' do
+    it 'should remove unneeded voting options and keep existing needed options' do
+      current_agenda = Factory(:agenda)
+      item = Factory(:agenda_item, :agenda => current_agenda)
+      unneeded_option = Factory(:voting_option, :agenda_item => item, :description => 'unneeded')
+      needed_option = Factory(:voting_option, :agenda_item => item, :description => 'needed')
+
+      VotingOption.count.should be_equal(2)
+
+      Agenda.update_voting_options [[item.title, [needed_option.description]]]
+
+      VotingOption.count.should be_equal(1)
+      VotingOption.first.description.should == needed_option.description
+      VotingOption.first.id.should == needed_option.id
+    end
+    it 'should create requested new voting options' do
+      current_agenda = Factory(:agenda)
+      item = Factory(:agenda_item, :agenda => current_agenda)
+      needed_option = Factory(:voting_option, :agenda_item => item, :description => 'needed')
+
+      Agenda.update_voting_options [[item.title, [needed_option.description, 'new option']]]
+      VotingOption.count.should be_equal(2)
+      VotingOption.last.description.should == 'new option'
+    end
+  end
 end

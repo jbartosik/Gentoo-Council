@@ -57,6 +57,25 @@ class Agenda < ActiveRecord::Base
     false
   end
 
+  def self.update_voting_options(options)
+    agenda = Agenda.current
+    options.each do |item_info|
+      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_info.first }
+      new_descriptions = item_info[1]
+      old_descriptions = item.voting_options.*.description
+
+      (old_descriptions - new_descriptions).each do |description|
+        option = VotingOption.first :conditions => { :agenda_item_id => item.id,
+                                                      :description => description }
+        option.destroy
+      end
+
+      (new_descriptions - old_descriptions ).each do |description|
+        VotingOption.create! :agenda_item => item, :description => description
+      end
+    end
+  end
+
   def self.process_results(results)
     agenda = Agenda.current
     for item_title in results.keys
