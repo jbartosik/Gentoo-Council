@@ -220,7 +220,8 @@ class Agenda(object):
     def post_result(self):
         if not self.conf.manage_agenda:
           return('')
-        data = urllib.quote(json.dumps([self._votes]))
+        data_dict = {'votes' : self._votes, 'agenda' : self._agenda}
+        data = urllib.quote(json.dumps(data_dict))
         result_url = str.format(self.conf.result_url,
                       self.conf.voting_results_user,
                       self.conf.voting_results_password)
