@@ -79,6 +79,7 @@ class Agenda(object):
         self._voters = self._get_json(self.conf.voters_url)
         self._agenda = self._get_json(self.conf.agenda_url)
         self._votes = { }
+        self._voters.sort()
         for i in self._agenda:
             self._votes[i[0]] = { }
 
@@ -93,7 +94,14 @@ class Agenda(object):
           return(opt)
 
         self._votes[self._agenda[self._current_item][0]][nick] = self._agenda[self._current_item][1][opt]
-        return str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][1][opt])
+
+        users_who_voted = self._votes[self._agenda[self._current_item][0]].keys()
+        users_who_voted.sort()
+
+        reply = str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][1][opt])
+        if users_who_voted == self._voters:
+          reply += '. ' + self.end_vote()
+        return(reply)
 
     def _get_json(self, url):
         str = urllib.urlopen(url).read()
