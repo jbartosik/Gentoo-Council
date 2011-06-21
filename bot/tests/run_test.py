@@ -406,6 +406,7 @@ class MeetBotTest(unittest.TestCase):
 
     def test_agenda_voting(self):
         test = self.get_simple_agenda_test()
+        test.M.config.agenda._voters.append('t')
         test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
                                   'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
                                   '#vote <option number>.\nEnd voting with #endvote.')
@@ -426,6 +427,16 @@ class MeetBotTest(unittest.TestCase):
                                   '.*\nMinutes:.*\nMinutes \(text\):.*\nLog:.*')
 
         assert(test.votes() == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}})
+
+    def test_agenda_close_voting_after_last_vote(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
+                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
+                                  '#vote <option number>.\nEnd voting with #endvote.')
+        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
+                                  'You can end it with #endvote.')
+        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
+        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1. Voting closed.')
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))
