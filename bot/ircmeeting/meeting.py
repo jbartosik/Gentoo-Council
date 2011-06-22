@@ -33,6 +33,7 @@ import time
 import os
 import re
 import stat
+import threading
 
 import writers
 import items
@@ -301,7 +302,6 @@ else:
         # Subclass Config and LocalConfig, new type overrides Config.
         Config = type('Config', (LocalConfig, Config), {})
 
-
 class MeetingCommands(object):
     # Command Definitions
     # generic parameters to these functions:
@@ -330,6 +330,21 @@ class MeetingCommands(object):
 
     def do_changeitem(self, nick, time_, line, **kwargs):
         self.reply(self.config.agenda.change_agenda_item(line))
+
+    def do_timelimit(self, nick, time_, line, **kwargs):
+        reply = 'Usage "#timelimit add <minutes>:<seconds> <message>" or ' +\
+                '"#timelimit list" or "#timelimit remove <message>"'
+        match = re.match( ' *?add ([0-9]+):([0-9]+) (.*)', line)
+        if match:
+          reply = self.config.agenda.add_timelimit(int(match.group(1)),
+                       int(match.group(2)), match.group(3), self)
+        elif re.match( ' *?list', line):
+          reply = self.config.agenda.list_timielimits()
+        else:
+          match = re.match( ' *?remove (.*)', line)
+          if(match):
+            reply = self.config.agenda.remove_timelimit(match.group(1))
+        self.reply(reply)
 
     def do_startvote(self, nick, time_, line, **kwargs):
        for messageline in self.config.agenda.start_vote().split('\n'):

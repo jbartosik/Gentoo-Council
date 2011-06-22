@@ -1,6 +1,14 @@
 import json
+import threading
 import urllib
 import re
+
+class MessageSender:
+  def __init__(self, irc, message):
+    self.irc = irc
+    self.message = message
+  def send_message(self):
+    self.irc.reply(self.message)
 
 class Agenda(object):
 
@@ -18,6 +26,10 @@ class Agenda(object):
     not_a_number_msg = "Your choice was not recognized as a number. Please retry."
     out_of_range_msg = "Your choice was out of range!"
     vote_confirm_msg = "You voted for #{} - {}"
+    timelimit_added_msg = 'Added "{}" reminder in {}:{}'
+    timelimit_list_msg = 'Set reminders: "{}"'
+    timelimit_removed_msg = 'Reminder "{}" removed'
+    timelimit_missing_msg = 'No such reminder "{}"'
 
     # Internal
     _voters     = []
@@ -28,6 +40,7 @@ class Agenda(object):
 
     def __init__(self, conf):
       self.conf = conf
+      self.reminders = {}
 
     def get_agenda_item(self):
         if not self.conf.manage_agenda:
@@ -37,6 +50,12 @@ class Agenda(object):
         else:
             return self.empty_agenda_msg
 
+    def _swich_agenda_item_to(self, new_item):
+      self._current_item = new_item
+      for reminder in self.reminders.values():
+        reminder.cancel()
+      self.reminders = {}
+
     def next_agenda_item(self):
         if not self.conf.manage_agenda:
           return('')
@@ -44,7 +63,7 @@ class Agenda(object):
             return self.voting_open_so_item_not_changed_msg
         else:
             if (self._current_item + 1) < len(self._agenda):
-                self._current_item += 1
+                self._swich_agenda_item_to(self._current_item + 1)
             return(self.get_agenda_item())
 
     def prev_agenda_item(self):
@@ -54,7 +73,7 @@ class Agenda(object):
             return self.voting_open_so_item_not_changed_msg
         else:
             if self._current_item > 0:
-                self._current_item -= 1
+                self._swich_agenda_item_to(self._current_item - 1)
             return(self.get_agenda_item())
 
     def start_vote(self):
@@ -168,6 +187,29 @@ class Agenda(object):
 
         option = self._agenda[self._current_item][1].pop(opt)
         return str.format(self.removed_option_msg, str(opt), option)
+
+    def add_timelimit(self, minutes, seconds, message, irc):
+      sender = MessageSender(irc, message)
+      reminder = (threading.Timer(60*minutes + seconds, sender.send_message))
+      self.reminders[message] = reminder
+      reminder.start()
+      result = str.format(self.timelimit_added_msg, message, minutes, seconds)
+      return(result)
+
+    def list_timielimits(self):
+      keys = self.reminders.keys()
+      keys_str = '", "'.join(keys)
+      result = str.format(self.timelimit_list_msg, keys_str)
+      return(result)
+
+    def remove_timelimit(self, message):
+      if message in self.reminders:
+        timer = self.reminders.pop(message)
+        timer.cancel()
+        result = str.format(self.timelimit_removed_msg, message)
+      else:
+         result = str.format(self.timelimit_missing_msg, message)
+      return(result)
 
     def post_result(self):
         if not self.conf.manage_agenda:
