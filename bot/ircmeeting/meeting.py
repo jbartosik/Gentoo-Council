@@ -323,10 +323,10 @@ class MeetingCommands(object):
         self.reply(self.config.agenda.get_agenda_item())
 
     def do_nextitem(self, nick, time_, line, **kwargs):
-        self.reply(self.config.agenda.next_agenda_item())
+        self.reply(self.config.agenda.next_agenda_item(self))
 
     def do_previtem(self, nick, time_, line, **kwargs):
-        self.reply(self.config.agenda.prev_agenda_item())
+        self.reply(self.config.agenda.prev_agenda_item(self))
 
     def do_timelimit(self, nick, time_, line, **kwargs):
         reply = 'Usage "#timelimit add <minutes>:<seconds> <message>" or ' +\

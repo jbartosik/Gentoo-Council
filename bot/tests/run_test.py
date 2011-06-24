@@ -344,7 +344,7 @@ class MeetBotTest(unittest.TestCase):
     def get_simple_agenda_test(self):
         test = test_meeting.TestMeeting()
         test.set_voters(['x', 'z'])
-        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []]])
+        test.set_agenda([['first item', ['opt1', 'opt2'], ''], ['second item', [], '']])
         test.M.config.manage_agenda = False
 
         test.answer_should_match("20:13:50 <x> #startmeeting",
@@ -482,6 +482,23 @@ class MeetBotTest(unittest.TestCase):
         keys = test.M.config.agenda.reminders.keys()
         test.answer_should_match('20:13:50 <x> #timelimit list',
                                   'Set reminders: "' + '", "'.join(keys) + '"')
+
+    def test_preset_agenda_time_limits(self):
+        test = self.get_simple_agenda_test()
+        test.M.config.agenda._agenda[0][2] = '1:0 message'
+        test.M.config.agenda._agenda[1][2] = '1:0 another message\n0:10 some other message'
+
+        test.process('20:13:50 <x> #nextitem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['another message', 'some other message'])
+
+        test.process('20:13:50 <x> #previtem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['message'])
+
+        test.process('20:13:50 <x> #nextitem')
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))

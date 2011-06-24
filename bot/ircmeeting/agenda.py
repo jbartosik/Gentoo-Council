@@ -50,30 +50,36 @@ class Agenda(object):
         else:
             return self.empty_agenda_msg
 
-    def _swich_agenda_item_to(self, new_item):
+    def _swich_agenda_item_to(self, new_item, irc):
       self._current_item = new_item
       for reminder in self.reminders.values():
         reminder.cancel()
       self.reminders = {}
+      for line in self._agenda[self._current_item][2].split('\n'):
+        match = re.match( '([0-9]+):([0-9]+) (.*)', line)
+        if match:
+          self.add_timelimit(int(match.group(1)), int(match.group(2)),
+                                match.group(3), irc)
+      self._agenda[self._current_item][2] = ''
 
-    def next_agenda_item(self):
+    def next_agenda_item(self, irc):
         if not self.conf.manage_agenda:
           return('')
         if self._vote_open:
             return self.voting_open_so_item_not_changed_msg
         else:
             if (self._current_item + 1) < len(self._agenda):
-                self._swich_agenda_item_to(self._current_item + 1)
+                self._swich_agenda_item_to(self._current_item + 1, irc)
             return(self.get_agenda_item())
 
-    def prev_agenda_item(self):
+    def prev_agenda_item(self, irc):
         if not self.conf.manage_agenda:
           return('')
         if self._vote_open:
             return self.voting_open_so_item_not_changed_msg
         else:
             if self._current_item > 0:
-                self._swich_agenda_item_to(self._current_item - 1)
+                self._swich_agenda_item_to(self._current_item - 1, irc)
             return(self.get_agenda_item())
 
     def start_vote(self):
