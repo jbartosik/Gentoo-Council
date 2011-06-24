@@ -91,7 +91,7 @@ class Agenda < ActiveRecord::Base
 
   def voting_array
     agenda_items.collect do |item|
-      [item.title, item.voting_options.*.description]
+      [item.title, item.voting_options.*.description, item.timelimits]
     end
   end
 
