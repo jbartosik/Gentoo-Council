@@ -7,12 +7,15 @@ class AgendaItem < ActiveRecord::Base
     discussion :string
     body       :text
     rejected   :boolean, :default => false
+    timelimits :text, :null => false, :default => ''
     timestamps
   end
 
   belongs_to :user, :creator => true
   belongs_to :agenda
   has_many   :voting_options
+
+  validate :timelimits_entered_properly
 
   # --- Permissions --- #
   def create_permitted?
@@ -50,4 +53,14 @@ class AgendaItem < ActiveRecord::Base
     return false unless agenda.nil?
     return acting_user == user if [nil, :title, :discussion, :body].include?(field)
   end
+
+  protected
+    def timelimits_entered_properly
+      regexp = /^\d+:\d+( .*)?$/
+      for line in timelimits.split("\n")
+        unless line.match regexp
+          errors.add(:timelimits, "Line '#{line}' doensn't match '<minutes>:<seconds> <message>'")
+        end
+      end
+    end
 end

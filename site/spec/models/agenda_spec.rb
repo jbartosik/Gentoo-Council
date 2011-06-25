@@ -126,9 +126,9 @@ describe Agenda do
 
     Vote.count.should be_equal(9)
 
-    u[0].votes.*.voting_option.*.description.should == ['Yes', 'Yes', 'Dunno']
-    u[1].votes.*.voting_option.*.description.should == ['Yes', 'No', 'Dunno']
-    u[2].votes.*.voting_option.*.description.should == ['Yes', 'Dunno', 'No']
+    u[0].votes.*.voting_option.*.description.sort.should == ['Dunno', 'Yes', 'Yes']
+    u[1].votes.*.voting_option.*.description.sort.should == ['Dunno', 'No', 'Yes']
+    u[2].votes.*.voting_option.*.description.sort.should == ['Dunno', 'No', 'Yes']
     a1.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['Yes', 'Yes', 'Yes']
     a2.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['Yes', 'No', 'Dunno']
     a3.voting_options.*.votes.flatten.*.voting_option.*.description.should == ['No', 'Dunno', 'Dunno']
@@ -236,15 +236,16 @@ describe Agenda do
   it 'should return proper voting_array' do
     old_agenda = Factory(:agenda, :state => 'old')
     current_agenda = Factory(:agenda)
-    i1 = Factory(:agenda_item, :agenda => old_agenda)
-    i2 = Factory(:agenda_item, :agenda => current_agenda)
-    i3 = Factory(:agenda_item, :agenda => current_agenda)
+    i1 = Factory(:agenda_item, :agenda => old_agenda, :timelimits => '0:0')
+    i2 = Factory(:agenda_item, :agenda => current_agenda, :timelimits => "10:0 Ten minutes passed")
+    i3 = Factory(:agenda_item, :agenda => current_agenda, :timelimits => "0:10 Ten seconds passed")
 
     v11 = Factory(:voting_option, :agenda_item => i1)
     v21 = Factory(:voting_option, :agenda_item => i2)
     v22 = Factory(:voting_option, :agenda_item => i2, :description => 'other')
 
-    old_agenda.voting_array.should == [[i1.title, [v11.description]]]
-    current_agenda.voting_array.should == [[i2.title, [v21.description, v22.description]], [i3.title, []]]
+    old_agenda.voting_array.should == [[i1.title, [v11.description], i1.timelimits]]
+    current_agenda.voting_array.should == [[i2.title, [v21.description, v22.description],
+                                            i2.timelimits], [i3.title, [], i3.timelimits]]
   end
 end

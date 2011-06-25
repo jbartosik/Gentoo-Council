@@ -6,6 +6,8 @@ import re
 import shutil
 import sys
 import tempfile
+import time
+import threading
 import unittest
 
 os.environ['MEETBOT_RUNNING_TESTS'] = '1'
@@ -342,7 +344,7 @@ class MeetBotTest(unittest.TestCase):
     def get_simple_agenda_test(self):
         test = test_meeting.TestMeeting()
         test.set_voters(['x', 'z'])
-        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []], ['third item', []]])
+        test.set_agenda([['first item', ['opt1', 'opt2'], ''], ['second item', [], ''], ['third item', [], '']])
         test.M.config.manage_agenda = False
 
         test.answer_should_match("20:13:50 <x> #startmeeting",
@@ -445,6 +447,77 @@ class MeetBotTest(unittest.TestCase):
                                   'You can end it with #endvote.')
         test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
         test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1. Voting closed.')
+
+    def test_agenda_time_limit_adding(self):
+        test = self.get_simple_agenda_test()
+        test.answer_should_match('20:13:50 <x> #timelimit', 'Usage "#timelimit ' +\
+                                  'add <minutes>:<seconds> <message>" or "' +\
+                                  '#timelimit list" or "#timelimit remove ' +\
+                                  '<message>"')
+        test.answer_should_match('20:13:50 <x> #timelimit add 0:1 some other message',
+                                  'Added "some other message" reminder in 0:1')
+        test.answer_should_match('20:13:50 <x> #timelimit add 1:0 some message',
+                                  'Added "some message" reminder in 1:0')
+        time.sleep(2)
+        last_message = test.log[-1]
+        assert(last_message == 'some other message')
+        reminders = test.M.config.agenda.reminders
+        assert(len(reminders) == 2)
+        for reminder in reminders.values():
+          assert(reminder.__class__ == threading._Timer)
+
+        test.process('20:13:50 <x> #nextitem')
+
+    def test_agenda_time_limit_removing_when_changing_item(self):
+        test = self.get_simple_agenda_test()
+
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        assert(len(test.M.config.agenda.reminders) == 1)
+        test.process('20:13:50 <x> #nextitem')
+        assert(len(test.M.config.agenda.reminders) == 0)
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        assert(len(test.M.config.agenda.reminders) == 1)
+        test.process('20:13:50 <x> #previtem')
+        assert(len(test.M.config.agenda.reminders) == 0)
+
+    def test_agenda_time_limit_manual_removing(self):
+        test = self.get_simple_agenda_test()
+
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        test.process('20:13:50 <x> #timelimit add 0:1 other message')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['message', 'other message'])
+
+        test.answer_should_match('20:13:50 <x> #timelimit remove other message', 'Reminder "other message" removed')
+        keys = test.M.config.agenda.reminders.keys()
+        assert(keys == ['message'])
+
+    def test_agenda_time_limit_listing(self):
+        test = self.get_simple_agenda_test()
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        test.process('20:13:50 <x> #timelimit add 0:1 other message')
+        test.process('20:13:50 <x> #timelimit add 0:1 yet another message')
+        keys = test.M.config.agenda.reminders.keys()
+        test.answer_should_match('20:13:50 <x> #timelimit list',
+                                  'Set reminders: "' + '", "'.join(keys) + '"')
+
+    def test_preset_agenda_time_limits(self):
+        test = self.get_simple_agenda_test()
+        test.M.config.agenda._agenda[0][2] = '1:0 message'
+        test.M.config.agenda._agenda[1][2] = '1:0 another message\n0:10 some other message'
+
+        test.process('20:13:50 <x> #nextitem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['another message', 'some other message'])
+
+        test.process('20:13:50 <x> #previtem')
+        keys = test.M.config.agenda.reminders.keys()
+        keys.sort()
+        assert(keys == ['message'])
+
+        test.process('20:13:50 <x> #nextitem')
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))

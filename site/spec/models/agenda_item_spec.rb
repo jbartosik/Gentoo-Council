@@ -100,4 +100,23 @@ describe AgendaItem do
       a.should_not be_editable_by(u, :agenda)
     end
   end
+
+  it 'should make sure timelimits are valid' do
+    valid_timelimits = ["", "0:0", "1:1 message", "1:2 longer message",
+                        "30:40 a few messages\n5:60 as separate lines"]
+    invalid_timelimits = ["a:0", "1:", "2:a", ":0", " 1:1 message",
+                          "30:40 a few messages\n\n5:60 and an empty line",
+                          "30:40 a few messages\n5:60 and an wrong line\na:"]
+
+    valid_timelimits.each do |limit|
+      Factory(:agenda_item, :timelimits => limit).should be_valid
+    end
+
+    invalid_timelimits.each do |limit|
+      item = AgendaItem.new :title => 'title', :timelimits => limit
+      item.should_not be_valid
+      item.errors.length.should be_equal(1)
+      item.errors[:timelimits].should_not be_nil
+    end
+  end
 end
