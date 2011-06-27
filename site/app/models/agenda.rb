@@ -5,6 +5,7 @@ class Agenda < ActiveRecord::Base
   fields do
     meeting_time        :datetime
     email_reminder_sent :boolean, :null => false, :default => false
+    meeting_log         :text, :null => false, :default => ''
     timestamps
   end
 
@@ -32,7 +33,10 @@ class Agenda < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.council_member? || acting_user.administrator?
+    return false if meeting_log_changed?
+    return true  if acting_user.council_member?
+    return true  if acting_user.administrator?
+    false
   end
 
   def destroy_permitted?

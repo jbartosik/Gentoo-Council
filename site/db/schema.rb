@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110624141720) do
+ActiveRecord::Schema.define(:version => 20110627151021) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110624141720) do
     t.string   "state",               :default => "open"
     t.datetime "key_timestamp"
     t.boolean  "email_reminder_sent", :default => false,  :null => false
+    t.text     "meeting_log",         :default => "",     :null => false
   end
 
   add_index "agendas", ["state"], :name => "index_agendas_on_state"

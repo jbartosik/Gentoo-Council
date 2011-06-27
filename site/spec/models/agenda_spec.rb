@@ -31,6 +31,16 @@ describe Agenda do
     end
   end
 
+  it 'should allow no one to edit or change meeting_log' do
+    a = Factory(:agenda)
+    a.meeting_log = 'changed'
+
+    for u in users_factory(AllRoles)
+      a.should_not be_editable_by(u, :meeting_log)
+      a.should_not be_updatable_by(u)
+    end
+  end
+
   def test_migration(object, migration, prohibited, allowed, final_state)
     # object - object to migrate
     # migration - migration name

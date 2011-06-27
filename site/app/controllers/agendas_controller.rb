@@ -17,6 +17,8 @@ class AgendasController < ApplicationController
     data = JSON.parse(request.env["rack.input"].read)
     Agenda.update_voting_options data['agenda']
     Agenda.process_results data data['votes']
+    agenda = Agenda.current
+    agenda.meeting_log = data['lines']
     Participation.mark_participations data
   end
 
