@@ -217,10 +217,11 @@ class Agenda(object):
          result = str.format(self.timelimit_missing_msg, message)
       return(result)
 
-    def post_result(self):
+    def post_result(self, lines):
         if not self.conf.manage_agenda:
           return('')
-        data_dict = {'votes' : self._votes, 'agenda' : self._agenda}
+        data_dict = {'votes' : self._votes, 'agenda' : self._agenda,
+                      'lines' : "\n".join(lines)}
         data = urllib.quote(json.dumps(data_dict))
         result_url = str.format(self.conf.result_url,
                       self.conf.voting_results_user,

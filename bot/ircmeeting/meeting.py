@@ -380,7 +380,7 @@ class MeetingCommands(object):
         for messageline in message.split('\n'):
             self.reply(messageline)
         self._meetingIsOver = True
-        self.config.agenda.post_result()
+        self.config.agenda.post_result(self.lines)
     def do_topic(self, nick, line, **kwargs):
         """Set a new topic in the channel."""
         if not self.isChair(nick): return
