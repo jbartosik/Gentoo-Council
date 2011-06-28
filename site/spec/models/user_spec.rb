@@ -81,6 +81,12 @@ describe User do
       u.slacking_status_in_period(agendas.first.meeting_time - 1.minute,
                                     agendas.last.meeting_time + 1.minute).should == 'No more a council'
     end
+
+    it 'should return "There were no meetings in this term yet" if there were no meeting yet' do
+      a = Factory(:agenda, :meeting_time => 1.year.from_now)
+      u = users_factory(:council)
+      u.slacking_status_in_period(1.year.ago, 1.month.from_now).should == "There were no meetings in this term yet"
+    end
   end
 
   it 'should allow no one to create' do
