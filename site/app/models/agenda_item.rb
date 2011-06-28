@@ -5,7 +5,7 @@ class AgendaItem < ActiveRecord::Base
   fields do
     title      :string
     discussion :string
-    body       :text
+    body       :markdown
     rejected   :boolean, :default => false
     timelimits :text, :null => false, :default => ''
     timestamps
