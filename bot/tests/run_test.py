@@ -344,7 +344,7 @@ class MeetBotTest(unittest.TestCase):
     def get_simple_agenda_test(self):
         test = test_meeting.TestMeeting()
         test.set_voters(['x', 'z'])
-        test.set_agenda([['first item', ['opt1', 'opt2']], ['second item', []], ['third item', []]])
+        test.set_agenda([['first item', ['opt1', 'opt2'], ''], ['second item', [], ''], ['third item', [], '']])
         test.M.config.manage_agenda = False
 
         test.answer_should_match("20:13:50 <x> #startmeeting",
