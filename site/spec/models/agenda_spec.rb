@@ -124,7 +124,9 @@ describe Agenda do
     end
 
     u = users_factory(:council, :council, :council)
-    Vote.count.should be_zero
+    Factory(:vote, :user => u.first, :voting_option => a1.voting_options.first)
+
+    Vote.count.should be_equal(1)
 
     results_hash = {
         a1.title => { u[0].irc_nick => 'Yes', u[1].irc_nick => 'Yes', u[2].irc_nick => 'Yes'},
@@ -135,6 +137,7 @@ describe Agenda do
     Agenda.process_results results_hash
 
     Vote.count.should be_equal(9)
+    Vote.council_vote_is(true).count.should be_equal(9)
 
     u[0].votes.*.voting_option.*.description.sort.should == ['Dunno', 'Yes', 'Yes']
     u[1].votes.*.voting_option.*.description.sort.should == ['Dunno', 'No', 'Yes']

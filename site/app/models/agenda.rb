@@ -90,7 +90,17 @@ class Agenda < ActiveRecord::Base
       for voter in votes.keys
         option = VotingOption.first :conditions => { :agenda_item_id => item.id, :description => votes[voter] }
         user = ::User.find_by_irc_nick voter
-        Vote.create! :voting_option => option, :user => user
+        old_vote = Vote.user_for_item(user.id, item.id).first
+        if old_vote.nil?
+          Vote.create! :voting_option => option, :user => user, :council_vote => true
+        else
+          # Result of Vote.user_for_item is read only so reload it
+          # Reload method won't work so use find.
+          old_vote = Vote.find(old_vote)
+          old_vote.voting_option = option
+          old_vote.council_vote = true
+          old_vote.save!
+        end
       end
     end
   end

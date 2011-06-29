@@ -37,4 +37,13 @@ describe Vote do
     o = Factory(:voting_option, :agenda_item => v.voting_option.agenda_item, :description => 'other option')
     Vote.new(:user => v.user, :voting_option => o).should_not be_valid
   end
+
+  it 'should prevent users from setting council_vote to true' do
+    for u in users_factory(AllRoles - [:guest])
+      v = Factory(:vote, :user => u, :council_vote => true)
+      v.should_not be_editable_by(u)
+      v.should_not be_updatable_by(u)
+      v.should_not be_destroyable_by(u)
+    end
+  end
 end

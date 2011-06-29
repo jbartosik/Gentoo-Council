@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627151021) do
+ActiveRecord::Schema.define(:version => 20110706144851) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
@@ -101,8 +101,9 @@ ActiveRecord::Schema.define(:version => 20110627151021) do
   create_table "votes", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "voting_option_id", :null => false
-    t.integer  "user_id",          :null => false
+    t.integer  "voting_option_id",                    :null => false
+    t.integer  "user_id",                             :null => false
+    t.boolean  "council_vote",     :default => false, :null => false
   end
 
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
