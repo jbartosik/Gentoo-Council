@@ -27,3 +27,15 @@ Given /^agenda item in current agenda$/ do
   Agenda.create!
   AgendaItem.create! :agenda => Agenda.last, :title => 'Item in current agenda'
 end
+
+Then /^I should see "([^"]*)" button inside content body$/ do |arg1|
+  within('.content-body') do
+    page.all(:xpath, "//input[@type='submit'][@value='#{arg1}']").should_not be_empty
+  end
+end
+
+Then /^"([^"]*)" button should be inline$/ do |arg1|
+  within('.one-button-form') do
+    page.all(:xpath, "//input[@type='submit'][@value='#{arg1}']").should_not be_empty
+  end
+end

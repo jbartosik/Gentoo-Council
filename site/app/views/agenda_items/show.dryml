@@ -1,16 +1,22 @@
 <show-page>
-  <append-content:>
+  <append-content-body:>
+    <div>
+    <span class="one-button-form">
     <form if="&this.editable_by?(current_user, :agenda) and this.agenda.nil?">
       <input value="&Agenda.current.id" type="hidden" name="agenda_item[agenda_id]"/>
       <submit label="Add to current agenda"/>
     </form>
+    </span>
 
+    <span class="one-button-form">
     <form if="&this.editable_by?(current_user, :rejected)">
       <input value="&!this.rejected?" type="hidden" name="agenda_item[rejected]"/>
       <submit label="Reject" unless="&this.rejected"/>
       <submit label="Un-reject" if="&this.rejected"/>
     </form>
-  </append-content:>
+    </span>
+    </div>
+  </append-content-body:>
 
   <after-collection:>
     <form if="&VotingOption.new.creatable_by?(current_user)" action="&create_voting_option_path">
