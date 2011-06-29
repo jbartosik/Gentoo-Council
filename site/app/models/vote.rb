@@ -1,3 +1,4 @@
+require 'permissions/set.rb'
 class Vote < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -7,7 +8,7 @@ class Vote < ActiveRecord::Base
   end
 
   belongs_to :voting_option, :null => false
-  belongs_to :user, :null => false
+  belongs_to :user, :null => false, :creator => true
 
   index [:voting_option_id, :user_id], :unique => true
 
@@ -15,19 +16,14 @@ class Vote < ActiveRecord::Base
   validates_presence_of :user
   validates_uniqueness_of :voting_option_id, :scope => :user_id
   validate :user_voted_only_once
-  validate :user_is_council_member
   # --- Permissions --- #
 
   def create_permitted?
-    false
+    user_is?(acting_user)
   end
 
-  def update_permitted?
-    false
-  end
-
-  def destroy_permitted?
-    false
+  multi_permission(:update, :destroy) do
+    user_is?(acting_user) and not user_changed?
   end
 
   def view_permitted?(field)
@@ -45,10 +41,5 @@ class Vote < ActiveRecord::Base
       if other_votes.count > 0
         errors.add(:user, 'User can vote only once per agenda item.')
       end
-    end
-
-    def user_is_council_member
-      return if user.nil?
-      errors.add(:user, 'Only council members can vote.') unless user.council_member?
     end
 end
