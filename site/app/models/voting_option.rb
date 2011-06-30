@@ -17,6 +17,16 @@ class VotingOption < ActiveRecord::Base
     description
   end
 
+  def community_votes
+    votes_for_this = votes.council_vote_is(false).count
+    votes_total = Vote.for_item(agenda_item.id).council_vote_is(false).count
+
+    return "No community votes for this item yet." if votes_total.zero?
+
+    votes_percentage = (100 * votes_for_this.to_f/votes_total).round
+    "#{votes_for_this} of #{votes_total} (#{votes_percentage}%) votes."
+  end
+
   # --- Permissions --- #
 
   def create_permitted?

@@ -6,3 +6,14 @@
     </header:>
   </card>
 </def>
+
+<extend tag="card" for="VotingOption">
+  <old-card merge>
+    <after-header:>
+      <body: param>
+        Community votes: <view:community_votes/>
+        <a href="&community_vote_path(this)" if="&current_user.signed_up?">Vote for it</a>
+      </body:>
+    </after-header:>
+  </old-card>
+</extend>

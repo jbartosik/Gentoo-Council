@@ -21,3 +21,16 @@ Feature:  Application side of voting
     And I fill in "voting_option_description" with "some description"
     And I press "Save Voting option"
     Then I should see "some description" as voting option description
+
+  Scenario: Vote as regular user
+    Given I am logged in as example user
+    And there is an item with some voting options for current agenda
+    When I am on the newest agenda item page
+    And I follow "Vote"
+    Then I should see my vote
+
+  Scenario: View community vote results
+    Given there is an item with some voting options for current agenda
+    And some community and council votes for a newer item
+    When I am on the newest agenda item page
+    Then I should see correct community votes

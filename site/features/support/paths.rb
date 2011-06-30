@@ -36,7 +36,7 @@ module NavigationHelpers
       agenda_path(Agenda.find $1)
 
     when /newest agenda item page/
-      agenda_item_path(AgendaItem.first)
+      agenda_item_path(AgendaItem.last)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

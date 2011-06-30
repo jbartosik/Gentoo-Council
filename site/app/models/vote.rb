@@ -38,15 +38,28 @@ class Vote < ActiveRecord::Base
     false
   end
 
-  named_scope :user_for_item, lambda { |uid, iid| joins(:voting_option).where([
-                                        'voting_options.agenda_item_id = ? AND votes.user_id = ?',
-                                        iid, uid]) }
+  scope :for_item, lambda { |iid| joins(:voting_option).where([
+                                        'voting_options.agenda_item_id = ?', iid]) }
+
+  def self.vote_for_option(user, option, council_vote)
+    item = option.agenda_item
+    old_vote = Vote.for_item(item.id).user_is(user.id).first
+    if old_vote.nil?
+      Vote.create! :voting_option => option, :user => user, :council_vote => council_vote
+    else
+      old_vote = Vote.find(old_vote)
+      old_vote.voting_option = option
+      old_vote.council_vote = council_vote
+      old_vote.save!
+    end
+  end
+
   protected
     def user_voted_only_once
       return if user.nil?
       return if voting_option.nil?
       return if voting_option.agenda_item.nil?
-      other_votes = Vote.user_for_item(user_id, voting_option.agenda_item_id)
+      other_votes = Vote.for_item(voting_option.agenda_item_id).user_id_is(user_id)
       other_votes = other_votes.id_is_not(id) unless new_record?
       if other_votes.count > 0
         errors.add(:user, 'User can vote only once per agenda item.')
