@@ -54,3 +54,7 @@ Feature: Suggest Agenda Items
     And "Reject" button should be inline
     And I should see "Add to current agenda" button inside content body
     And "Add to current agenda" button should be inline
+
+  Scenario: View discussion times
+    Given some agenda item with discussion times
+    Then I should see discussion times when viewing agenda items

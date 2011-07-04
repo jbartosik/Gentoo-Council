@@ -39,3 +39,16 @@ Then /^"([^"]*)" button should be inline$/ do |arg1|
     page.all(:xpath, "//input[@type='submit'][@value='#{arg1}']").should_not be_empty
   end
 end
+
+Given /^some agenda item with discussion times$/ do
+  Factory(:agenda_item)
+  Factory(:agenda_item, :discussion_time => 'From 2011.07.01 to 2011.07.05, 4 full days')
+  Factory(:agenda_item, :discussion_time => 'manually set')
+end
+
+Then /^I should see discussion times when viewing agenda items$/ do
+  AgendaItem.all.each do |item|
+    When "I am on agenda item number #{item.id} show page"
+    Then "I should see \"#{item.discussion_time}\""
+  end
+end

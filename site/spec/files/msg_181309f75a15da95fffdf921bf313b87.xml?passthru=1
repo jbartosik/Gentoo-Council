@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<?xml-stylesheet type="text/xsl" href="/xsl/guide.xsl"?>
+
+<!-- MHonArc v2.6.16 -->
+<!--X-Subject:  Council web app &#45; weekly report #2 -->
+<!--X-From-R13: Xbnpuvz Tvyvc Pnegbfvx <wonegbfvxNtznvy.pbz> -->
+<!--X-Date: Tue, 07 Jun 2011 20:05:30 +0000 -->
+<!--X-Message-Id: 4DEE8487.6050105@gmail.com -->
+<!--X-Content-Type: multipart/signed -->
+<!--X-Archives-Hash: 181309f75a15da95fffdf921bf313b87 -->
+<!--X-Reference: 4DE3D1AB.90203@gmail.com -->
+<!--X-Reference: 4DE3D2A0.80305@gmail.com -->
+<!--X-Derived: pgpN9dukUjNgi.pgp -->
+<!--X-Head-End-->
+<mainpage id="lists">
+<title>List Archive: gentoo-soc</title>
+
+<author title="Author">
+  <mail link="listadmin@gentoo.org">Gentoo Mailing List Administrators</mail>
+</author>
+
+<abstract>
+Archive of the gentoo-soc mailing list.
+</abstract>
+
+<version>1.0</version>
+<date>Jul 05, 2011</date>
+
+<chapter>
+<section>
+<body>
+
+<brite>List Archive: gentoo-soc</brite>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<table>
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_e490369a0c7e6c279af9baef63897629.xml">&lt; Prev</uri>
+      <uri link="index.xml#00000">By Thread</uri>
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml">Next &gt;</uri>
+      <uri link="msg_7d6727f6a11cbd8effa061def0cb6172.xml">&lt; Prev</uri>
+      <uri link="date.xml#00000">By Date</uri>
+      <uri link="msg_863ef8718d9689ba05289db1063ebf79.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+  <tr>
+    <th>Headers:</th>
+  </tr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+  <tr>
+    <ti>
+      <table>
+        <tr>
+          <ti>
+To:
+          </ti>
+          <ti>
+gentoo-soc@g.o
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+From:
+          </ti>
+          <ti>
+Joachim Filip Bartosik &lt;jbartosik@...&gt;
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Subject:
+          </ti>
+          <ti>
+ Council web app - weekly report #2
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Date:
+          </ti>
+          <ti>
+Tue, 07 Jun 2011 22:05:27 +0200
+          </ti>
+        </tr>
+
+      </table>
+    </ti>
+  </tr>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+</table>
+
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre plain="true">(Note: this is c&amp;p from my blog [0])
+
+Last week I:
+
+        Fixed some bugs
+        Added support for proxies:
+            each council member can appoint one proxy per meeting
+            proxy must not be a council member
+            council member who appointed proxy will not be listed as
+&#x2018;voter&#x2019; (for IRC bot)
+            appointed proxy will be listed as voter
+        Nearly finished work on bot
+            It obtains list of users allowed to vote from application
+            It obtains list of agenda items (with voting options for
+each item)
+            It helps to manage meeting (you can use #nextitem and
+#previtem commands)
+            It manages voting (#startvote, #endvote)
+        Application can send email reminders about meetings.
+
+For short description of project and sources, read this[1].
+
+[0]
+<uri  link="http://ahenobarbi.wordpress.com/2011/06/07/council-application-%E2%80%93-weekly-report-2/">http://ahenobarbi.wordpress.com/2011/06/07/council-application-%E2%80%93-weekly-report-2/</uri>
+[1]
+<uri  link="http://ahenobarbi.wordpress.com/2011/05/30/council-application-short-introduction/">http://ahenobarbi.wordpress.com/2011/05/30/council-application-short-introduction/</uri>
+
+</pre><table>
+  <tr>
+    <th>Attachment:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="pgpN9dukUjNgi.pgp">signature.asc</uri> <e>(OpenPGP digital signature)</e>
+    </ti>
+  </tr>
+</table>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+
+<table>
+  <tr>
+    <th>Replies:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml"> Re: Council web app - weekly report #3</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+  <tr>
+    <th>References:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_347d1f7e7149aafe73aa0cccdffd7b8c.xml"> Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_e490369a0c7e6c279af9baef63897629.xml"> Re: Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+
+<!--X-References-End-->
+<!--X-BotPNI-->
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_e490369a0c7e6c279af9baef63897629.xml">&lt; Prev</uri>
+      <uri link="index.xml#00000">By Thread</uri>
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml">Next &gt;</uri>
+      <uri link="msg_7d6727f6a11cbd8effa061def0cb6172.xml">&lt; Prev</uri>
+      <uri link="date.xml#00000">By Date</uri>
+      <uri link="msg_863ef8718d9689ba05289db1063ebf79.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+  <tr>
+    <th>Previous by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_e490369a0c7e6c279af9baef63897629.xml"> Re: Council web app - introduction</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_3132152624ffdcf3217437d95e75c634.xml"> Re: Council web app - weekly report #3</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Previous by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_7d6727f6a11cbd8effa061def0cb6172.xml"> Gentoo Maven Integration - Weekly Report #2</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_863ef8718d9689ba05289db1063ebf79.xml">Re:  Re: Rework Porthole to use the new public portage API -- Weekly report #1</uri></ti>
+  </tr>
+
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+
+</body>
+</section>
+</chapter>
+</mainpage>

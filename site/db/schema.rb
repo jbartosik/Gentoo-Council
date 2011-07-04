@@ -10,18 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706144851) do
+ActiveRecord::Schema.define(:version => 20110706145154) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "title"
     t.string   "discussion"
     t.text     "body"
-    t.boolean  "rejected",   :default => false
+    t.boolean  "rejected",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "agenda_id"
-    t.text     "timelimits", :default => "",    :null => false
+    t.text     "timelimits",      :default => "",    :null => false
+    t.string   "discussion_time", :default => "",    :null => false
   end
 
   add_index "agenda_items", ["agenda_id"], :name => "index_agenda_items_on_agenda_id"

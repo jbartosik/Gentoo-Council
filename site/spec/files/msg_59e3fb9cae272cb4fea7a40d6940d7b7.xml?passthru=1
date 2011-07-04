@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<?xml-stylesheet type="text/xsl" href="/xsl/guide.xsl"?>
+
+<!-- MHonArc v2.6.16 -->
+<!--X-Subject:  Council web app &#45; weekly report #4 -->
+<!--X-From-R13: Xbnpuvz Tvyvc Pnegbfvx <wonegbfvxNtznvy.pbz> -->
+<!--X-Date: Mon, 20 Jun 2011 09:38:16 +0000 -->
+<!--X-Message-Id: 4DFF151A.5060807@gmail.com -->
+<!--X-Content-Type: multipart/signed -->
+<!--X-Archives-Hash: 59e3fb9cae272cb4fea7a40d6940d7b7 -->
+<!--X-Reference: 4DE3D1AB.90203@gmail.com -->
+<!--X-Reference: 4DE3D2A0.80305@gmail.com -->
+<!--X-Derived: pgp02ZnJFw6tA.pgp -->
+<!--X-Head-End-->
+<mainpage id="lists">
+<title>List Archive: gentoo-soc</title>
+
+<author title="Author">
+  <mail link="listadmin@gentoo.org">Gentoo Mailing List Administrators</mail>
+</author>
+
+<abstract>
+Archive of the gentoo-soc mailing list.
+</abstract>
+
+<version>1.0</version>
+<date>Jul 04, 2011</date>
+
+<chapter>
+<section>
+<body>
+
+<brite>List Archive: gentoo-soc</brite>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<table>
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_c0c8b0aa686f83a7268cd13f067d6da2.xml">&lt; Prev</uri>
+      <uri link="index.xml#00001">By Thread</uri>
+      <uri link="msg_b5b2b992bbbfb4f5e7532db90af8f28a.xml">Next &gt;</uri>
+      <uri link="msg_a83e0d6daaa8bed4da4eda84522d4519.xml">&lt; Prev</uri>
+      <uri link="date.xml#00001">By Date</uri>
+      <uri link="msg_6ccab7d1785aad8238a0db7b4ef7b11a.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+  <tr>
+    <th>Headers:</th>
+  </tr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+  <tr>
+    <ti>
+      <table>
+        <tr>
+          <ti>
+To:
+          </ti>
+          <ti>
+gentoo-soc@g.o
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+From:
+          </ti>
+          <ti>
+Joachim Filip Bartosik &lt;jbartosik@...&gt;
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Subject:
+          </ti>
+          <ti>
+ Council web app - weekly report #4
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Date:
+          </ti>
+          <ti>
+Mon, 20 Jun 2011 11:38:34 +0200
+          </ti>
+        </tr>
+
+      </table>
+    </ti>
+  </tr>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+</table>
+
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre plain="true">(Note: this is c&amp;p from my blog [0])
+
+Last week I used metrical[1] on the web app and improved tests coverage
+and variable naming. I also removed some stuff it reported as &#x201C;code
+duplication&#x201D;. Metrical warned about some stuff, but I couldn&#x2019;t find a
+reasonable way to fix it.
+
+I tried to switch to capybara-webkit[2] for cucumber tests but I
+couldn&#x2019;t find a way to remove session cookies (and I need it to test
+&#x201C;Remember me&#x201D; feature) so I made a feature request[3] (including a
+suggested patch) and I&#x2019;m waiting.
+
+I added
+#option add
+#option remove
+#option list
+
+commands to MeetBot[4] to allow changing voting options during meeting
+(I must do some work on the webapp end to handle added and removed
+option properly).
+
+I also improved tests for my changes to MeetBot[4] and wrote test for
+Reminder (the Supybot[5]  plugin I wrote last week[6]).
+
+[0]
+<uri  link="http://ahenobarbi.wordpress.com/2011/06/20/council-application-%E2%80%93-weekly-report-4/">http://ahenobarbi.wordpress.com/2011/06/20/council-application-%E2%80%93-weekly-report-4/</uri>
+[1] <uri  link="http://rubydoc.info/gems/metrical/0.0.5/frames">http://rubydoc.info/gems/metrical/0.0.5/frames</uri>
+[2] <uri  link="http://rubygems.org/gems/capybara-webkit">http://rubygems.org/gems/capybara-webkit</uri>
+[3] <uri  link="https://github.com/thoughtbot/capybara-webkit/issues/79">https://github.com/thoughtbot/capybara-webkit/issues/79</uri>
+[4] <uri  link="http://wiki.debian.org/MeetBot">http://wiki.debian.org/MeetBot</uri>
+[5] <uri  link="http://sourceforge.net/projects/supybot/">http://sourceforge.net/projects/supybot/</uri>
+[6]
+<uri  link="http://ahenobarbi.wordpress.com/2011/06/13/council-application-%E2%80%93-weekly-report-3/">http://ahenobarbi.wordpress.com/2011/06/13/council-application-%E2%80%93-weekly-report-3/</uri>
+
+
+</pre><table>
+  <tr>
+    <th>Attachment:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="pgp02ZnJFw6tA.pgp">signature.asc</uri> <e>(OpenPGP digital signature)</e>
+    </ti>
+  </tr>
+</table>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+
+<table>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+  <tr>
+    <th>References:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_347d1f7e7149aafe73aa0cccdffd7b8c.xml"> Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_e490369a0c7e6c279af9baef63897629.xml"> Re: Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+
+<!--X-References-End-->
+<!--X-BotPNI-->
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_c0c8b0aa686f83a7268cd13f067d6da2.xml">&lt; Prev</uri>
+      <uri link="index.xml#00001">By Thread</uri>
+      <uri link="msg_b5b2b992bbbfb4f5e7532db90af8f28a.xml">Next &gt;</uri>
+      <uri link="msg_a83e0d6daaa8bed4da4eda84522d4519.xml">&lt; Prev</uri>
+      <uri link="date.xml#00001">By Date</uri>
+      <uri link="msg_6ccab7d1785aad8238a0db7b4ef7b11a.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+  <tr>
+    <th>Previous by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_c0c8b0aa686f83a7268cd13f067d6da2.xml">Re:  Re: Council web app - weekly report #3</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_b5b2b992bbbfb4f5e7532db90af8f28a.xml"> Council application &#x2013; weekly report #5</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Previous by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_a83e0d6daaa8bed4da4eda84522d4519.xml"> Gentoo/Java IDE integration Weekly report #5</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_6ccab7d1785aad8238a0db7b4ef7b11a.xml"> Rework Porthole to use the new public portage API -- Weekly report #4</uri></ti>
+  </tr>
+
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+
+</body>
+</section>
+</chapter>
+</mainpage>

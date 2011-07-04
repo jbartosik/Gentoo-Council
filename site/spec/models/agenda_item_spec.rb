@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'support/http_stub.rb'
 
 describe AgendaItem do
   it 'should allow all registered users to create' do
@@ -117,6 +118,32 @@ describe AgendaItem do
       item.should_not be_valid
       item.errors.length.should be_equal(1)
       item.errors[:timelimits].should_not be_nil
+    end
+  end
+
+  describe '.update_discussion_time' do
+    it 'should do nothing if discussion is not url to discussion on gentoo archives' do
+      items = [Factory(:agenda_item),
+                Factory(:agenda_item, :discussion_time => 'something'),
+                Factory(:agenda_item, :discussion => 'http://archives.gentoo.org/gentoo-bsd/'),
+                Factory(:agenda_item, :discussion_time => 'something',
+                                      :discussion => 'http://archives.gentoo.org/gentoo-bsd/')]
+      items.each do |item|
+        lambda {
+          item.send(:update_discussion_time)
+        }.should_not change(item, :discussion_time)
+      end
+    end
+
+
+
+    it 'should set discussion_time properly if discussion is url to discussion on gentoo archives' do
+      item = Factory(:agenda_item,
+                      :discussion =>
+                        'http://archives.gentoo.org/gentoo-soc/msg_e490369a0c7e6c279af9baef63897629.xml')
+      lambda {
+        item.send(:update_discussion_time)
+      }.should change(item, :discussion_time).from('').to('From 2011.05.30 to 2011.06.28, 28 full days')
     end
   end
 end

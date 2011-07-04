@@ -3,11 +3,12 @@ class AgendaItem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title      :string
-    discussion :string
-    body       :markdown
-    rejected   :boolean, :default => false
-    timelimits :text, :null => false, :default => ''
+    title           :string
+    discussion      :string
+    body            :text
+    rejected        :boolean, :default => false
+    timelimits      :text, :null => false, :default => ''
+    discussion_time :string, :null => false, :default => ''
     timestamps
   end
 
@@ -25,6 +26,7 @@ class AgendaItem < ActiveRecord::Base
   end
 
   def update_permitted?
+    return false if discussion_time_changed?
     return false if agenda._?.state == 'old'
     return false if user_changed?
     return true if acting_user.council_member?
@@ -55,6 +57,69 @@ class AgendaItem < ActiveRecord::Base
   end
 
   protected
+    # Updated discussion time for a single agenda item
+    # protected because we want to call it only from
+    # AgendaItem.update_discussion_times
+    # or similar methods in children classes (if there will be any)
+    def update_discussion_time
+      link_regexp =  /^(https?:\/\/)?archives.gentoo.org\/([a-zA-Z-]+)\/(msg_[a-fA-F0-9]+.xml)$/
+      uri_match  = link_regexp.match(discussion)
+      return unless uri_match
+
+      group = uri_match[2]
+      msg = uri_match[3]
+      message_info = get_message(group, msg)
+      first_date = Time.parse message_info[:date]
+      last_date = first_date
+
+      to_visit = []
+      visited = Set.new([msg])
+
+      to_visit += message_info[:links]
+
+      until to_visit.empty?
+        msg = to_visit.pop()
+
+        next if visited.include? msg
+        visited.add msg
+        message_info = get_message(group, msg)
+        current_date = Time.parse message_info[:date]
+
+        first_date = current_date if first_date > current_date
+        last_date = current_date if last_date < current_date
+        to_visit += message_info[:links]
+      end
+
+      duration = ((last_date - first_date) / 1.day).floor
+      first_date = first_date.strftime '%Y.%m.%d'
+      last_date = last_date.strftime '%Y.%m.%d'
+      self.discussion_time = "From #{first_date} to #{last_date}, #{duration} full days"
+      self.save!
+    end
+
+    def get_message(group, msg)
+      Net::HTTP.start("archives.gentoo.org") { |http|
+        resp = http.get("/#{group}/#{msg}?passthru=1")
+        doc = REXML::Document.new(resp.body)
+        table = REXML::XPath.match(doc, '//table/tr[th=\'Replies:\']/../tr')
+        in_replies = false
+        reply_links = []
+        table.each do |row|
+          th = REXML::XPath.first(row, "th")
+          if th
+            in_replies = (th.text == 'Replies:')
+          else
+            next unless in_replies
+            reply = REXML::XPath.first(row, "ti/uri")
+            reply_link = reply.attribute(:link).to_s
+            reply_links.push(reply_link)
+          end
+        end
+        date = resp.body.match(/\<\!--X-Date: (.*) --\>/)[1]
+        {:date => date, :links => reply_links}
+     }
+    end
+
     def timelimits_entered_properly
       regexp = /^\d+:\d+( .*)?$/
       for line in timelimits.split("\n")

@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<?xml-stylesheet type="text/xsl" href="/xsl/guide.xsl"?>
+
+<!-- MHonArc v2.6.16 -->
+<!--X-Subject: Re:  Re: Council web app &#45; weekly report #3 -->
+<!--X-From-R13: Dvpu Terrzna <evpu0Ntragbb.bet> -->
+<!--X-Date: Mon, 13 Jun 2011 13:24:28 +0000 -->
+<!--X-Message-Id: BANLkTinhnRRJKKiRsmrssBJ_J6xDPD6VPw@mail.gmail.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Archives-Hash: c0c8b0aa686f83a7268cd13f067d6da2 -->
+<!--X-Reference: 4DE3D1AB.90203@gmail.com -->
+<!--X-Reference: 4DE3D2A0.80305@gmail.com -->
+<!--X-Reference: 4DEE8487.6050105@gmail.com -->
+<!--X-Reference: 4DF5CE83.5000800@gmail.com -->
+<!--X-Head-End-->
+<mainpage id="lists">
+<title>List Archive: gentoo-soc</title>
+
+<author title="Author">
+  <mail link="listadmin@gentoo.org">Gentoo Mailing List Administrators</mail>
+</author>
+
+<abstract>
+Archive of the gentoo-soc mailing list.
+</abstract>
+
+<version>1.0</version>
+<date>Jul 05, 2011</date>
+
+<chapter>
+<section>
+<body>
+
+<brite>List Archive: gentoo-soc</brite>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<table>
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml">&lt; Prev</uri>
+      <uri link="index.xml#00000">By Thread</uri>
+      <uri link="msg_59e3fb9cae272cb4fea7a40d6940d7b7.xml">Next &gt;</uri>
+      <uri link="msg_c322633c3dba12318e74a614327f23cf.xml">&lt; Prev</uri>
+      <uri link="date.xml#00000">By Date</uri>
+      <uri link="msg_eb993e57c1ad3afc81f74dbfeab348be.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+  <tr>
+    <th>Headers:</th>
+  </tr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+  <tr>
+    <ti>
+      <table>
+        <tr>
+          <ti>
+To:
+          </ti>
+          <ti>
+gentoo-soc@g.o
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+From:
+          </ti>
+          <ti>
+Rich Freeman &lt;rich0@g.o&gt;
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Subject:
+          </ti>
+          <ti>
+Re:  Re: Council web app - weekly report #3
+          </ti>
+        </tr>
+
+        <tr>
+          <ti>
+Date:
+          </ti>
+          <ti>
+Mon, 13 Jun 2011 09:24:09 -0400
+          </ti>
+        </tr>
+
+      </table>
+    </ti>
+  </tr>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+</table>
+
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre plain="true">On Mon, Jun 13, 2011 at 4:46 AM, Joachim Filip Bartosik
+&lt;jbartosik@...&gt; wrote:
+&gt; &#xA0; &#xA0;Application now tracks slaking properly - it marks participation
+&gt; after meeting (council members who voted at least once are present).
+&gt; Then it calculates &quot;slacking status&quot; for current council members based
+&gt; on council term start date and participations.
+
+Honestly, I've seen this kind of thing tried so many times and fail in
+so many situations that I have to say that I think this isn't the
+right way to go about this.
+
+Why not let somebody in the Council just mark off attendance?
+Sometimes automation isn't the best solution.  What if somebody was
+present but there was only one vote and they didn't vote, or whatever?
+ I could see some value in the thing helping to facilitate taking
+attendance (looking at who talked during the meeting and suggesting
+that to the attendance-taker for confirmation).  In the end, however,
+deciding whether somebody slacked shouldn't be based on an algorithm -
+if it fails for whatever reason then suddenly we're back to just doing
+it manually 100%.
+
+I'm a big fan of KISS for these sorts of things.  The 95% solution is
+a lot better than the 99.9999% solution that is worth 10% when it gets
+something wrong trying too hard to get it all right.
+
+Rich
+
+
+</pre>
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+
+<table>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+  <tr>
+    <th>References:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_347d1f7e7149aafe73aa0cccdffd7b8c.xml"> Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_e490369a0c7e6c279af9baef63897629.xml"> Re: Council web app - introduction</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_181309f75a15da95fffdf921bf313b87.xml"> Council web app - weekly report #2</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml"> Re: Council web app - weekly report #3</uri><br/>
+      -- <e>Joachim Filip Bartosik</e>
+    </ti>
+  </tr>
+
+<!--X-References-End-->
+<!--X-BotPNI-->
+  <tr>
+    <th>Navigation:</th>
+  </tr>
+  <tr>
+    <ti>
+      <uri link="/">Lists</uri>:
+      <uri link="/gentoo-soc/">gentoo-soc</uri>:
+      <uri link="msg_3132152624ffdcf3217437d95e75c634.xml">&lt; Prev</uri>
+      <uri link="index.xml#00000">By Thread</uri>
+      <uri link="msg_59e3fb9cae272cb4fea7a40d6940d7b7.xml">Next &gt;</uri>
+      <uri link="msg_c322633c3dba12318e74a614327f23cf.xml">&lt; Prev</uri>
+      <uri link="date.xml#00000">By Date</uri>
+      <uri link="msg_eb993e57c1ad3afc81f74dbfeab348be.xml">Next &gt;</uri>
+    </ti>
+  </tr>
+  <tr>
+    <th>Previous by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_3132152624ffdcf3217437d95e75c634.xml"> Re: Council web app - weekly report #3</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by thread:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_59e3fb9cae272cb4fea7a40d6940d7b7.xml"> Council web app - weekly report #4</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Previous by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_c322633c3dba12318e74a614327f23cf.xml"> Rework Porthole to use the new public portage API -- Weekly report #3</uri></ti>
+  </tr>
+
+  <tr>
+    <th>Next by date:</th>
+  </tr>
+  <tr>
+    <ti><uri link="msg_eb993e57c1ad3afc81f74dbfeab348be.xml"> Gentoo/Java integration Project Weekly report #4</uri></ti>
+  </tr>
+
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+
+</body>
+</section>
+</chapter>
+</mainpage>
