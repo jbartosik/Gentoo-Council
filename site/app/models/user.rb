@@ -58,6 +58,9 @@ class User < ActiveRecord::Base
     num_status = 0
     agendas = Agenda.all :conditions => ['agendas.meeting_time BETWEEN ? AND ?', start_date, end_date],
                           :order => :meeting_time
+
+    return 'There were no meetings in this term yet' if agendas.count.zero?
+
     for agenda in agendas
       if Participation.participant_is(self).agenda_is(agenda).count == 0
         num_status += 1 if num_status < 3

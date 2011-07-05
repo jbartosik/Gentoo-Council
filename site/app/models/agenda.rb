@@ -52,7 +52,9 @@ class Agenda < ActiveRecord::Base
   end
 
   def self.current
-    Agenda.state_is_not(:old).first
+    result = Agenda.state_is_not(:old).first
+    result = Agenda.create! unless result
+    result
   end
 
   def self.transitions_available(user)

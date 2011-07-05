@@ -243,6 +243,18 @@ describe Agenda do
     end
   end
 
+  describe '#current?' do
+    it 'should create new agenda if needed' do
+      Agenda.count.should be_zero
+      agenda = Agenda.current
+      agenda2 = Agenda.current
+      agenda.should be_a(Agenda)
+      agenda2.should be_a(Agenda)
+      Agenda.count.should be_equal(1)
+      agenda.id.should be_equal(agenda2.id)
+    end
+  end
+
   it 'should return proper voting_array' do
     old_agenda = Factory(:agenda, :state => 'old')
     current_agenda = Factory(:agenda)

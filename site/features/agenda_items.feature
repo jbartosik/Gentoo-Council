@@ -44,3 +44,13 @@ Feature: Suggest Agenda Items
     When I am on newest agenda item page
     Then I should not see "Add to current agenda" button
     And I should not see "Reject" button
+
+  Scenario: Reject and Add to current agenda  buttons displayed nicely
+    Given example agenda item
+    And an agenda
+    And I am logged in as a council member
+    When I am on the first suggested agenda page
+    Then I should see "Reject" button inside content body
+    And "Reject" button should be inline
+    And I should see "Add to current agenda" button inside content body
+    And "Add to current agenda" button should be inline
