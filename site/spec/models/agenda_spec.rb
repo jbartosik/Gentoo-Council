@@ -296,4 +296,13 @@ describe Agenda do
       VotingOption.last.description.should == 'new option'
     end
   end
+
+  it 'should create new link to doodle poll when it does not have one' do
+    Object.should_receive(:new_poll_for_council_meeting).and_return('some link')
+    agendas = [ Factory(:agenda, :meeting_poll => nil, :state => 'old')]#,
+                #Factory(:agenda, :meeting_poll => '', :state => 'old')]
+    agendas.each do |agenda|
+      agenda.meeting_poll.should == 'some link'
+    end
+  end
 end

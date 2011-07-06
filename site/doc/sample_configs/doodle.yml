@@ -1,0 +1,4 @@
+min_days_between_meetings: 28
+days_for_meeting: 4
+doodle_host: doodle-test.com
+doodle_api: api1WithoutAccessControl

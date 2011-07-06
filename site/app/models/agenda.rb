@@ -1,3 +1,4 @@
+require 'doodle_poll.rb'
 class Agenda < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -6,6 +7,7 @@ class Agenda < ActiveRecord::Base
     meeting_time        :datetime
     email_reminder_sent :boolean, :null => false, :default => false
     meeting_log         :text, :null => false, :default => ''
+    meeting_poll        :string, :null => false, :default => ''
     timestamps
   end
 
@@ -49,6 +51,15 @@ class Agenda < ActiveRecord::Base
 
   before_create do |agenda|
     agenda.meeting_time ||= Time.now
+  end
+
+  def meeting_poll
+    meeting_poll = self.read_attribute(:meeting_poll)
+    return meeting_poll unless meeting_poll.nil? or meeting_poll.empty?
+
+    self.send(:write_attribute, :meeting_poll, Object.send(:new_poll_for_council_meeting))
+    save!
+    self.read_attribute(:meeting_poll)
   end
 
   def self.current

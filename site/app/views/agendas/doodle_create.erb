@@ -1,0 +1,15 @@
+<poll xmlns="http://doodle.com/xsd1">
+  <type>TEXT</type>
+  <hidden>false</hidden>
+  <levels>2</levels>
+  <title>Next Gentoo Council meeting</title>
+  <description>If you are Gentoo Council member please mark when you can participate</description>
+  <initiator>
+    <name>Gentoo Council Webapp</name>
+  </initiator>
+  <options>
+    <%=
+      options.inject(''){ |result, option| result += "<option>#{option}</option>\n" }
+    %>
+  </options>
+</poll>
