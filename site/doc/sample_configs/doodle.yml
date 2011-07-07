@@ -2,3 +2,5 @@ min_days_between_meetings: 28
 days_for_meeting: 4
 doodle_host: doodle-test.com
 doodle_api: api1WithoutAccessControl
+doodle_key: y23xr43by6qe5nwaeij2bq35lcusw4rj
+doodle_secret: iakrzncgm667a9eikyrsbk28v4ontif9

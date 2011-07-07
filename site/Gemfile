@@ -5,6 +5,8 @@ gem 'devise'
 gem 'hobo_devise', '>=0.0.2'
 gem 'delayed_job'
 gem 'bluecloth'
+gem 'oauth'
+gem 'oauth2'
 
 group :development, :test do
   gem 'ruby-debug'
