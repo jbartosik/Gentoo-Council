@@ -21,4 +21,4 @@ group :development, :test do
   gem 'fuubar-cucumber'
 end
 
-gem "hobo", ">= 1.3.0.pre28"
+gem "hobo", ">= 1.3.0.pre28", :git => 'git://github.com/ahenobarbi/hobo.git', :branch => 'rails3'

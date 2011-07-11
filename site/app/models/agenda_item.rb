@@ -3,12 +3,12 @@ class AgendaItem < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    title           :string
-    discussion      :string
-    body            :text
-    rejected        :boolean, :default => false
-    timelimits      :text, :null => false, :default => ''
-    discussion_time :string, :null => false, :default => ''
+    title      :string
+    discussion :string
+    body       :markdown
+    rejected   :boolean, :default => false
+    timelimits :text
+    discussion_time :string
     timestamps
   end
 

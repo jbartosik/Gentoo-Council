@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     irc_nick        :string, :required, :unique
     email           :email_address, :login => true
     administrator   :boolean, :default => false
-    council_member  :boolean, :default => false, :null => false
+    council_member  :boolean, :default => false
     timestamps
   end
 

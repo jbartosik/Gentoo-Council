@@ -5,8 +5,8 @@ class Proxy < ActiveRecord::Base
   fields do
     # Remeber nicks from when meeting took place
     # May be useful when reading logs (if user changes nick)
-    council_member_nick :string, :null => false
-    proxy_nick          :string, :null => false
+    council_member_nick :string
+    proxy_nick          :string
     timestamps
   end
 

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706145154) do
+ActiveRecord::Schema.define(:version => 20110711074750) do
 
   create_table "agenda_items", :force => true do |t|
-    t.string   "title"
-    t.string   "discussion"
-    t.text     "body"
-    t.boolean  "rejected",        :default => false
+    t.string   "title",      :default => "",    :null => false
+    t.string   "discussion", :default => "",    :null => false
+    t.text     "body",       :default => "",    :null => false
+    t.boolean  "rejected",   :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20110706145154) do
     t.datetime "meeting_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",               :default => "open"
+    t.string   "state",               :default => "open", :null => false
     t.datetime "key_timestamp"
     t.boolean  "email_reminder_sent", :default => false,  :null => false
     t.text     "meeting_log",         :default => "",     :null => false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20110706145154) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "participations", :force => true do |t|
-    t.string   "irc_nick"
+    t.string   "irc_nick",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "participant_id"
@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(:version => 20110706145154) do
   add_index "participations", ["participant_id"], :name => "index_participations_on_participant_id"
 
   create_table "proxies", :force => true do |t|
-    t.string   "council_member_nick", :null => false
-    t.string   "proxy_nick",          :null => false
+    t.string   "council_member_nick", :default => "", :null => false
+    t.string   "proxy_nick",          :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "council_member_id",   :null => false
-    t.integer  "proxy_id",            :null => false
-    t.integer  "agenda_id",           :null => false
+    t.integer  "council_member_id",                   :null => false
+    t.integer  "proxy_id",                            :null => false
+    t.integer  "agenda_id",                           :null => false
   end
 
   add_index "proxies", ["agenda_id"], :name => "index_proxies_on_agenda_id"
@@ -82,18 +82,18 @@ ActiveRecord::Schema.define(:version => 20110706145154) do
   add_index "proxies", ["proxy_id"], :name => "index_proxies_on_proxy_id"
 
   create_table "users", :force => true do |t|
-    t.string   "salt",                      :limit => 40
-    t.string   "remember_token"
+    t.string   "salt",                      :limit => 40, :default => "",       :null => false
+    t.string   "remember_token",                          :default => "",       :null => false
     t.datetime "remember_token_expires_at"
-    t.string   "name"
-    t.string   "crypted_password",          :limit => 60
-    t.string   "irc_nick"
-    t.string   "email"
-    t.boolean  "administrator",                           :default => false
+    t.string   "name",                                    :default => "",       :null => false
+    t.string   "crypted_password",          :limit => 60, :default => "",       :null => false
+    t.string   "irc_nick",                                :default => "",       :null => false
+    t.string   "email",                                   :default => "",       :null => false
+    t.boolean  "administrator",                           :default => false,    :null => false
     t.boolean  "council_member",                          :default => false,    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                   :default => "active"
+    t.string   "state",                                   :default => "active", :null => false
     t.datetime "key_timestamp"
   end
 
@@ -112,10 +112,10 @@ ActiveRecord::Schema.define(:version => 20110706145154) do
   add_index "votes", ["voting_option_id"], :name => "index_votes_on_voting_option_id"
 
   create_table "voting_options", :force => true do |t|
-    t.string   "description"
+    t.string   "description",    :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "agenda_item_id", :null => false
+    t.integer  "agenda_item_id",                 :null => false
   end
 
   add_index "voting_options", ["agenda_item_id"], :name => "index_voting_options_on_agenda_item_id"

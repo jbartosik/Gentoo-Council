@@ -10,6 +10,7 @@ module Council
   class Application < Rails::Application
 
   config.hobo.dryml_only_templates = true
+  config.hobo.null_false_by_default = true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

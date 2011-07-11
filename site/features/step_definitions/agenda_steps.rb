@@ -6,7 +6,7 @@ Given /^an ?(\w*) agenda$/ do |state|
 end
 
 Then /^I should see current date as meeting time$/ do
-  Then "I should see \"#{Time.now.strftime("%Y-%m-%d")}\" as meeting time"
+  Then "I should see \"#{Time.now.strftime("%d %b %Y")}\" as meeting time"
 end
 
 When /^I follow link to first agenda$/ do
