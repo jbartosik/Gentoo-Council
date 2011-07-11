@@ -4,22 +4,7 @@
 en:
   hello: "Hello world"
 
-#  attributes:
-#    created_at: Created at
-#    updated_at: Updated at
-#
-#  activerecord:
-#    models:
-#      user:
-#        one: User
-#        other: Users
-#    attributes:
-#      user:
-#        name: Name
-#        password: Password
-#        current_password: Current Password
-#        password_confirmation: Password Confirmation
-#        email_address: Email Address
-#    attribute_help:
-#      user:
-#        email_address: We will never share your address with third parties
+  activerecord:
+    attribute_help:
+      agenda_item:
+        timelimits: "Enter reminders for this item. Each line should be a separate reminder in 'mm:ss <reminder message>' format"

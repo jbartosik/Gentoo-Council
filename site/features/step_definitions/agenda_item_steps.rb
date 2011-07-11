@@ -52,3 +52,8 @@ Then /^I should see discussion times when viewing agenda items$/ do
     Then "I should see \"#{item.discussion_time}\""
   end
 end
+
+Then /^I should see hint on timelimits format$/ do
+  Then 'I should see "Enter reminders for this item. Each line should be a ' +
+        'separate reminder in \'mm:ss <reminder message>\' format" within ".input-help"'
+end
