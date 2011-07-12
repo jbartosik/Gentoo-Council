@@ -1,0 +1,42 @@
+-
+  state: open
+  agenda_items:
+    -
+      title:  What shall we do with drunken sailor
+      body:   Earl-aye in the morning?
+      voting_options:
+                      - Shave his belly with a rusty razor
+                      - "Put him in the long boat till he's sober"
+                      - Put him in the scuppers with a hose-pipe on him
+                      - "Put him in bed with the captain's daughter"
+    -
+      title:  Some proposal
+      body:   Description of some proposal
+      voting_options:
+                      - Accept
+                      - Reject
+-
+  state: old
+  agenda_items:
+    -
+      title:  Accepted item
+      body:   Some item that was acepted on previous meeting
+      voting_options:
+                      - Accept
+                      - Reject
+    -
+      title:  Rejected item
+      body:   Some item that was rejected on previous meeting
+      voting_options:
+                      - Accept
+                      - Reject
+-
+  agenda_items:
+    -
+      title:  Pending idea
+      body:   Some idea that was neither added to agenda nor rejected.
+      rejected: false
+    -
+      title:    Rejected idea
+      body:     Some idea that council rejected to discuss on.
+      rejected: true
