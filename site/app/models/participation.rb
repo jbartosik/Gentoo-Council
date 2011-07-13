@@ -18,7 +18,7 @@ class Participation < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    irc_nick :string
+    irc_nick :string, :default => ""
     timestamps
   end
 

@@ -20,8 +20,8 @@ class Agenda < ActiveRecord::Base
   fields do
     meeting_time        :datetime
     email_reminder_sent :boolean, :default => false
-    meeting_log         :text
-    summary             :text
+    meeting_log         :text, :default => ""
+    summary             :text, :null => true
     timestamps
   end
 

@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
   hobo_devise_user_model :auth_methods => [:database_authenticable]
 
   fields do
-    name            :string, :required, :unique
-    irc_nick        :string, :required, :unique
-    email           :email_address, :login => true
+    name            :string, :required, :unique, :default => ""
+    irc_nick        :string, :required, :unique, :default => ""
+    email           :email_address, :login => true, :default => ""
     administrator   :boolean, :default => false
     council_member  :boolean, :default => false
     timestamps

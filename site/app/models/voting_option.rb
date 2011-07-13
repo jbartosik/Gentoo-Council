@@ -18,7 +18,7 @@ class VotingOption < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    description :string
+    description :string, :default => ""
     timestamps
   end
 
