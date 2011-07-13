@@ -519,6 +519,19 @@ class MeetBotTest(unittest.TestCase):
 
         test.process('20:13:50 <x> #nextitem')
 
+    def test_multiple_reminders(self):
+        test = self.get_simple_agenda_test()
+        test.process('20:13:50 <x> #timelimit add 0:1 message')
+        test.process('20:13:50 <x> #timelimit add 0:2 other message')
+        test.process('20:13:50 <x> #timelimit add 0:3 yet another message')
+        test.log = []
+        time.sleep(4)
+        expected_messages = ['message', 'other message', 'yet another message']
+        messages_match = (expected_messages == test.log)
+        error_msg = 'Received messages ' + str(test.log) + \
+                    ' didn\'t match expected ' + str(expected_messages)
+        assert messages_match, error_msg
+
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))
 
