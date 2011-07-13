@@ -3,8 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factories.rb'
 
-RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
-environment_path = File.expand_path(File.join(RAILS_ROOT, 'config', 'environment'))
+environment_path = File.expand_path(File.join(::Rails.root.to_s, 'config', 'environment'))
 require(environment_path)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
