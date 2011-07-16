@@ -1,6 +1,3 @@
-require File.expand_path("../../spec/factories.rb", __FILE__)
-require File.expand_path("../../spec/support/users_factory.rb", __FILE__)
-
 def vote(user, item, option_description)
   option = VotingOption.agenda_item_is(item).description_is(option_description).first
   Factory(:vote, :voting_option => option, :user => user, :council_vote => true)

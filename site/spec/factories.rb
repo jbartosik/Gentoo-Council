@@ -31,3 +31,5 @@ Factory.define :proxy do |p|;
   p.proxy           {users_factory(:user)}
   p.agenda          {Factory(:agenda)}
 end
+
+require File.expand_path("../support/users_factory.rb", __FILE__)

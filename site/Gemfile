@@ -18,7 +18,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'show_me_the_cookies'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'fuubar-cucumber'
 end
 
