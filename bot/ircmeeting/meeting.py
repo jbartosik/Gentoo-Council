@@ -323,14 +323,20 @@ class MeetingCommands(object):
         self.reply(self.config.agenda.get_agenda_item())
 
     def do_nextitem(self, nick, time_, line, **kwargs):
+        """Go to next agenda item"""
         self.reply(self.config.agenda.next_agenda_item(self))
 
     def do_previtem(self, nick, time_, line, **kwargs):
+        """Go to previous agenda item"""
         self.reply(self.config.agenda.prev_agenda_item(self))
 
     def do_timelimit(self, nick, time_, line, **kwargs):
-        reply = 'Usage "#timelimit add <minutes>:<seconds> <message>" or ' +\
-                '"#timelimit list" or "#timelimit remove <message>"'
+        """ Manage reminders:
+        #timelimit list - list all active reminders
+        #timelimit add <minutes>:<seconds> <message> - add a new reminder
+        #timelimit remove <message> - remove reminder with message"""
+
+        reply = self.do_timelimit.__doc__
         match = re.match( ' *?add ([0-9]+):([0-9]+) (.*)', line)
         if match:
           reply = self.config.agenda.add_timelimit(int(match.group(1)),
@@ -341,24 +347,33 @@ class MeetingCommands(object):
           match = re.match( ' *?remove (.*)', line)
           if(match):
             reply = self.config.agenda.remove_timelimit(match.group(1))
-        self.reply(reply)
+        for line in reply.split("\n"):
+          self.reply(line)
 
     def do_changeitem(self, nick, time_, line, **kwargs):
+        """Change agenda item. Usage: #chengeitem <item number>"""
         self.reply(self.config.agenda.change_agenda_item(line))
 
     def do_startvote(self, nick, time_, line, **kwargs):
+       """Start vote on current item"""
        for messageline in self.config.agenda.start_vote().split('\n'):
             self.reply(messageline)
 
     def do_endvote(self, nick, time_, line, **kwargs):
+       """Close voting for current agenda item. You can resume voting later with #startvote"""
        for messageline in self.config.agenda.end_vote().split('\n'):
             self.reply(messageline)
 
     def do_vote(self, nick, time_, line, **kwargs):
+        """Make a vote. Usage: vote <option number>. Remember to #startvote before voting."""
         for messageline in self.config.agenda.vote(nick, line).split('\n'):
             self.reply(messageline)
 
     def do_option(self, nick, time_, line, **kwargs):
+        """Manage voting options:
+            #option list - lists all available votin options for current item
+            #option add <option text> - adds new voting option
+            #option remove <option number> - removes existing option"""
         if re.match( ' *?list', line):
           result = self.config.agenda.options()
         elif re.match( ' *?add .*', line):
@@ -515,6 +530,16 @@ class MeetingCommands(object):
         commands = [ "#"+x[3:] for x in dir(self) if x[:3]=="do_" ]
         commands.sort()
         self.reply("Available commands: "+(" ".join(commands)))
+    def do_command(self, nick, line, **kwargs):
+        name = "do_" + line.strip()
+        attr = getattr(self, name)
+        if attr is None:
+          return
+        doc = attr.__doc__
+        if doc is None:
+          return
+        for line in doc.split("\n"):
+          self.reply(line)
 
 
 

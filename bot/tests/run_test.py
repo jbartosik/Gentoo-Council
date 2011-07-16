@@ -450,10 +450,7 @@ class MeetBotTest(unittest.TestCase):
 
     def test_agenda_time_limit_adding(self):
         test = self.get_simple_agenda_test()
-        test.answer_should_match('20:13:50 <x> #timelimit', 'Usage "#timelimit ' +\
-                                  'add <minutes>:<seconds> <message>" or "' +\
-                                  '#timelimit list" or "#timelimit remove ' +\
-                                  '<message>"')
+        test.answer_should_match('20:13:50 <x> #timelimit', test.M.do_timelimit.__doc__)
         test.answer_should_match('20:13:50 <x> #timelimit add 0:1 some other message',
                                   'Added "some other message" reminder in 0:1')
         test.answer_should_match('20:13:50 <x> #timelimit add 1:0 some message',
@@ -531,6 +528,16 @@ class MeetBotTest(unittest.TestCase):
         error_msg = 'Received messages ' + str(test.log) + \
                     ' didn\'t match expected ' + str(expected_messages)
         assert messages_match, error_msg
+    def test_command_help(self):
+        test = self.get_simple_agenda_test()
+        commands = ['startmeeting', 'startvote', 'vote', 'endvote',
+                    'nextitem', 'previtem', 'changeitem', 'option',
+                    'timelimit', 'endmeeting']
+        for command in commands:
+          desc = getattr(test.M, 'do_' + command).__doc__
+          if desc is None:
+            desc = ''
+          test.answer_should_match('20:13:50 <x> #command ' + command, desc)
 
 if __name__ == '__main__':
     os.chdir(os.path.join(os.path.dirname(__file__), '.'))
