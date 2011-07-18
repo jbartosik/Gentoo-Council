@@ -19,6 +19,11 @@ yml_seed_path = File.expand_path("../seed.yml", __FILE__)
 yml_seed_file = File.open(yml_seed_path)
 seed = YAML::load(yml_seed_file)
 
+[Agenda, AgendaItem, Participation, Proxy, User, Vote, VotingOption].each do |model|
+  # Refresh table_exists cache for all models
+  model.table_exists?(true)
+end
+
 seed.each do |agenda_desc|
   state = agenda_desc['state']
   agenda = state.nil? ? nil : Factory(:agenda, :state => state)

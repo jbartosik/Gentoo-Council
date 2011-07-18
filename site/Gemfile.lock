@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ahenobarbi/hobo.git
-  revision: b33a9a69a2e1ce09b98c00ecee6c51bd1459fee5
+  revision: c9c13eb614a3c4a699a59d02e4757c2cdd682988
   branch: rails3
   specs:
     dryml (1.3.0)
