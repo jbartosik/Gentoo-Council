@@ -45,4 +45,14 @@ describe VotingOption do
       v.should be_viewable_by(u)
     end
   end
+
+  it 'should return proper community votes count' do
+    item = Factory(:agenda_item)
+    option_a = Factory(:voting_option, :agenda_item => item, :description => 'a')
+    option_b = Factory(:voting_option, :agenda_item => item, :description => 'b')
+    (1..3).each { |i| Factory(:vote, :council_vote => false, :voting_option => option_a) }
+    (1..7).each { |i| Factory(:vote, :council_vote => false, :voting_option => option_b) }
+    option_a.community_votes.should == '3 of 10 (30%) votes.'
+    option_b.community_votes.should == '7 of 10 (70%) votes.'
+  end
 end
