@@ -20,6 +20,15 @@ class AgendaItemsController < ApplicationController
   auto_actions :all, :except => :index
   before_filter :login, :except => :show
 
+  def update_poll_answers
+    new_choice = params[:choice].keys.collect { |txt| txt.to_i }
+    item = AgendaItem.find(params[:agenda_item_id])
+
+    Vote.update_user_poll_votes(new_choice, current_user, item)
+
+    redirect_to agenda_item_path(item)
+  end
+
   protected
     def login
       redirect_to user_login_path unless current_user.signed_up?

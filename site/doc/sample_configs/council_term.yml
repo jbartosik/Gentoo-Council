@@ -1,1 +1,3 @@
 start_time: --- 2011-05-09T21:12:15+02:00
+min_days_between_meetings: 28
+days_for_meeting: 4

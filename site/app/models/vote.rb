@@ -68,11 +68,25 @@ class Vote < ActiveRecord::Base
     end
   end
 
+  def self.update_user_poll_votes(new_choice, user, item)
+    old_choice = Vote.user_is(user).for_item(item).*.voting_option_id
+    (old_choice - new_choice).each do |choice_id|
+      vote = Vote.user_is(user).voting_option_is(choice_id).first
+      next if vote.nil?
+      vote.destroy
+    end
+
+    (new_choice - old_choice).each do |choice_id|
+      next unless VotingOption.find(choice_id).agenda_item_is?(item)
+      Vote.create! :user => user, :voting_option_id => choice_id
+    end
+  end
   protected
     def user_voted_only_once
       return if user.nil?
       return if voting_option.nil?
       return if voting_option.agenda_item.nil?
+      return if voting_option.agenda_item.poll
       other_votes = Vote.for_item(voting_option.agenda_item_id).user_id_is(user_id)
       other_votes = other_votes.id_is_not(id) unless new_record?
       if other_votes.count > 0

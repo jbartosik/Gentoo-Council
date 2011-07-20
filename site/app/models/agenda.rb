@@ -21,7 +21,7 @@ class Agenda < ActiveRecord::Base
     meeting_time        :datetime
     email_reminder_sent :boolean
     meeting_log         :text
-    summary             :text
+    summary             :text, :null => true
     timestamps
   end
 
@@ -75,6 +75,21 @@ class Agenda < ActiveRecord::Base
 
   before_create do |agenda|
     agenda.meeting_time ||= Time.now
+  end
+
+  after_create do |agenda|
+    day_poll = AgendaItem.create! :poll => true, :title => 'Meeting day poll', :agenda => agenda
+    hour_poll = AgendaItem.create! :poll => true, :title => 'Meeting hour poll', :agenda => agenda
+    min_date = CustomConfig['CouncilTerm']['min_days_between_meetings'].days.from_now
+
+    (0..CustomConfig['CouncilTerm']['days_for_meeting']).each do |days_from_min|
+      description = (min_date + days_from_min.days).strftime '%Y.%m.%d %A'
+      VotingOption.create! :agenda_item => day_poll, :description => description
+    end
+
+    (0..24).each do |hour|
+      VotingOption.create! :agenda_item => hour_poll, :description => "#{hour}:00 - #{hour + 1}:00"
+    end
   end
 
   def self.current
@@ -136,7 +151,7 @@ class Agenda < ActiveRecord::Base
   end
 
   def time_for_reminders(type)
-    offset = CustomConfig['Reminders']["hours_before_meeting_to_send_#{type}_reminders"].hours
+    offset = CustomConfig['Reminders']["hours_before_meeting_to_send_#{type.to_s}_reminders"].hours
     meeting_time - offset
   end
 

@@ -38,6 +38,8 @@ end
 
 Given /^there is an item with some voting options for current agenda$/ do
   agenda = Factory(:agenda)
+  AgendaItem.destroy_all
+  VotingOption.destroy_all
   item = Factory(:agenda_item, :agenda => agenda)
   voting_option1 = Factory(:voting_option, :agenda_item => item)
   voting_option2 = Factory(:voting_option, :agenda_item => item, :description => 'Another choice')

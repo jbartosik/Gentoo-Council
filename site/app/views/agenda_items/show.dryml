@@ -16,6 +16,49 @@
     </form>
     </span>
     </div>
+
+    <table if="&current_user.signed_up?">
+      <tr>
+        <repeat:voting_options>
+          <th>
+            <name/>
+          </th>
+        </repeat>
+      </tr>
+      <repeat with="&User.council_member_is(true)">
+        <tr>
+          <% user = this %>
+          <repeat with="&@this.voting_options">
+            <td if="& not(user.id == current_user.id)">
+              <unless with="&Vote.user_is(user).voting_option_is(this).count.zero?">
+                +
+              </unless>
+            </td>
+          </repeat>
+        </tr>
+      </repeat>
+      <form if="&current_user.council_member?" action="&update_poll_answers_path">
+        <tr>
+          <repeat with="&@this.voting_options">
+            <td>
+              <% name = "choice[#{this.id}]"
+                 id = this.id %>
+              <if with="&Vote.user_is(current_user).voting_option_is(this).count.zero?">
+                <input type="checkbox" name="&name" value="&id"/>
+              </if>
+              <else>
+                <input type="checkbox" name="&name" value="&this.id" checked/>
+              </else>
+            </td>
+          </repeat>
+          <td>
+            <after-submit stay-here/>
+            <input type="hidden" name="agenda_item_id" value="&this.id"/>
+            <submit label="Update choice"/>
+          </td>
+        </tr>
+      </form>
+    </table>
   </append-content-body:>
 
   <after-collection:>

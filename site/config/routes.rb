@@ -20,6 +20,7 @@ Council::Application.routes.draw do
 
   match 'users/voters' => 'users#voters', :as => 'voters'
   match 'users/current_council_slacking' => 'users#current_council_slacking', :as => 'current_council_slacking'
+  match 'agenda_items/update_poll_answers' => 'agenda_items#update_poll_answers', :as => 'update_poll_answers'
   match 'agendas/current_items' => 'agendas#current_items', :as => 'current_items'
   match 'agendas/results' => 'agendas#results', :as => 'results'
   match 'agendas/reminders' => 'agendas#reminders', :as => 'reminders'

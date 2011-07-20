@@ -50,7 +50,7 @@ module NavigationHelpers
     when /([1-9]*)th agenda page/
       agenda_path(Agenda.find $1)
 
-    when /agenda item number ([1-9]*) show page/
+    when /agenda item number ([0-9]*) show page/
       agenda_item_path($1)
 
     when /newest agenda item page/

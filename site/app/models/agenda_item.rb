@@ -22,6 +22,7 @@ class AgendaItem < ActiveRecord::Base
     discussion :string
     body       :markdown
     rejected   :boolean, :default => false
+    poll       :boolean, :default => false
     timelimits :text
     discussion_time :string
     timestamps
@@ -33,6 +34,7 @@ class AgendaItem < ActiveRecord::Base
 
   validate :timelimits_entered_properly
 
+  attr_readonly :poll
   # --- Permissions --- #
   def create_permitted?
     return false if acting_user.guest?

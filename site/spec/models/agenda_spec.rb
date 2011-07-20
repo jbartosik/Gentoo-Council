@@ -241,8 +241,6 @@ describe Agenda do
   end
 
   it 'should return proper irc_reminders hash' do
-    CustomConfig['Reminders']["hours_befeore_meeting_to_send_irc_reminders"] = 2
-
     a1 = Factory(:agenda)
     users = users_factory([:council]*2 + [:user]*2)
     Agenda.irc_reminders.keys.should include('remind_time')
@@ -301,6 +299,7 @@ describe Agenda do
   it 'should return proper voting_array' do
     old_agenda = Factory(:agenda, :state => 'old')
     current_agenda = Factory(:agenda)
+    AgendaItem.destroy_all
     i1 = Factory(:agenda_item, :agenda => old_agenda, :timelimits => '0:0')
     i2 = Factory(:agenda_item, :agenda => current_agenda, :timelimits => "10:0 Ten minutes passed")
     i3 = Factory(:agenda_item, :agenda => current_agenda, :timelimits => "0:10 Ten seconds passed")
@@ -317,11 +316,12 @@ describe Agenda do
   describe '.update_voting_options' do
     it 'should remove unneeded voting options and keep existing needed options' do
       current_agenda = Factory(:agenda)
+      VotingOption.destroy_all
       item = Factory(:agenda_item, :agenda => current_agenda)
       unneeded_option = Factory(:voting_option, :agenda_item => item, :description => 'unneeded')
       needed_option = Factory(:voting_option, :agenda_item => item, :description => 'needed')
 
-      VotingOption.count.should be_equal(2)
+      item.voting_options.count.should be_equal(2)
 
       Agenda.update_voting_options [[item.title, [needed_option.description]]]
 
@@ -329,13 +329,15 @@ describe Agenda do
       VotingOption.first.description.should == needed_option.description
       VotingOption.first.id.should == needed_option.id
     end
+
     it 'should create requested new voting options' do
       current_agenda = Factory(:agenda)
+      VotingOption.destroy_all
       item = Factory(:agenda_item, :agenda => current_agenda)
       needed_option = Factory(:voting_option, :agenda_item => item, :description => 'needed')
 
       Agenda.update_voting_options [[item.title, [needed_option.description, 'new option']]]
-      VotingOption.count.should be_equal(2)
+      item.voting_options.count.should be_equal(2)
       VotingOption.last.description.should == 'new option'
     end
   end
@@ -346,5 +348,12 @@ describe Agenda do
     agenda.summary = 'changed'
     agenda.save!
     Approval.count.should be_zero
+  end
+
+  it 'should create polls for choosing day and hour of meeting' do
+    items = Agenda.current.agenda_items
+    items.length.should be_equal(2)
+    items.first.voting_options.length.should be_equal(CustomConfig['CouncilTerm']['days_for_meeting'] + 1)
+    items.last.voting_options.length.should be_equal(25)
   end
 end

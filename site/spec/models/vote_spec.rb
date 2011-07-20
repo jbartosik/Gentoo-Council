@@ -53,6 +53,17 @@ describe Vote do
     Vote.new(:user => v.user, :voting_option => o).should_not be_valid
   end
 
+  it 'should allow users to voting for multiple options in polls' do
+    item = Factory(:agenda_item, :poll => true)
+    option1 = Factory(:voting_option, :agenda_item => item, :description => 'option')
+    option2 = Factory(:voting_option, :agenda_item => item, :description => 'other option')
+    user = users_factory(:user)
+
+    Factory(:vote, :user => user, :voting_option => option1)
+    Vote.new(:user => user, :voting_option => option2).should be_valid
+    Vote.new(:user => user, :voting_option => option1).should_not be_valid
+  end
+
   it 'should prevent users from setting council_vote to true' do
     for u in users_factory(:registered)
       v = Factory(:vote, :user => u, :council_vote => true)
