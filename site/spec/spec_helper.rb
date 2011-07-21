@@ -1,7 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'factories.rb'
 
 environment_path = File.expand_path(File.join(::Rails.root.to_s, 'config', 'environment'))
 require(environment_path)
