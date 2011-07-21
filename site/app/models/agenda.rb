@@ -6,6 +6,7 @@ class Agenda < ActiveRecord::Base
     meeting_time        :datetime
     email_reminder_sent :boolean
     meeting_log         :text
+    summary             :text
     timestamps
   end
 

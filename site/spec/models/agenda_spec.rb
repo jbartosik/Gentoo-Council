@@ -41,6 +41,17 @@ describe Agenda do
     end
   end
 
+  it 'should allow council memebers to change summaries of old meetings' do
+    a = Factory(:agenda, :state => 'old')
+    a.summary = 'changed'
+
+    for u in users_factory(:council, :council_admin)
+      a.should be_editable_by(u)
+      a.should be_editable_by(u, :summary)
+      a.should be_updatable_by(u)
+    end
+  end
+
   def test_migration(object, migration, prohibited, allowed, final_state)
     # object - object to migrate
     # migration - migration name
