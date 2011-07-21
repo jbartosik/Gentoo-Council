@@ -13,5 +13,21 @@
         <a href="&send(this.second)"><view:first/></a>
       </collection>
     </div>
+    <if test="&current_user.council_member? and not this.summary.nil? and not this.summary.empty?">
+      <form action="&create_approval_path" if="&Approval.user_is(current_user).agenda_is(this).count.zero?">
+        <input type="hidden" name="approval[user_id]" value="&current_user.id"/>
+        <input type="hidden" name="approval[agenda_id]" value="&this.id"/>
+        <submit label="approve summary"/>
+      </form>
+      <else>
+        <with with="&Approval.agenda_is(this).user_is(current_user).first">
+          <delete-button label="remove your approval for this summary" />
+        </with>
+      </else>
+    </if>
+    <unless test="&this.approvals.count.zero?">
+      Summary for this agenda was approved by <%= this.approvals.count %> council member(s):
+      <%= this.approvals.*.user.*.name.join(", ") %>.
+    </unless>
   </append-content-body:>
 </show-page>

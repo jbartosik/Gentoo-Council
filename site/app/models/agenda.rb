@@ -13,6 +13,7 @@ class Agenda < ActiveRecord::Base
   has_many :agenda_items
   has_many :participations
   has_many :proxies
+  has_many :approvals
 
   lifecycle do
     state :open, :default => true
@@ -45,7 +46,16 @@ class Agenda < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    return true unless field == :summary
+    return true if approvals.count >= 4
+    return true if acting_user.council_member?
+    false
+  end
+
+  after_update do |agenda|
+    if agenda.summary_changed?
+      agenda.approvals.each { |approval| approval.destroy }
+    end
   end
 
   before_create do |agenda|

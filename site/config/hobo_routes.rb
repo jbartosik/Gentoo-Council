@@ -15,6 +15,14 @@ Council::Application.routes.draw do
   delete 'proxies/:id(.:format)' => 'proxies#destroy', :as => 'destroy_proxy', :constraints => { :id => %r([^/.?]+) }
 
 
+  # Resource routes for controller "approvals"
+  get 'approvals/:id/edit(.:format)' => 'approvals#edit', :as => 'edit_approval'
+  get 'approvals/:id(.:format)' => 'approvals#show', :as => 'approval', :constraints => { :id => %r([^/.?]+) }
+  post 'approvals(.:format)' => 'approvals#create', :as => 'create_approval'
+  put 'approvals/:id(.:format)' => 'approvals#update', :as => 'update_approval', :constraints => { :id => %r([^/.?]+) }
+  delete 'approvals/:id(.:format)' => 'approvals#destroy', :as => 'destroy_approval', :constraints => { :id => %r([^/.?]+) }
+
+
   # Lifecycle routes for controller "users"
   post 'users/signup(.:format)' => 'users#do_signup', :as => 'do_user_signup'
   get 'users/signup(.:format)' => 'users#signup', :as => 'user_signup'
