@@ -54,16 +54,21 @@ class MeetBotTest(unittest.TestCase):
         doesn't have a useful status code, so I need to parse the
         output.
         """
-        os.symlink("../MeetBot", "MeetBot")
-        os.symlink("../ircmeeting", "ircmeeting")
+
+        links_to_remove = []
+        for file in ["MeetBot", "ircmeeting"]:
+          if not os.path.exists(file):
+            os.symlink("../" + file , file)
+            links_to_remove.append(file)
+
         sys.path.insert(0, ".")
         try:
             output = os.popen("supybot-test ./MeetBot 2>&1").read()
             assert 'FAILED' not in output, "supybot-based tests failed."
             assert '\nOK\n'     in output, "supybot-based tests failed."
         finally:
-            os.unlink("MeetBot")
-            os.unlink("ircmeeting")
+            for link in links_to_remove:
+              os.unlink(link)
             del sys.path[0]
 
     trivial_contents = """
