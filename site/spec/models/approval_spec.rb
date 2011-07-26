@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Approval do
   it 'should be viewable by everybody' do
     approval = Factory(:approval)
-    for user in users_factory(AllRoles)
+    for user in users_factory(:all_roles)
       approval.should be_viewable_by(user)
     end
   end

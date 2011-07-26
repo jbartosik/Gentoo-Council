@@ -31,7 +31,7 @@ describe VotingOption do
     a2 = Factory(:agenda, :state => 'old')
     i2 = Factory(:agenda_item, :agenda => a2)
     v2 = Factory(:voting_option, :agenda_item => i2)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       v1.should_not be_updatable_by(u)
       v1.should_not be_destroyable_by(u)
       v2.should_not be_updatable_by(u)
@@ -41,7 +41,7 @@ describe VotingOption do
 
   it 'should allow everyone to view' do
     v = Factory(:voting_option)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       v.should be_viewable_by(u)
     end
   end

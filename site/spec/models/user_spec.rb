@@ -90,7 +90,7 @@ describe User do
   end
 
   it 'should allow no one to create' do
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       User.new.should_not be_creatable_by(u)
     end
   end
@@ -106,8 +106,8 @@ describe User do
   end
 
   it 'should allow everybody to view' do
-    for u1 in users_factory(AllRoles)
-      for u2 in users_factory(AllRoles - [:guest])
+    for u1 in users_factory(:all_roles)
+      for u2 in users_factory(:registered)
         u2.should be_viewable_by(u1)
       end
     end

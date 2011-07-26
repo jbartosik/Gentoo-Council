@@ -1,6 +1,19 @@
 def users_factory(*roles)
   roles.flatten!
+  roles.collect! do |role|
+    case role
+      when :all_roles
+        [:guest, :user, :council, :admin, :council_admin]
+      when :registered
+        [:user, :council, :admin, :council_admin]
+      else
+        role
+    end
+  end
+  roles.flatten!
+
   r = []
+  roles
   for role in roles
     case role
       when :guest
@@ -17,5 +30,3 @@ def users_factory(*roles)
   end
   (r.count < 2) ? r.first : r
 end
-
-AllRoles = [:guest, :user, :council, :admin, :council_admin]

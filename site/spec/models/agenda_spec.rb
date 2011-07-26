@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Agenda do
   it 'shouldn not allow anyone to create' do
     a = Agenda.new
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_creatable_by(u)
       a.should_not be_destroyable_by(u)
     end
@@ -11,14 +11,14 @@ describe Agenda do
 
   it 'shouldn not allow anyone to destory' do
     a = Factory(:agenda)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_destroyable_by(u)
     end
   end
 
   it 'should allow everybody to view' do
     a = Factory(:agenda)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should be_viewable_by(u)
     end
   end
@@ -32,7 +32,7 @@ describe Agenda do
 
     (1..4).each { |i| Factory(:approval, :agenda => agenda) }
 
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       agenda.should be_viewable_by(u, :summary)
     end
   end
@@ -49,7 +49,7 @@ describe Agenda do
     a = Factory(:agenda)
     a.meeting_log = 'changed'
 
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_editable_by(u, :meeting_log)
       a.should_not be_updatable_by(u)
     end
