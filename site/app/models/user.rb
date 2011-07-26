@@ -62,15 +62,14 @@ class User < ActiveRecord::Base
     return 'There were no meetings in this term yet' if agendas.count.zero?
 
     for agenda in agendas
-      if Participation.participant_is(self).agenda_is(agenda).count == 0
+      if Participation.participant_is(self).agenda_is(agenda).count.zero?
         num_status += 1 if num_status < 3
       else
         num_status = 0 if num_status == 1
       end
     end
 
-    text_statuses = ['Was on last meeting', 'Skipped last meeting',
-          'Slacker', 'No more a council']
+    text_statuses = ['Was on last meeting', 'Skipped last meeting', 'Slacker', 'No more a council']
     text_statuses[num_status]
   end
 
