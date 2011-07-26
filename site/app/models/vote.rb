@@ -13,8 +13,7 @@ class Vote < ActiveRecord::Base
 
   index [:voting_option_id, :user_id], :unique => true
 
-  validates_presence_of :voting_option
-  validates_presence_of :user
+  validates_presence_of :voting_option, :user
   validates_uniqueness_of :voting_option_id, :scope => :user_id
   validate :user_voted_only_once
   # --- Permissions --- #

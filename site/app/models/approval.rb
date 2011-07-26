@@ -11,8 +11,7 @@ class Approval < ActiveRecord::Base
   belongs_to :user, :null => false
   belongs_to :agenda, :null => false
 
-  validates_presence_of :user_id
-  validates_presence_of :agenda_id
+  validates_presence_of :user_id, :agenda_id
   validates_uniqueness_of :user_id, :scope => :agenda_id
 
   def view_permitted?(field)

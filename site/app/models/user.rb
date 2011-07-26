@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   end
 
   has_many  :votes
+
+  validates_presence_of :name, :irc_nick, :email
+  validates_uniqueness_of :name, :irc_nick, :email
+
   # --- Signup lifecycle --- #
 
   lifecycle do
