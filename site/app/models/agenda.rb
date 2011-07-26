@@ -77,7 +77,7 @@ class Agenda < ActiveRecord::Base
   def self.update_voting_options(options)
     agenda = Agenda.current
     options.each do |item_info|
-      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_info.first }
+      item = AgendaItem.agenda_id_is(agenda).title_is(item_info.first).first
       item.update_voting_options(item_info[1])
     end
   end
@@ -85,10 +85,10 @@ class Agenda < ActiveRecord::Base
   def self.process_results(results)
     agenda = Agenda.current
     for item_title in results.keys
-      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_title }
+      item = AgendaItem.agenda_id_is(agenda.id).title_is(item_title).first
       votes = results[item_title]
       for voter in votes.keys
-        option = VotingOption.first :conditions => { :agenda_item_id => item.id, :description => votes[voter] }
+        option = VotingOption.agenda_item_id_is(item.id).description_is(votes[voter]).first
         user = ::User.find_by_irc_nick voter
         Vote.vote_for_option(user, option, true)
       end
