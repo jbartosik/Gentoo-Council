@@ -50,6 +50,7 @@ class Proxy < ActiveRecord::Base
       return if council_member.nil?
       errors.add(:council_member, 'must be council member') unless council_member.council_member?
     end
+
     def proxy_must_not_be_council_member
       return if proxy.nil?
       errors.add(:proxy, 'must not be council member') if proxy.council_member?
