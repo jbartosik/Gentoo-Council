@@ -24,7 +24,6 @@ Council::Application.routes.draw do
   # Resource routes for controller "users"
   get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
   get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
-  post 'users(.:format)' => 'users#create', :as => 'create_user'
   put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
   delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
 

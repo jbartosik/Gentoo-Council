@@ -58,12 +58,3 @@ Feature: Suggest Agenda Items
   Scenario: View discussion times
     Given some agenda item with discussion times
     Then I should see discussion times when viewing agenda items
-
-  Scenario: Show view hint on timelimits format
-    Given I am logged in as a council member
-    When I follow "Suggest agenda item"
-    Then I should see hint on timelimits format
-
-    Given example agenda item
-    When I am on newest agenda item edit page
-    Then I should see hint on timelimits format

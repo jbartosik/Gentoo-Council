@@ -2,14 +2,15 @@ class UsersController < ApplicationController
 
   hobo_user_controller
 
-  auto_actions :all, :except => [ :index, :new, :create ]
+  auto_actions :all, :except => [ :index, :new, :create, :do_signup ]
 
-  def create
-    hobo_create do
+  def do_signup
+    do_creator_action(:signup) do
       if valid?
-        self.current_user = this
-        flash[:notice] = t("hobo.messages.you_are_site_admin", :default=>"You are now the site administrator")
-        redirect_to home_page
+        flash[:notice] = ht(:"#{model.to_s.underscore}.messages.signup.success", :default=>["Thanks for signing up!"])
+      else
+        this.password = HoboFields::Types::PasswordString.new
+        this.password_confirmation = HoboFields::Types::PasswordString.new
       end
     end
   end
