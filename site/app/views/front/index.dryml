@@ -4,26 +4,25 @@
 
   <content:>
     <header class="content-header">
-      <h1>Welcome to <app-name/></h1>
-      <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
-        <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
-        </ul>
-
-        <% if User.count == 0 -%>
-          <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
-          <form with="&this || User.new" without-cancel>
-            <field-list: fields="name, email_address, password, password_confirmation"/>
-            <submit: label="Register Administrator"/>
-          </form>
-        <% end -%>
-
-
-      </section>
+      <h1>Welcome to Gentoo Council Web Application</h1>
     </header>
 
     <section class="content-body">
+      This application will let you different actions:
+      <ul>
+        <li>All users (including Guests) can view some parts of website (agendas, suggested items, current council attendance).</li>
+        <li>Registered users can participate in community vote and suggest agenda items for council.</li>
+        <li>Administrators can manage users.</li>
+        <li>Council members can manage agendas:
+          <ul>
+            <li>Add, remove and reject items.</li>
+            <li>Manage voting options.</li>
+            <li>Set meeting time and reminders.</li>
+          </ul>
+        please note that when council member votes using this application this vote is "community vote". Council votes are made only during IRC meetings.
+        </li>
+      </ul>
+    If you want to learn more about Gentoo Council visit <a href="http://www.gentoo.org/proj/en/council/">Gentoo Council project page</a>.
     </section>
   </content:>
 
