@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711074750) do
+ActiveRecord::Schema.define(:version => 20110721195225) do
 
   create_table "agenda_items", :force => true do |t|
-    t.string   "title",      :default => "",    :null => false
-    t.string   "discussion", :default => "",    :null => false
-    t.text     "body",       :default => "",    :null => false
-    t.boolean  "rejected",   :default => false, :null => false
+    t.string   "title",           :default => "",    :null => false
+    t.string   "discussion",      :default => "",    :null => false
+    t.text     "body",            :default => "",    :null => false
+    t.boolean  "rejected",        :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -36,9 +36,20 @@ ActiveRecord::Schema.define(:version => 20110711074750) do
     t.datetime "key_timestamp"
     t.boolean  "email_reminder_sent", :default => false,  :null => false
     t.text     "meeting_log",         :default => "",     :null => false
+    t.text     "summary"
   end
 
   add_index "agendas", ["state"], :name => "index_agendas_on_state"
+
+  create_table "approvals", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id",    :null => false
+    t.integer  "agenda_id",  :null => false
+  end
+
+  add_index "approvals", ["agenda_id"], :name => "index_approvals_on_agenda_id"
+  add_index "approvals", ["user_id"], :name => "index_approvals_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

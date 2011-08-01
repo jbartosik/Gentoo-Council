@@ -56,6 +56,18 @@ class AgendaItem < ActiveRecord::Base
     return acting_user == user if [nil, :title, :discussion, :body].include?(field)
   end
 
+  def update_voting_options(new_descriptions)
+    old_descriptions = voting_options.*.description
+
+    (old_descriptions - new_descriptions).each do |description|
+      option = VotingOption.agenda_item_id_is(id).description_is(description).first
+      option.destroy
+    end
+
+    (new_descriptions - old_descriptions ).each do |description|
+      VotingOption.create! :agenda_item => self, :description => description
+    end
+  end
   protected
     # Updated discussion time for a single agenda item
     # protected because we want to call it only from

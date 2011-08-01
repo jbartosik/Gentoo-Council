@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Participation do
   it 'should not allow anyone to create, edit, update or destroy' do
     p = Factory(:participation)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       p.should_not be_creatable_by(u)
       p.should_not be_editable_by(u)
       p.should_not be_updatable_by(u)
@@ -13,7 +13,7 @@ describe Participation do
 
   it 'should allow everybody to view' do
     p = Factory(:participation)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       p.should be_viewable_by(u)
     end
   end

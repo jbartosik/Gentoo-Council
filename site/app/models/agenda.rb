@@ -6,12 +6,14 @@ class Agenda < ActiveRecord::Base
     meeting_time        :datetime
     email_reminder_sent :boolean
     meeting_log         :text
+    summary             :text
     timestamps
   end
 
   has_many :agenda_items
   has_many :participations
   has_many :proxies
+  has_many :approvals
 
   lifecycle do
     state :open, :default => true
@@ -44,7 +46,16 @@ class Agenda < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    return true unless field == :summary
+    return true if approvals.count >= 4
+    return true if acting_user.council_member?
+    false
+  end
+
+  after_update do |agenda|
+    if agenda.summary_changed?
+      agenda.approvals.each { |approval| approval.destroy }
+    end
   end
 
   before_create do |agenda|
@@ -66,29 +77,18 @@ class Agenda < ActiveRecord::Base
   def self.update_voting_options(options)
     agenda = Agenda.current
     options.each do |item_info|
-      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_info.first }
-      new_descriptions = item_info[1]
-      old_descriptions = item.voting_options.*.description
-
-      (old_descriptions - new_descriptions).each do |description|
-        option = VotingOption.first :conditions => { :agenda_item_id => item.id,
-                                                      :description => description }
-        option.destroy
-      end
-
-      (new_descriptions - old_descriptions ).each do |description|
-        VotingOption.create! :agenda_item => item, :description => description
-      end
+      item = AgendaItem.agenda_id_is(agenda).title_is(item_info.first).first
+      item.update_voting_options(item_info[1])
     end
   end
 
   def self.process_results(results)
     agenda = Agenda.current
     for item_title in results.keys
-      item = AgendaItem.first :conditions => { :agenda_id => agenda, :title => item_title }
+      item = AgendaItem.agenda_id_is(agenda.id).title_is(item_title).first
       votes = results[item_title]
       for voter in votes.keys
-        option = VotingOption.first :conditions => { :agenda_item_id => item.id, :description => votes[voter] }
+        option = VotingOption.agenda_item_id_is(item.id).description_is(votes[voter]).first
         user = ::User.find_by_irc_nick voter
         Vote.vote_for_option(user, option, true)
       end

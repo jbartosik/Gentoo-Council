@@ -32,4 +32,9 @@ Factory.define :proxy do |p|;
   p.agenda          {Factory(:agenda)}
 end
 
+Factory.define :approval do |a|;
+ a.user {users_factory(:council)}
+ a.agenda {Agenda.current}
+end
+
 require File.expand_path("../support/users_factory.rb", __FILE__)

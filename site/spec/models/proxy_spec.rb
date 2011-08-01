@@ -63,7 +63,7 @@ describe Proxy do
 
   it 'should allow no one to update or edit' do
     p = Factory(:proxy)
-    for u in users_factory(AllRoles) + [p.council_member, p.proxy]
+    for u in users_factory(:all_roles) + [p.council_member, p.proxy]
       p.should_not be_editable_by(u)
       p.should_not be_updatable_by(u)
     end
@@ -72,7 +72,7 @@ describe Proxy do
 
   it 'should allow everyone to view' do
     p = Factory(:proxy)
-    for u in users_factory(AllRoles) + [p.council_member, p.proxy]
+    for u in users_factory(:all_roles) + [p.council_member, p.proxy]
       p.should be_viewable_by(u)
     end
   end
@@ -92,7 +92,7 @@ describe Proxy do
   it 'should not allow users to destoy someone else proxy' do
     a = Factory(:agenda)
     p = Factory(:proxy, :agenda => a)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       p.should_not be_destroyable_by(u)
     end
   end

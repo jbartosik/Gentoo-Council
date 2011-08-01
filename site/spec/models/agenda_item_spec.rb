@@ -52,7 +52,7 @@ describe AgendaItem do
     owner = Factory(:user)
     agenda = Factory(:agenda, :state => 'old')
     a = Factory(:agenda_item, :user => owner, :agenda => agenda)
-    for u in users_factory(AllRoles) + [owner]
+    for u in users_factory(:all_roles) + [owner]
       a.should_not be_editable_by(u)
       a.should_not be_updatable_by(u)
     end

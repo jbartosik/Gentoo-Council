@@ -10,7 +10,7 @@ class VotingOption < ActiveRecord::Base
   belongs_to  :agenda_item, :null => false
   has_many    :votes
 
-  validates_presence_of :agenda_item
+  validates_presence_of :agenda_item, :description
   validates_uniqueness_of :description, :scope => :agenda_item_id
 
   def name

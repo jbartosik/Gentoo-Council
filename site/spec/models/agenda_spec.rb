@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Agenda do
   it 'shouldn not allow anyone to create' do
     a = Agenda.new
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_creatable_by(u)
       a.should_not be_destroyable_by(u)
     end
@@ -11,15 +11,29 @@ describe Agenda do
 
   it 'shouldn not allow anyone to destory' do
     a = Factory(:agenda)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_destroyable_by(u)
     end
   end
 
   it 'should allow everybody to view' do
     a = Factory(:agenda)
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should be_viewable_by(u)
+    end
+  end
+
+  it 'should allow everybody to view summaries after 4 council members approved it' do
+    agenda = Agenda.current
+
+    for u in users_factory(:guest, :user, :admin)
+      agenda.should_not be_viewable_by(u, :summary)
+    end
+
+    (1..4).each { |i| Factory(:approval, :agenda => agenda) }
+
+    for u in users_factory(:all_roles)
+      agenda.should be_viewable_by(u, :summary)
     end
   end
 
@@ -35,9 +49,20 @@ describe Agenda do
     a = Factory(:agenda)
     a.meeting_log = 'changed'
 
-    for u in users_factory(AllRoles)
+    for u in users_factory(:all_roles)
       a.should_not be_editable_by(u, :meeting_log)
       a.should_not be_updatable_by(u)
+    end
+  end
+
+  it 'should allow council memebers to change summaries of old meetings' do
+    a = Factory(:agenda, :state => 'old')
+    a.summary = 'changed'
+
+    for u in users_factory(:council, :council_admin)
+      a.should be_editable_by(u)
+      a.should be_editable_by(u, :summary)
+      a.should be_updatable_by(u)
     end
   end
 
@@ -298,5 +323,13 @@ describe Agenda do
       VotingOption.count.should be_equal(2)
       VotingOption.last.description.should == 'new option'
     end
+  end
+
+  it 'should remove approvals for summary, when summary changes' do
+    agenda = Agenda.current
+    Factory(:approval, :agenda => agenda)
+    agenda.summary = 'changed'
+    agenda.save!
+    Approval.count.should be_zero
   end
 end

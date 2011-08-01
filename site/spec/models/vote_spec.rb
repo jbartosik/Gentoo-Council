@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Vote do
   it 'should allow anyone to create, update and destroy their own votes' do
-    for u in users_factory(AllRoles - [:guest]) do
+    for u in users_factory(:registered) do
       vote = Factory(:vote, :user => u)
       vote.should be_creatable_by(u)
       vote.should be_updatable_by(u)
@@ -12,7 +12,7 @@ describe Vote do
 
   it 'should not allow anyone to create, update and destroy vote of someone else' do
     vote = Factory(:vote)
-    for u in users_factory(AllRoles) do
+    for u in users_factory(:all_roles) do
       vote.should_not be_creatable_by(u)
       vote.should_not be_updatable_by(u)
       vote.should_not be_destroyable_by(u)
@@ -21,13 +21,13 @@ describe Vote do
 
   it 'should allow anyone to view' do
     vote = Factory(:vote)
-    for u in users_factory(AllRoles) do
+    for u in users_factory(:all_roles) do
       vote.should be_viewable_by(u)
     end
   end
 
   it 'should allow all users to vote' do
-    for u in users_factory(AllRoles - [:guest]) do
+    for u in users_factory(:registered) do
       Vote.new(:user => u, :voting_option => Factory(:voting_option)).should be_valid
     end
   end
@@ -39,7 +39,7 @@ describe Vote do
   end
 
   it 'should prevent users from setting council_vote to true' do
-    for u in users_factory(AllRoles - [:guest])
+    for u in users_factory(:registered)
       v = Factory(:vote, :user => u, :council_vote => true)
       v.should_not be_editable_by(u)
       v.should_not be_updatable_by(u)
