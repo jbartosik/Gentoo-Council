@@ -1,0 +1,11 @@
+[
+["20:13:50 <x> #startvote", "Voting started\\. Available voting options are:\n0. opt1\n1. opt2\nVote #vote <option number>.\nEnd voting with #endvote."],
+["20:13:50 <x> #startvote", "Voting is already open. You can end it with #endvote."],
+["20:13:50 <x> #vote 10", "Your choice was out of range\\!"],
+["20:13:50 <x> #vote 0", "You voted for #0 - opt1"],
+["20:13:50 <x> #vote 1", "You voted for #1 - opt2"],
+["20:13:50 <z> #vote 0", "You voted for #0 - opt1"],
+["20:13:50 <x> #option list", "Available voting options are:\n0. opt1\n1. opt2\n"],
+["20:13:50 <x> #endvote", "Voting closed."],
+["20:13:50 <x> #endvote", "Voting is already closed. You can start it with #startvote."]
+]

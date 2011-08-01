@@ -1,0 +1,22 @@
+10:10:10 <x> #startmeeting
+10:10:10 <x> #topic h6k4orkac
+10:10:10 <x> #info blaoulrao
+10:10:10 <x> #idea alrkkcao4
+10:10:10 <x> #help ntoircoa5
+10:10:10 <x> #link http://bnatorkcao.net kroacaonteu
+10:10:10 <x> http://jrotjkor.net krotroun
+10:10:10 <x> #action xrceoukrc
+10:10:10 <x> #nick okbtrokr
+
+# Should not appear in non-log output
+10:10:10 <x> #idea ckmorkont
+10:10:10 <x> #undo
+
+# Assert that chairs can change the topic, and non-chairs can't.
+10:10:10 <x> #chair y
+10:10:10 <y> #topic topic_doeschange
+10:10:10 <z> #topic topic_doesntchange
+10:10:10 <x> #unchair y
+10:10:10 <y> #topic topic_doesnt2change
+
+10:10:10 <x> #endmeeting

@@ -1,0 +1,6 @@
+[
+"20:13:50 <x> #nextitem",
+["20:13:50 <not_allowed> #option add first option", "You can not vote or change agenda. Only x, z can."],
+["20:13:50 <x> #option add first option", "You added new voting option: first option"],
+["20:13:50 <x> #option list", "Available voting options are:\n0. first option"]
+]

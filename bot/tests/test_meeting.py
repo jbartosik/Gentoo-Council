@@ -1,5 +1,8 @@
 import ircmeeting.meeting as meeting
 import ircmeeting.writers as writers
+import inspect
+import json
+import os
 import re
 import time
 class TestMeeting:
@@ -50,14 +53,37 @@ class TestMeeting:
           line = m.group(3).strip()
           self.M.addline(nick, "ACTION "+line, time_=time_)
 
-  def answer_should_match(self, line, answer_regexp):
+  def check_responses_from_json_file(self, file):
+    json_file_name  = file + ".json"
+    json_string     = get_test_script(json_file_name)
+    json_data       = json.loads(json_string)
+    prefix          = "(in " + file + ")"
+    for line in json_data:
+      if line.__class__ in [str, unicode]:
+        self.process(line)
+      elif (line.__class__ in [list, tuple]) and (len(line) == 2):
+        self.answer_should_match(line[0], line[1], prefix)
+      else:
+        error_msg = "In file " + file + "Each item in test case must " +\
+                    "be string, unicode string, list of length 2. Item `" +\
+                    str(line) + "` doesn't fulfill those requirements."
+        raise AssertionError(error_msg)
+
+  def answer_should_match(self, line, answer_regexp, prefix = ''):
     self.log = []
     self.process(line)
     answer = '\n'.join(self.log)
-    error_msg = "Answer for:\n\t'" + line + "'\n was \n\t'" + answer +\
+    error_msg = prefix + "Answer for:\n\t'" + line + "'\n was \n\t'" + answer +\
                 "'\ndid not match regexp\n\t'" + answer_regexp + "'"
     answer_matches = re.match(answer_regexp, answer)
     assert answer_matches, error_msg
 
   def votes(self):
     return(self.M.config.agenda._votes)
+
+def get_test_script(test_script_file_name):
+    this_file_path    = inspect.getfile(inspect.currentframe())
+    this_dir_path     = os.path.dirname(this_file_path)
+    test_script_path  = os.path.join(this_dir_path, 'test_scripts', test_script_file_name)
+    test_script_file  = open(test_script_path)
+    return test_script_file.read()

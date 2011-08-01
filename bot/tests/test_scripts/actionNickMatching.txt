@@ -1,0 +1,7 @@
+20:13:50 <x> #startmeeting
+20:13:50 <somenick>
+20:13:50 <someone> #action say somenickLONG
+20:13:50 <someone> #action say the somenicklong
+20:13:50 <somenick> I should not have an item assisgned to me.
+20:13:50 <somenicklong> I should have some things assigned to me.
+20:13:50 <x> #endmeeting

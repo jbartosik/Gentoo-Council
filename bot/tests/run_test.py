@@ -1,4 +1,5 @@
 # Richard Darst, 2009
+# Joachim Bartosik, 2011
 
 import glob
 import os
@@ -127,30 +128,8 @@ class MeetBotTest(unittest.TestCase):
     #   process_meeting(contents=file('test-script-3.log.txt').read(),
     #                   extraConfig={'writer_map':self.full_writer_map})
 
-    all_commands_test_contents = """
-    10:10:10 <x> #startmeeting
-    10:10:10 <x> #topic h6k4orkac
-    10:10:10 <x> #info blaoulrao
-    10:10:10 <x> #idea alrkkcao4
-    10:10:10 <x> #help ntoircoa5
-    10:10:10 <x> #link http://bnatorkcao.net kroacaonteu
-    10:10:10 <x> http://jrotjkor.net krotroun
-    10:10:10 <x> #action xrceoukrc
-    10:10:10 <x> #nick okbtrokr
+    all_commands_test_contents = test_meeting.get_test_script('all_commands.txt')
 
-    # Should not appear in non-log output
-    10:10:10 <x> #idea ckmorkont
-    10:10:10 <x> #undo
-
-    # Assert that chairs can change the topic, and non-chairs can't.
-    10:10:10 <x> #chair y
-    10:10:10 <y> #topic topic_doeschange
-    10:10:10 <z> #topic topic_doesntchange
-    10:10:10 <x> #unchair y
-    10:10:10 <y> #topic topic_doesnt2change
-
-    10:10:10 <x> #endmeeting
-    """
     def test_contents_test2(self):
         """Ensure that certain input lines do appear in the output.
 
@@ -212,15 +191,9 @@ class MeetBotTest(unittest.TestCase):
         the nick 'jon' will no longer be assigned lines containing
         'jonathan'.
         """
-        script = """
-        20:13:50 <x> #startmeeting
-        20:13:50 <somenick>
-        20:13:50 <someone> #action say somenickLONG
-        20:13:50 <someone> #action say the somenicklong
-        20:13:50 <somenick> I should not have an item assisgned to me.
-        20:13:50 <somenicklong> I should have some things assigned to me.
-        20:13:50 <x> #endmeeting
-        """
+
+        script = open('test_scripts/actionNickMatching.txt').read()
+
         M = process_meeting(script)
         results = M.save()['.html']
         # This regular expression is:
@@ -234,16 +207,8 @@ class MeetBotTest(unittest.TestCase):
     def test_urlMatching(self):
         """Test properly detection of URLs in lines
         """
-        script = """
-        20:13:50 <x> #startmeeting
-        20:13:50 <x> #link prefix http://site1.com suffix
-        20:13:50 <x> http://site2.com suffix
-        20:13:50 <x> ftp://ftpsite1.com suffix
-        20:13:50 <x> #link prefix ftp://ftpsite2.com suffix
-        20:13:50 <x> irc://ircsite1.com suffix
-        20:13:50 <x> mailto://a@mail.com suffix
-        20:13:50 <x> #endmeeting
-        """
+        script =  open('test_scripts/urlMatching.txt').read()
+
         M = process_meeting(script)
         results = M.save()['.html']
         assert re.search(r'prefix.*href.*http://site1.com.*suffix',
@@ -358,100 +323,23 @@ class MeetBotTest(unittest.TestCase):
 
         return(test)
 
-    def test_agenda_item_changing(self):
-        test = self.get_simple_agenda_test()
-
-        # Test changing item before vote
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is third item.')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
-        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
-        test.answer_should_match('20:13:50 <x> #changeitem 1', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #changeitem 0', 'Current agenda item is first item.')
-        test.answer_should_match('20:13:50 <x> #changeitem 10', 'Your choice was out of range!')
-        test.answer_should_match('20:13:50 <x> #changeitem puppy', 'Your choice was not recognized as a number. Please retry.')
-
-        # Test changing item during vote
-        test.process('20:13:50 <x> #startvote')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Voting is currently ' +\
-                                  'open so I didn\'t change item. Please #endvote first')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Voting is currently ' +\
-                                  'open so I didn\'t change item. Please #endvote first')
-        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Voting is currently ' +\
-                                  'open so I didn\'t change item. Please #endvote first')
-
-        # Test changing item after vote
-        test.process('20:13:50 <x> #endvote')
-        test.answer_should_match('20:13:50 <x> #nextitem', 'Current agenda item is second item.')
-        test.answer_should_match('20:13:50 <x> #previtem', 'Current agenda item is first item.')
-        test.answer_should_match('20:13:50 <x> #changeitem 2', 'Current agenda item is third item.')
-
-    def test_agenda_option_listing(self):
-        test = self.get_simple_agenda_test()
-
-        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
-                                  'are:\n0. opt1\n1. opt2\n')
-        test.process('20:13:50 <x> #nextitem')
-        test.answer_should_match('20:13:50 <x> #option list', 'No voting options available.')
-        test.process('20:13:50 <x> #previtem')
-        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
-                                  'are:\n0. opt1\n1. opt2\n')
-
-    def test_agenda_option_adding(self):
-        test = self.get_simple_agenda_test()
-        test.process('20:13:50 <x> #nextitem')
-        test.answer_should_match('20:13:50 <not_allowed> #option add first option',
-                                  'You can not vote or change agenda. Only x, z can.')
-        test.answer_should_match('20:13:50 <x> #option add first option',
-                                  'You added new voting option: first option')
-        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
-                                  'are:\n0. first option')
-
-    def test_agenda_option_removing(self):
-        test = self.get_simple_agenda_test()
-        test.answer_should_match('20:13:50 <not_allowed> #option remove 1',
-                                  'You can not vote or change agenda. Only x, z can.')
-        test.answer_should_match('20:13:50 <x> #option remove 1',
-                                  'You removed voting option 1: opt2')
-        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
-                                  'are:\n0. opt1')
+    def test_message_answer_tests(self):
+        files = ['agenda_item_changing', 'agenda_option_listing',
+                  'agenda_option_adding', 'agenda_option_removing',
+                  'close_voting_after_last_vote']
+        for file in files:
+            test = self.get_simple_agenda_test()
+            test.check_responses_from_json_file(file)
 
     def test_agenda_voting(self):
         test = self.get_simple_agenda_test()
         test.M.config.agenda._voters.append('t')
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
-                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
-                                  '#vote <option number>.\nEnd voting with #endvote.')
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
-                                  'You can end it with #endvote.')
-        test.answer_should_match('20:13:50 <x> #vote 10', 'Your choice was out of range\!')
-        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
-        test.answer_should_match('20:13:50 <x> #vote 1', 'You voted for #1 - opt2')
-        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1')
-        test.answer_should_match('20:13:50 <x> #option list', 'Available voting options ' +\
-                                  'are:\n0. opt1\n1. opt2\n')
-        test.answer_should_match('20:13:50 <x> #endvote', 'Voting closed.')
-        test.answer_should_match('20:13:50 <x> #endvote', 'Voting is already closed. ' +\
-                                  'You can start it with #startvote.')
-
+        test.check_responses_from_json_file('agenda_voting')
         test.M.config.manage_agenda = False
         test.answer_should_match('20:13:50 <x> #endmeeting', 'Meeting ended ' +\
                                   '.*\nMinutes:.*\nMinutes \(text\):.*\nLog:.*')
-
         assert(test.votes() == {'first item': {u'x': 'opt2', u'z': 'opt1'}, 'second item': {}, 'third item': {}})
 
-    def test_agenda_close_voting_after_last_vote(self):
-        test = self.get_simple_agenda_test()
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting started\. ' +\
-                                  'Available voting options are:\n0. opt1\n1. opt2\nVote ' +\
-                                  '#vote <option number>.\nEnd voting with #endvote.')
-        test.answer_should_match('20:13:50 <x> #startvote', 'Voting is already open. ' +\
-                                  'You can end it with #endvote.')
-        test.answer_should_match('20:13:50 <x> #vote 0', 'You voted for #0 - opt1')
-        test.answer_should_match('20:13:50 <z> #vote 0', 'You voted for #0 - opt1. Voting closed.')
 
     def test_agenda_time_limit_adding(self):
         test = self.get_simple_agenda_test()
@@ -533,6 +421,7 @@ class MeetBotTest(unittest.TestCase):
         error_msg = 'Received messages ' + str(test.log) + \
                     ' didn\'t match expected ' + str(expected_messages)
         assert messages_match, error_msg
+
     def test_command_help(self):
         test = self.get_simple_agenda_test()
         commands = ['startmeeting', 'startvote', 'vote', 'endvote',
@@ -556,4 +445,3 @@ if __name__ == '__main__':
                 MeetBotTest(methodName=testname).debug()
             else:
                 MeetBotTest(methodName='test_'+testname).debug()
-

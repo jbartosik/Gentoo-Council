@@ -1,0 +1,7 @@
+[
+["20:13:50 <x> #option list", "Available voting options are:\n0. opt1\n1. opt2"],
+"20:13:50 <x> #nextitem",
+["20:13:50 <x> #option list", "No voting options available."],
+"20:13:50 <x> #previtem",
+["20:13:50 <x> #option list", "Available voting options are:\n0. opt1\n1. opt2"]
+]

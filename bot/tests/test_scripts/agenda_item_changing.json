@@ -1,0 +1,21 @@
+[
+["20:13:50 <x> #nextitem", "Current agenda item is second item."],
+["20:13:50 <x> #nextitem", "Current agenda item is third item."],
+["20:13:50 <x> #nextitem", "Current agenda item is third item."],
+["20:13:50 <x> #previtem", "Current agenda item is second item."],
+["20:13:50 <x> #previtem", "Current agenda item is first item."],
+["20:13:50 <x> #previtem", "Current agenda item is first item."],
+["20:13:50 <x> #changeitem 2", "Current agenda item is third item."],
+["20:13:50 <x> #changeitem 1", "Current agenda item is second item."],
+["20:13:50 <x> #changeitem 0", "Current agenda item is first item."],
+["20:13:50 <x> #changeitem 10", "Your choice was out of range!"],
+["20:13:50 <x> #changeitem puppy", "Your choice was not recognized as a number. Please retry."],
+"20:13:50 <x> #startvote",
+["20:13:50 <x> #nextitem", "Voting is currently open so I didn't change item. Please #endvote first"],
+["20:13:50 <x> #previtem", "Voting is currently open so I didn't change item. Please #endvote first"],
+["20:13:50 <x> #changeitem 2", "Voting is currently open so I didn't change item. Please #endvote first"],
+"20:13:50 <x> #endvote",
+["20:13:50 <x> #nextitem", "Current agenda item is second item."],
+["20:13:50 <x> #previtem", "Current agenda item is first item."],
+["20:13:50 <x> #changeitem 2", "Current agenda item is third item."]
+]
