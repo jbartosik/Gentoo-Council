@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ahenobarbi/hobo.git
-  revision: c9c13eb614a3c4a699a59d02e4757c2cdd682988
+  revision: 6051f2f6b1f320f05687454e580af2f6849597e4
   branch: rails3
   specs:
     dryml (1.3.0)
@@ -148,7 +148,7 @@ GEM
       faraday (~> 0.6.1)
       multi_json (>= 0.0.5)
     orm_adapter (0.0.5)
-    polyglot (0.3.1)
+    polyglot (0.3.2)
     rack (1.2.3)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -202,7 +202,8 @@ GEM
       sqlite3 (>= 1.3.3)
     term-ansicolor (1.0.5)
     thor (0.14.6)
-    treetop (1.4.9)
+    treetop (1.4.10)
+      polyglot
       polyglot (>= 0.3.1)
     typhoeus (0.2.4)
       mime-types
