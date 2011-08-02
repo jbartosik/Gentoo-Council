@@ -62,9 +62,11 @@ class Agenda(object):
                                 match.group(3), irc)
       self._agenda[self._current_item][2] = ''
 
-    def next_agenda_item(self, irc):
+    def next_agenda_item(self, nick, irc):
         if not self.conf.manage_agenda:
           return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if self._vote_open:
             return self.voting_open_so_item_not_changed_msg
         else:
@@ -72,9 +74,11 @@ class Agenda(object):
                 self._swich_agenda_item_to(self._current_item + 1, irc)
             return(self.get_agenda_item())
 
-    def prev_agenda_item(self, irc):
+    def prev_agenda_item(self, nick, irc):
         if not self.conf.manage_agenda:
           return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if self._vote_open:
             return self.voting_open_so_item_not_changed_msg
         else:
@@ -82,17 +86,21 @@ class Agenda(object):
                 self._swich_agenda_item_to(self._current_item - 1, irc)
             return(self.get_agenda_item())
 
-    def start_vote(self):
+    def start_vote(self, nick):
         if not self.conf.manage_agenda:
           return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if self._vote_open:
             return self.voting_already_open_msg
         self._vote_open = True
         return str.format(self.voting_open_msg, self.options())
 
-    def end_vote(self):
+    def end_vote(self, nick):
         if not self.conf.manage_agenda:
           return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if self._vote_open:
             self._vote_open = False
             return self.voting_close_msg
@@ -125,7 +133,7 @@ class Agenda(object):
 
         reply = str.format(self.vote_confirm_msg, opt, self._agenda[self._current_item][1][opt])
         if users_who_voted == self._voters:
-          reply += '. ' + self.end_vote()
+          reply += '. ' + self.end_vote(nick)
         return(reply)
 
     def _get_json(self, url):
@@ -169,9 +177,11 @@ class Agenda(object):
         options_list.append(option_text)
         return str.format(self.added_option_msg, option_text)
 
-    def change_agenda_item(self, line):
+    def change_agenda_item(self, nick, line):
         if not self.conf.manage_agenda:
           return('')
+        if not nick in self._voters:
+            return str.format(self.can_not_vote_msg, ", ".join(self._voters))
         if self._vote_open:
             return self.voting_open_so_item_not_changed_msg
         opt = self._to_agenda_item_number(line)

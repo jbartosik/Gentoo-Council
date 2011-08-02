@@ -1,0 +1,7 @@
+[
+["20:13:50 <y> #nextitem", "You can not vote or change agenda. Only x, z can."],
+["20:13:50 <y> #previtem", "You can not vote or change agenda. Only x, z can."],
+["20:13:50 <y> #changeitem 1", "You can not vote or change agenda. Only x, z can."],
+["20:13:50 <y> #startvote", "You can not vote or change agenda. Only x, z can."],
+["20:13:50 <y> #endvote", "You can not vote or change agenda. Only x, z can."]
+]

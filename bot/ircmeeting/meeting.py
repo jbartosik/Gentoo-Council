@@ -324,11 +324,11 @@ class MeetingCommands(object):
 
     def do_nextitem(self, nick, time_, line, **kwargs):
         """Go to next agenda item"""
-        self.reply(self.config.agenda.next_agenda_item(self))
+        self.reply(self.config.agenda.next_agenda_item(nick, self))
 
     def do_previtem(self, nick, time_, line, **kwargs):
         """Go to previous agenda item"""
-        self.reply(self.config.agenda.prev_agenda_item(self))
+        self.reply(self.config.agenda.prev_agenda_item(nick, self))
 
     def do_timelimit(self, nick, time_, line, **kwargs):
         """ Manage reminders:
@@ -352,16 +352,16 @@ class MeetingCommands(object):
 
     def do_changeitem(self, nick, time_, line, **kwargs):
         """Change agenda item. Usage: #chengeitem <item number>"""
-        self.reply(self.config.agenda.change_agenda_item(line))
+        self.reply(self.config.agenda.change_agenda_item(nick, line))
 
     def do_startvote(self, nick, time_, line, **kwargs):
        """Start vote on current item"""
-       for messageline in self.config.agenda.start_vote().split('\n'):
+       for messageline in self.config.agenda.start_vote(nick).split('\n'):
             self.reply(messageline)
 
     def do_endvote(self, nick, time_, line, **kwargs):
        """Close voting for current agenda item. You can resume voting later with #startvote"""
-       for messageline in self.config.agenda.end_vote().split('\n'):
+       for messageline in self.config.agenda.end_vote(nick).split('\n'):
             self.reply(messageline)
 
     def do_vote(self, nick, time_, line, **kwargs):

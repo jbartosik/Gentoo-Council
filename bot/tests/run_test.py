@@ -326,7 +326,7 @@ class MeetBotTest(unittest.TestCase):
     def test_message_answer_tests(self):
         files = ['agenda_item_changing', 'agenda_option_listing',
                   'agenda_option_adding', 'agenda_option_removing',
-                  'close_voting_after_last_vote']
+                  'close_voting_after_last_vote', 'council_only_actions']
         for file in files:
             test = self.get_simple_agenda_test()
             test.check_responses_from_json_file(file)
