@@ -10,5 +10,6 @@ function run_test {
 run_test python bot/tests/run_test.py MeetBot
 run_test python bot/Reminder/run_test.py Reminder
 pushd site
+bundle exec rails g hobo:rapid
 run_test "bundle exec" "rake" WebApp
 popd
