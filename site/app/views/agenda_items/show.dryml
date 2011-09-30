@@ -1,11 +1,17 @@
 <show-page>
   <append-content-body:>
     <div>
-    <span class="one-button-form">
-    <form if="&this.editable_by?(current_user, :agenda) and this.agenda.nil?">
-      <input value="&Agenda.current.id" type="hidden" name="agenda_item[agenda_id]"/>
-      <submit label="Add to current agenda"/>
-    </form>
+    <span class="one-button-form" if="&this.editable_by?(current_user, :agenda)">
+      <form>
+        <if test="&this.agenda.nil?">
+          <input value="&Agenda.current.id" type="hidden" name="agenda_item[agenda_id]"/>
+          <submit label="Add to current agenda"/>
+        </if>
+        <else>
+          <input value="&nil" type="hidden" name="agenda_item[agenda_id]"/>
+          <submit label="Remove from current agenda"/>
+        </else>
+      </form>
     </span>
 
     <span class="one-button-form">

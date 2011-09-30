@@ -58,3 +58,14 @@ Feature: Suggest Agenda Items
   Scenario: View discussion times
     Given some agenda item with discussion times
     Then I should see discussion times when viewing agenda items
+
+  Scenario: Remove item from agenda
+    Given agenda item in current agenda
+    And I am logged in as a council member
+    When I am on the current agenda page
+    And I follow "Item in current agenda"
+    And I press "Remove from current agenda"
+    And I press "Reject"
+
+    When I go to the current agenda page
+    Then I should not see "Item in current agenda"
